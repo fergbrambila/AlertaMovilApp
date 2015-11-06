@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_inicio" android:icon="@android:drawable/ic_menu_camera"
+            android:title="Inicio" />
+        <item android:id="@+id/nav_mapa" android:icon="@android:drawable/ic_menu_gallery"
+            android:title="Mapa" />
+        <item android:id="@+id/nav_misreportes" android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Mis Reportes" />
+        <item android:id="@+id/nav_seguidos" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Reportes en Segumiento" />
+        <item android:id="@+id/nav_emergencias" android:icon="@android:drawable/ic_menu_slideshow"
+            android:title="Numeros De Emergencia" />
+        <item android:id="@+id/nav_ayuda" android:icon="@android:drawable/ic_menu_manage"
+            android:title="Ayuda" />
+        <item android:id="@+id/nav_somos" android:icon="@android:drawable/ic_menu_manage"
+            android:title="¿Qienes Somos?" />
+        <item android:id="@+id/nav_donar" android:icon="@android:drawable/ic_menu_send"
+            android:title="Donar" />
+        <item android:id="@+id/nav_cerrar" android:icon="@android:drawable/ic_menu_send"
+            android:title="Cerrar Cesión" />
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item android:id="@+id/nav_share" android:icon="@android:drawable/ic_menu_share"
+                android:title="Share" />
+            <item android:id="@+id/nav_send" android:icon="@android:drawable/ic_menu_send"
+                android:title="Send" />
+        </menu>
+    </item>
+
+</menu>
