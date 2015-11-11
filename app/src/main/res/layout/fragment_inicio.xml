@@ -1,11 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.moviles.alertamovilapp.InicioFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Reportes Inicio" />
+    tools:context="com.example.moviles.alertamovilapp.InicioFragment" android:tag="Inicio">
 
     <TextView
         android:layout_width="wrap_content"

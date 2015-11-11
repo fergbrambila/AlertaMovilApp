@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -44,6 +45,9 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //setContentView(R.layout.fragment_inicio);
+        FragmentManager fm = getFragmentManager();
+        fm.beginTransaction().replace(R.id.content_frame, new InicioFragment()).commit();
     }
 
     @Override
@@ -84,88 +88,36 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        android.support.v4.app.FragmentManager oFragMag = getSupportFragmentManager();
-        android.support.v4.app.Fragment oFrag = null;
-        android.support.v4.app.FragmentTransaction oFragTx = oFragMag.beginTransaction();
-        String sFragTag = null;
-
-        boolean bIsHome = false;
+        FragmentManager fm = getFragmentManager();
 
         if (id == R.id.nav_inicio) {
-            // Handle the camera action
-            Toast.makeText(getApplicationContext(),"Inbox Selected",Toast.LENGTH_SHORT).show();
-            InicioFragment fragment = new InicioFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.container,fragment);
-            fragmentTransaction.commit();
-            /*Toast.makeText(getApplicationContext(),"Inbox Selected", Toast.LENGTH_SHORT).show();
-            oFrag = new InicioFragment();
-            oFragTx.replace(R.id.container,oFrag);
-            oFragTx.commit();
-
-            bIsHome = true;
-            sFragTag = "Inicio";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = InicioFragment.newInstance("", "");
-            }*/
+            Toast.makeText(getApplicationContext(),"Inicio - Reportes",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
         } else if (id == R.id.nav_mapa) {
-            Toast.makeText(getApplicationContext(),"map Selected",Toast.LENGTH_SHORT).show();
-            sFragTag = "Mapa";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = MisReportesFragment.newInstance("","");
-            }
+            Toast.makeText(getApplicationContext(), "map Selected", Toast.LENGTH_SHORT).show();
+            //fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
         } else if (id == R.id.nav_misreportes) {
-            sFragTag = "MisReportes";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = MisReportesFragment.newInstance("", "");
-                //oFragTx.add(R.id.container, oFrag, sFragTag);
-            }
+            Toast.makeText(getApplicationContext(),"Mis Reportes",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
         } else if (id == R.id.nav_seguidos) {
-            sFragTag = "Seguidos";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = SeguidosFragment.newInstance("", "");
-            }
+            Toast.makeText(getApplicationContext(),"Reportes Seguidos",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
-            sFragTag = "Emergencias";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = EmergenciasFragment.newInstance("", "");
-            }
+            Toast.makeText(getApplicationContext(),"Numeros de Emergencia",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new EmergenciasFragment()).commit();
         } else if (id == R.id.nav_ayuda) {
-            sFragTag = "Ayuda";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = AyudaFragment.newInstance("", "");
-            }
+            Toast.makeText(getApplicationContext(),"Ayuda",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new AyudaFragment()).commit();
         } else if (id == R.id.nav_somos) {
-            sFragTag = "Somos";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = SomosFragment.newInstance("", "");
-            }
+            Toast.makeText(getApplicationContext(),"Quienes Somos",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new SomosFragment()).commit();
         } else if (id == R.id.nav_donar) {
-            sFragTag = "Donar";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = DonarFragment.newInstance("", "");
-            }
+            Toast.makeText(getApplicationContext(),"Donar",Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new DonarFragment()).commit();
         } else if (id == R.id.nav_cerrar) {
-            sFragTag = "Cerrar";
-            oFrag = oFragMag.findFragmentByTag(sFragTag);
-            if(oFrag == null) {
-                oFrag = InicioFragment.newInstance("", "");
-            }
+
         }
 
-        if(oFrag != null) {
-            //android.support.v4.app.FragmentTransaction oTx = oFragMag.beginTransaction().replace(R.id.container, oFrag, sFragTag);
-        }
-
-        //oFragTx.commit();
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
