@@ -3,9 +3,26 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.EmergenciasFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="132 Bomberos"
+        android:id="@+id/Tv_Bomberos"
+        android:textStyle="bold"
+        android:layout_gravity="left|center_vertical"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="130 Incendios forestales"
+        android:id="@+id/Tv_Incendio"
+        android:textStyle="bold"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal|bottom" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -13,6 +30,39 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Emergencias"
         android:id="@+id/textView8"
-        android:layout_gravity="center" />
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="133 Carabineros"
+        android:id="@+id/Tv_Carabineros"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="134 Policia de Investigaciones"
+        android:id="@+id/Tv_Pdi"
+        android:textStyle="bold"
+        android:layout_gravity="left|bottom"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="131 Ambulancias"
+        android:id="@+id/Tv_Ambulancias"
+        android:textStyle="bold"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="right|center_vertical" />
+
 
 </FrameLayout>

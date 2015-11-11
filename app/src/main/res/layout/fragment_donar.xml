@@ -3,16 +3,22 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.DonarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Donar"
         android:id="@+id/textView6"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:layout_width="299dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="¿ Te gusta la app y   te es útil ? Te estaríamos agradecidos si nos pudieras cooperar con alguna donación."
+        android:id="@+id/Tv_Donar2"
+        android:layout_marginTop="40dp"
         android:layout_gravity="center_horizontal|top" />
 
 </FrameLayout>

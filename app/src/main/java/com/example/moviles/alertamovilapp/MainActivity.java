@@ -91,11 +91,11 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(getApplicationContext(),"Inicio - Reportes",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Inicio - Mapa",Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
-        } else if (id == R.id.nav_mapa) {
-            Toast.makeText(getApplicationContext(), "map Selected", Toast.LENGTH_SHORT).show();
-            //fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
+        } else if (id == R.id.nav_reportes) {
+            Toast.makeText(getApplicationContext(), "Reportes", Toast.LENGTH_SHORT).show();
+            fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
         } else if (id == R.id.nav_misreportes) {
             Toast.makeText(getApplicationContext(),"Mis Reportes",Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();

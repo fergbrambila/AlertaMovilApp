@@ -3,16 +3,22 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.SomosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Somos"
         android:id="@+id/textView9"
+        android:layout_gravity="center_horizontal|top" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Somos un grupo de estudiantes de distintas universidades unidos por un sólo fin: Ayudar a que las personas se sientan más seguras y que entre todos combatamos la delincuencia entre otras. Protegamosnos entre todos, y viviermos más tranquilos."
+        android:id="@+id/textView2"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="20dp"
         android:layout_gravity="center" />
 
 </FrameLayout>
