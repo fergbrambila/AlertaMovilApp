@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(),"Reportes Seguidos",Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
-            Toast.makeText(getApplicationContext(),"Numeros de Emergencia",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Números de Emergencia",Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new EmergenciasFragment()).commit();
         } else if (id == R.id.nav_ayuda) {
             Toast.makeText(getApplicationContext(),"Ayuda",Toast.LENGTH_SHORT).show();

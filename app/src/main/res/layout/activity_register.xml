@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/nombre"
-                    android:hint="Nombre"
+                    android:hint="@string/registro_nombre_hint"
                     android:inputType="textPersonName"
                     android:layout_gravity="right" />
 
@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/apellido"
-                    android:hint="Apellido"
+                    android:hint="@string/registro_apellido_hint"
                     android:inputType="textPersonName"
                     android:layout_gravity="right" />
 
@@ -68,7 +68,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/email"
-                    android:hint="Email"
+                    android:hint="@string/registro_correo_electronico_hint"
                     android:inputType="textEmailAddress" />
 
             </android.support.design.widget.TextInputLayout>
@@ -84,7 +84,7 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:id="@+id/password"
-                    android:hint="Password" />
+                    android:hint="@string/registro_contrasena_hint" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -99,7 +99,7 @@
                     android:inputType="textPassword"
                     android:ems="10"
                     android:id="@+id/confirmpassword"
-                    android:hint="Confirma Password" />
+                    android:hint="@string/registro_confirmar_contrasena_hint" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -114,7 +114,7 @@
                     android:inputType="phone"
                     android:ems="10"
                     android:id="@+id/numerocelular"
-                    android:hint="Numero Celular" />
+                    android:hint="@string/registro_numero_celular_hint" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:ems="10"
                     android:id="@+id/fechanacimiento"
-                    android:hint="Fecha de Nacimiento"
+                    android:hint="@string/registro_fecha_de_nacimiento_hint"
                     android:inputType="date" />
 
             </android.support.design.widget.TextInputLayout>
@@ -142,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="   Ciudad"
+                    android:text="@string/registro_ciudad_hint"
                     android:id="@+id/textView5" />
 
                 <Spinner

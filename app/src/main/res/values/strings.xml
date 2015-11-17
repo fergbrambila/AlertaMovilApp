@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">AlertaMovilApp</string>
 
+    <string name="contrasena_hint">Contraseña</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -22,4 +24,13 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="login_correo_electronico_hint">Correo electrónico</string>
+    <string name="registro_nombre_hint">Nombre</string>
+    <string name="registro_apellido_hint">Apellido</string>
+    <string name="registro_correo_electronico_hint">Correo electrónico</string>
+    <string name="registro_contrasena_hint">Contraseña</string>
+    <string name="registro_confirmar_contrasena_hint">Confirmar contraseña</string>
+    <string name="registro_numero_celular_hint">Número Celular</string>
+    <string name="registro_fecha_de_nacimiento_hint">Fecha de Nacimiento</string>
+    <string name="registro_ciudad_hint">Ciudad</string>
 </resources>
