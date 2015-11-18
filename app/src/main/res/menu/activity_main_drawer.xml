@@ -9,17 +9,17 @@
         <item android:id="@+id/nav_misreportes" android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Mis Reportes" />
         <item android:id="@+id/nav_seguidos" android:icon="@android:drawable/ic_menu_manage"
-            android:title="Reportes en Segumiento" />
+            android:title="Reportes en Seguimiento" />
         <item android:id="@+id/nav_emergencias" android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Numeros De Emergencia" />
         <item android:id="@+id/nav_ayuda" android:icon="@android:drawable/ic_menu_manage"
             android:title="Ayuda" />
         <item android:id="@+id/nav_somos" android:icon="@android:drawable/ic_menu_manage"
-            android:title="¿Qienes Somos?" />
+            android:title="¿Quienes Somos?" />
         <item android:id="@+id/nav_donar" android:icon="@android:drawable/ic_menu_send"
             android:title="Donar" />
         <item android:id="@+id/nav_cerrar" android:icon="@android:drawable/ic_menu_send"
-            android:title="Cerrar Cesión" />
+            android:title="Cerrar Sesión" />
     </group>
 
     <item android:title="Communicate">
