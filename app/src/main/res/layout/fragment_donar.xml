@@ -4,15 +4,6 @@
     tools:context="com.example.moviles.alertamovilapp.DonarFragment">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Donar"
-        android:id="@+id/textView6"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="10dp" />
-
-    <TextView
         android:layout_width="299dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"

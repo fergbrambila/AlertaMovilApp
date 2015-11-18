@@ -3,66 +3,112 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.EmergenciasFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="132 Bomberos"
-        android:id="@+id/Tv_Bomberos"
-        android:textStyle="bold"
-        android:layout_gravity="left|center_vertical"
-        android:layout_marginTop="10dp" />
+        android:id="@+id/scrollView" >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="130 Incendios forestales"
-        android:id="@+id/Tv_Incendio"
-        android:textStyle="bold"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="50dp"
-        android:layout_gravity="center_horizontal|bottom" />
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Emergencias"
-        android:id="@+id/textView8"
-        android:layout_gravity="center_horizontal|top"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estos son algunos de los numeros a los cuales puedes marcar en cualquier emergencia"
+                android:id="@+id/textView8"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="5dp"
+                android:textAlignment="center" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="133 Carabineros"
-        android:id="@+id/Tv_Carabineros"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_____________________________________________"
+                android:id="@+id/textView10"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="5dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="134 Policia de Investigaciones"
-        android:id="@+id/Tv_Pdi"
-        android:textStyle="bold"
-        android:layout_gravity="left|bottom"
-        android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="132 Bomberos"
+                android:id="@+id/Tv_Bomberos"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0"
+                android:contextClickable="false"
+                android:textSize="27dp"
+                android:layout_marginTop="20dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="131 Ambulancias"
-        android:id="@+id/Tv_Ambulancias"
-        android:textStyle="bold"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="10dp"
-        android:layout_gravity="right|center_vertical" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="130 Incendios forestales"
+                android:id="@+id/Tv_Incendio"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="27dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="133 Carabineros"
+                android:id="@+id/Tv_Carabineros"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="27dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="134 Policia de Investigaciones"
+                android:id="@+id/Tv_Pdi"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="27dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="131 Ambulancias"
+                android:id="@+id/Tv_Ambulancias"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:textSize="27dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="_____________________________________________"
+                android:id="@+id/textView11"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginRight="5dp" />
+        </LinearLayout>
+    </ScrollView>
 
 
 </FrameLayout>
