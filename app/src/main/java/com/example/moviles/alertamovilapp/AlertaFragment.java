@@ -7,6 +7,7 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.DialogFragment;
@@ -29,8 +30,27 @@ public class AlertaFragment extends DialogFragment {
 
         //String title = getArguments().getString("title");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        alertDialogBuilder.setTitle("seleccionar tipo");
-        alertDialogBuilder.setView(R.layout.fragment_alerta);
+        // Get the layout inflater
+        LayoutInflater inflater = getActivity().getLayoutInflater();
+        alertDialogBuilder.setView(inflater.inflate(R.layout.fragment_alerta, null))
+                .setTitle("Seleccionar Tipo de Alerta")
+                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int id) {
+                // sign in the user ...
+            }
+        })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //LoginDialogFragment.this.getDialog().cancel();
+                    }
+                });
+
+        //alertDialogBuilder.setTitle("seleccionar tipo");
+
+        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            alertDialogBuilder.setView(R.layout.fragment_alerta);
+        }
         alertDialogBuilder.setMessage("Are you sure?");
         alertDialogBuilder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
             @Override
@@ -44,7 +64,7 @@ public class AlertaFragment extends DialogFragment {
                 dialog.dismiss();
             }
         });
-
+*/
         return alertDialogBuilder.create();
     }
 
