@@ -7,6 +7,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,10 +32,16 @@ public class MainActivity extends AppCompatActivity
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Prueba de funcionamiento", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                @Override
+                public void onClick(View view) {
+                SpannableStringBuilder builder = new SpannableStringBuilder();
+                builder.append("My message ").append(" ");
+                builder.setSpan(new ImageSpan(MainActivity.this, R.drawable.common_signin_btn_icon_light), builder.length() - 1, builder.length(), 0);
+                builder.append(" next message");
+                Snackbar.make(view, builder, Snackbar.LENGTH_LONG).show();
+
+                //Snackbar.make(view, "Prueba de funcionamiento", Snackbar.LENGTH_LONG)
+                        //.setAction("Action", null).show();
             }
         });
 

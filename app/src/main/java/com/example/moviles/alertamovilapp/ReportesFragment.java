@@ -1,27 +1,42 @@
 package com.example.moviles.alertamovilapp;
 
+import android.app.DialogFragment;
+import android.app.FragmentManager;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Toast;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ReportesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ReportesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ReportesFragment extends Fragment {
     @Nullable
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reportes, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_reportes,container,false);//false is dont want to attatch to root
+
+        ImageView mImageView = (ImageView) rootView.findViewById(R.id.imageView);
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity().getBaseContext(),"Alerta Seleccionada",Toast.LENGTH_SHORT).show();
+                Log.d("test", "clic imagen");
+                FragmentActivity activity = (FragmentActivity) getActivity();
+
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                AlertaFragment alertDialog = AlertaFragment.newInstance();
+                alertDialog.show(fm, "fragment_alert");
+
+            }
+        });
+
+        return rootView;
     }
 }

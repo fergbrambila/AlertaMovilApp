@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.example.moviles.alertamovilapp.AlertaFragment"
+    android:id="@+id/alertaView">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:text="Policia"
+        android:id="@+id/button"
+        android:layout_gravity="top|left|center"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="25dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ambulancia"
+        android:id="@+id/button3"
+        android:layout_gravity="right|top"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Elige la opcion"
+        android:id="@+id/textView10"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginTop="80dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bomberos"
+        android:id="@+id/button2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="25dp" />
+
+</FrameLayout>
