@@ -4,24 +4,26 @@
     android:layout_height="wrap_content"
     android:baselineAligned="true">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="left|top" />
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imageButtonBombero"
+        android:layout_gravity="left|top"
+        android:src="@mipmap/bombero"
+        android:background="#ff7777" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal|top" />
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imageButtonPolicia"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@mipmap/policia"
+        android:background="#707bf0" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button3"
-        android:layout_gravity="right|top" />
+    <ImageButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/imageButtonBombero"
+        android:layout_gravity="right|top"
+        android:src="@mipmap/doctor" />
 </FrameLayout>

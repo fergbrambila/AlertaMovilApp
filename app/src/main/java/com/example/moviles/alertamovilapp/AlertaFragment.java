@@ -15,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class AlertaFragment extends DialogFragment {
     Context mContext;
@@ -28,23 +30,32 @@ public class AlertaFragment extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Log.d("test", "dialogo");
 
-        //String title = getArguments().getString("title");
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
         LayoutInflater inflater = getActivity().getLayoutInflater();
+        View editLayout = inflater.inflate(R.layout.fragment_alerta, null);
+        ImageButton imBBombero = (ImageButton) editLayout.findViewById(R.id.imageButtonBombero);
         alertDialogBuilder.setView(inflater.inflate(R.layout.fragment_alerta, null))
-                .setTitle("Seleccionar Tipo de Alerta")
+                .setTitle("Selecciona tipo de Alerta")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int id) {
                 // sign in the user ...
             }
         })
-                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
                         //LoginDialogFragment.this.getDialog().cancel();
                     }
                 });
+
+        imBBombero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getBaseContext(),"Bombero", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //alertDialogBuilder.setTitle("seleccionar tipo");
 

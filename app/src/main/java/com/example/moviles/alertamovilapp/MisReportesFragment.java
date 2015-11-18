@@ -12,6 +12,7 @@ public class MisReportesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_mis_reportes,container,false);//false is dont want to attatch to root
+        ((MainActivity) getActivity()).setActionBarTitle("Mis Reportes");
         return rootView;
     }
 }

@@ -3,27 +3,18 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.ReportesFragment">
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Reportes"
-        android:id="@+id/textView2"
+        android:text="Filtrar Reportes"
+        android:id="@+id/button"
         android:layout_gravity="center_horizontal|top" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/alertaButton"
-        android:layout_gravity="center_horizontal|bottom"
-        android:src="@mipmap/alerta"
-        android:adjustViewBounds="false" />
 
     <ImageView
         android:layout_width="93dp"
         android:layout_height="93dp"
         android:id="@+id/imageView"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal|bottom"
         android:src="@mipmap/alerta" />
     <!-- default -->
 

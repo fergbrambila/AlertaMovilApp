@@ -13,6 +13,8 @@ public class SeguidosFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ((MainActivity) getActivity()).setActionBarTitle("Reportes Seguidos");
+
         return inflater.inflate(R.layout.fragment_seguidos, container, false);
     }
 }

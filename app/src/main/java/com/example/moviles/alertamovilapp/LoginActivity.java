@@ -42,16 +42,17 @@ public class LoginActivity extends AppCompatActivity {
 
         onLinkListener();
         onButtonListener();
-        //MANITO :3
+        /*MANITO :3
         Button l2a;
         l2a = (Button)findViewById(R.id.btn_login);
         l2a.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
+                finish();
             }
         });
-        //FIN MANITO <3
+        //FIN MANITO <3*/
     }
 
     protected void hideKeyboard(View view)
@@ -66,8 +67,9 @@ public class LoginActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         login();
-                        Intent intent = new Intent("com.example.moviles.alertamovil.MainActivity");
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                         startActivity(intent);
+                        finish();
                     }
                 }
         );
@@ -78,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
         _link_signup.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent("com.example.moviles.alertamovilapp.RegisterActivity");
+                        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
                         startActivity(intent);
                     }
                 }

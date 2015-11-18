@@ -22,6 +22,8 @@ public class ReportesFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_reportes,container,false);//false is dont want to attatch to root
 
+        ((MainActivity) getActivity()).setActionBarTitle("Reportes");
+
         ImageView mImageView = (ImageView) rootView.findViewById(R.id.imageView);
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override

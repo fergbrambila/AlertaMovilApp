@@ -13,6 +13,8 @@ public class InicioFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_inicio,container,false);//false is dont want to attatch to root
+        ((MainActivity) getActivity()).setActionBarTitle("Mapa");
+
         return rootView;
     }
 }

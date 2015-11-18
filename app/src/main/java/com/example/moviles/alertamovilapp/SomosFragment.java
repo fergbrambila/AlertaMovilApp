@@ -12,6 +12,8 @@ public class SomosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ((MainActivity) getActivity()).setActionBarTitle("Quienes Somos");
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_somos, container, false);
     }
