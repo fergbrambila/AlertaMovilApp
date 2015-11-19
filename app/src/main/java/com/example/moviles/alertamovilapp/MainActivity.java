@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -120,7 +121,9 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_inicio) {
             Toast.makeText(getApplicationContext(),"Inicio - Mapa",Toast.LENGTH_SHORT).show();
-            fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
+            Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+            startActivity(i);
+            //fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
         } else if (id == R.id.nav_reportes) {
             Toast.makeText(getApplicationContext(), "Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
