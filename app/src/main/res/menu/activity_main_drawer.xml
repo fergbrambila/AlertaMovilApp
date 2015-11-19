@@ -2,10 +2,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
-        <item android:id="@+id/nav_inicio" android:icon="@android:drawable/ic_menu_camera"
-            android:title="Inicio - Mapa" />
         <item android:id="@+id/nav_reportes" android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Reportes" />
+            android:title="Inicio - Reportes" />
+        <item android:id="@+id/nav_inicio" android:icon="@android:drawable/ic_menu_camera"
+            android:title="Mapa" />
         <item android:id="@+id/nav_misreportes" android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Mis Reportes" />
         <item android:id="@+id/nav_seguidos" android:icon="@android:drawable/ic_menu_manage"

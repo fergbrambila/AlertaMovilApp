@@ -81,8 +81,8 @@ public class LoginActivity extends AppCompatActivity {
         _link_signup.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(),RegisterActivity.class);
-                        startActivity(intent);
+                        Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
+                        startActivity(i);
                     }
                 }
         );

@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         //setContentView(R.layout.fragment_inicio);
         FragmentManager fm = getFragmentManager();
-        fm.beginTransaction().replace(R.id.content_frame, new InicioFragment()).commit();
+        fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
     }
 
     @Override
