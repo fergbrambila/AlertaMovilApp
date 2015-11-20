@@ -2,7 +2,8 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:baselineAligned="true">
+    android:baselineAligned="true"
+    android:id="@+id/alertapanico">
 
     <ImageButton
         android:layout_width="70dp"
@@ -23,7 +24,7 @@
     <ImageButton
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:id="@+id/imageButtonBombero"
+        android:id="@+id/imageButtonMedico"
         android:layout_gravity="right|top"
         android:src="@mipmap/doctor" />
 </FrameLayout>

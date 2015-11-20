@@ -32,9 +32,13 @@ public class AlertaFragment extends DialogFragment {
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
+
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View editLayout = inflater.inflate(R.layout.fragment_alerta, null);
-        ImageButton imBBombero = (ImageButton) editLayout.findViewById(R.id.imageButtonBombero);
+
+
+        //ImageButton a = (ImageButton) a
+
+
         alertDialogBuilder.setView(inflater.inflate(R.layout.fragment_alerta, null))
                 .setTitle("Selecciona tipo de Alerta")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
@@ -49,6 +53,9 @@ public class AlertaFragment extends DialogFragment {
                         //LoginDialogFragment.this.getDialog().cancel();
                     }
                 });
+
+        View editLayout = inflater.inflate(R.layout.fragment_alerta, null);
+        ImageButton imBBombero = (ImageButton) editLayout.findViewById(R.id.imageButtonBombero);
 
         imBBombero.setOnClickListener(new View.OnClickListener() {
             @Override
