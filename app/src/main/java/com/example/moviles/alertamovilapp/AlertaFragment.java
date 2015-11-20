@@ -25,7 +25,6 @@ public class AlertaFragment extends DialogFragment {
         mContext = getActivity();
     }
 
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Log.d("test", "dialogo");
@@ -34,11 +33,7 @@ public class AlertaFragment extends DialogFragment {
         // Get the layout inflater
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-
-
         //ImageButton a = (ImageButton) a
-
-
         alertDialogBuilder.setView(inflater.inflate(R.layout.fragment_alerta, null))
                 .setTitle("Selecciona tipo de Alerta")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {

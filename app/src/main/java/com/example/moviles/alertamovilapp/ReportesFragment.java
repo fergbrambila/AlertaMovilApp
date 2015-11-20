@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -35,6 +36,22 @@ public class ReportesFragment extends Fragment {
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
                 AlertaFragment alertDialog = AlertaFragment.newInstance();
                 alertDialog.show(fm, "fragment_alert");
+
+            }
+        });
+
+        Button btnRepLeves = (Button) rootView.findViewById(R.id.btnReportesLeves);
+
+        btnRepLeves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test","Reportes Leves");
+
+                FragmentActivity activity = (FragmentActivity) getActivity();
+
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                ReportesLevesFragments reporteDialog = ReportesLevesFragments.newInstance();
+                reporteDialog.show(fm,"fragmentalert");
 
             }
         });
