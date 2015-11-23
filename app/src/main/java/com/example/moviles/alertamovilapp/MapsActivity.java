@@ -1,10 +1,17 @@
 package com.example.moviles.alertamovilapp;
 
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.IntentSender;
 import android.location.Location;
+import android.os.Build;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -18,7 +25,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
+public class MapsActivity extends Fragment implements OnMapReadyCallback,GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
     private GoogleMap mMap;
@@ -28,27 +35,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private LocationRequest mLocationRequest;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps);
+        final View rootView = inflater.inflate(R.layout.activity_maps,container,false);//false is dont want to attatch to root
+
+        setUpMapIfNeeded();
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+        SupportMapFragment mapFragment = (SupportMapFragment) ((AppCompatActivity)getActivity()).getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-
         // Create the LocationRequest object
+
         mLocationRequest = LocationRequest.create()
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
                 .setInterval(10 * 1000)        // 10 seconds, in milliseconds
                 .setFastestInterval(1 * 1000); // 1 second, in milliseconds
+
+        return rootView;
     }
-    
+        // FUNCION QUE ME PASO EL PROFE
+        private void setUpMapIfNeeded(){
+            // Do a null check to confirm that we have not already instantiated the map.
+            FragmentManager fm = null;
+            Log.d("TAG", "sdk: " + Build.VERSION.SDK_INT);
+            Log.d("TAG", "release: " + Build.VERSION.RELEASE);
+            if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
+                Log.d("TAG", "using getFragmentManager");
+                fm = getFragmentManager();
+            } else {
+                Log.d("TAG", "using getChildFragmentManager");
+                fm = getChildFragmentManager();
+            }
+
+            if (mMap == null) {
+                // Try to obtain the map from the SupportMapFragment.
+                mMap = ((com.google.android.gms.maps.MapFragment)fm.findFragmentById(R.id.map)).getMap();
+
+                // Check if we were successful in obtaining the map.
+                if (mMap != null) {
+                    Log.i("OnResume", "True");
+                    setUpMap();
+                }
+            }
+        }
+
+
+
+
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -58,6 +99,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -68,7 +110,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         setUpMap();
         mGoogleApiClient.connect();
@@ -79,7 +121,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         if (mGoogleApiClient.isConnected()) {
             LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
@@ -94,8 +136,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mGoogleApiClient);
         if (location != null) {
             handleNewLocation(location);
-        }
-        else {
+        } else {
             LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
         }
     }
@@ -110,6 +151,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(options);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         Log.d(TAG, location.toString());
+
+        // Asigno una vista al mapa
+        mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
     }
 
     @Override
@@ -122,7 +166,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         if (connectionResult.hasResolution()) {
             try {
                 // Start an Activity that tries to resolve the error
-                connectionResult.startResolutionForResult(this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
+                connectionResult.startResolutionForResult(getActivity(), CONNECTION_FAILURE_RESOLUTION_REQUEST);
             } catch (IntentSender.SendIntentException e) {
                 e.printStackTrace();
             }
@@ -135,4 +179,31 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onLocationChanged(Location location) {
         handleNewLocation(location);
     }
+
+
 }
+
+/*
+    public class GPS extends FragmentActivity {
+
+        @Override
+        protected void onResume() {
+            super.onResume();
+            setUpMapIfNeeded();
+        }
+
+        private void setUpMapIfNeeded() {
+            // Do a null check to confirm that we have not already instantiated the map.
+            if (supportMap == null) {
+                // Try to obtain the map from the SupportMapFragment.
+                supportMap = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map))
+                        .getMap();
+                // Check if we were successful in obtaining the map.
+                if (supportMap != null) {
+                    MarkerOptions mo = new MarkerOptions().position( new LatLng( latitude, longitude ) );
+                    supportMap.addMarker( mo );
+                }
+            }
+        }
+    }
+  */

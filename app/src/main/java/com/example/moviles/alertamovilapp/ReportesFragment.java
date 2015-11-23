@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 public class ReportesFragment extends Fragment {
+    private ListView oLst;
+
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +42,23 @@ public class ReportesFragment extends Fragment {
             }
         });
 
+        oLst = (ListView)rootView.findViewById(R.id.listView);
+        Reporte[] aReportes = new Reporte[6];
+        for (int i = 0; i < aReportes.length; i++) {
+            Reporte oReporte = new Reporte();
+            oReporte.setTitulo("askjasd");
+            oReporte.setDescripcion("sdkasdafh");
+            oReporte.setImg(R.drawable.calle_santiago);
+
+            aReportes[i] = oReporte;
+        }
+        Adaptador oAdapter = new Adaptador(getActivity(), aReportes);
+
+        oLst.setAdapter(oAdapter);
+
         return rootView;
     }
+
+
 }
+
