@@ -3,11 +3,34 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.ReportesFragment">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Filtrar Reportes"
-        android:layout_gravity="center_horizontal|top" />
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:gravity="center">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filtrar Reportes"
+                android:layout_gravity="center_horizontal|top" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Generar Reportes Leves"
+                android:layout_gravity="center"
+                android:id="@+id/btnReportesLeves" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
     <ImageView
         android:layout_width="79dp"
@@ -16,20 +39,5 @@
         android:layout_gravity="center_horizontal|bottom"
         android:src="@mipmap/alerta" />
 
-<<<<<<< HEAD
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="401dp"
-        android:id="@+id/listView"
-        android:layout_gravity="center" />
-=======
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Generar Reportes Leves"
-        android:layout_gravity="center"
-        android:id="@+id/btnReportesLeves" />
->>>>>>> 1901da95fe1fdc4f70de9345407836553d99bb9b
-    <!-- default -->
 
 </FrameLayout>

@@ -6,15 +6,11 @@ import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -34,7 +30,13 @@ public class AlertaFragment extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         //ImageButton a = (ImageButton) a
-        alertDialogBuilder.setView(inflater.inflate(R.layout.fragment_alerta, null))
+        View oDialogView = inflater.inflate(R.layout.fragment_alerta, null);
+
+        ImageButton oBtnBom = (ImageButton) oDialogView.findViewById(R.id.imageButtonBombero);
+        ImageButton oBtnPol = (ImageButton) oDialogView.findViewById(R.id.imageButtonPolicia);
+        ImageButton oBtnMed = (ImageButton) oDialogView.findViewById(R.id.imageButtonMedico);
+
+        alertDialogBuilder.setView(oDialogView)
                 .setTitle("Selecciona tipo de Alerta")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
             @Override
@@ -49,35 +51,26 @@ public class AlertaFragment extends DialogFragment {
                     }
                 });
 
-        View editLayout = inflater.inflate(R.layout.fragment_alerta, null);
-        ImageButton imBBombero = (ImageButton) editLayout.findViewById(R.id.imageButtonBombero);
-
-        imBBombero.setOnClickListener(new View.OnClickListener() {
+        oBtnBom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getBaseContext(),"Bombero", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(), "Bombero", Toast.LENGTH_SHORT).show();
             }
         });
 
-        //alertDialogBuilder.setTitle("seleccionar tipo");
+        oBtnPol.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getBaseContext(), "Policia", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-        /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            alertDialogBuilder.setView(R.layout.fragment_alerta);
-        }
-        alertDialogBuilder.setMessage("Are you sure?");
-        alertDialogBuilder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+        oBtnMed.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // on success
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getBaseContext(), "Medico", Toast.LENGTH_SHORT).show();
             }
         });
-        alertDialogBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-*/
         return alertDialogBuilder.create();
     }
 
