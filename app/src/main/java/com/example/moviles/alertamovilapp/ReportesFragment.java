@@ -43,6 +43,36 @@ public class ReportesFragment extends Fragment {
             }
         });
 
+        oLst = (ListView)rootView.findViewById(R.id.listView);
+        Reporte[] aReportes = new Reporte[6];
+        for (int i = 0; i < aReportes.length; i++) {
+            Reporte oReporte = new Reporte();
+            oReporte.setTitulo("askjasd");
+            oReporte.setDescripcion("sdkasdafh");
+            oReporte.setImg(R.drawable.calle_santiago);
+
+            aReportes[i] = oReporte;
+        }
+        Adaptador oAdapter = new Adaptador(getActivity(), aReportes);
+
+        oLst.setAdapter(oAdapter);
+
+        Button btnRepLeves = (Button) rootView.findViewById(R.id.btnReportesLeves);
+
+        btnRepLeves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test","Reportes Leves");
+
+                FragmentActivity activity = (FragmentActivity) getActivity();
+
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                ReporteLeveFragment reportDialog = ReporteLeveFragment.newInstance();
+
+                reportDialog.show(fm,"fragmentalert");
+            }
+        });
+
         return rootView;
     }
 
