@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -42,6 +43,7 @@ public class ReportesFragment extends Fragment {
             }
         });
 
+<<<<<<< HEAD
         oLst = (ListView)rootView.findViewById(R.id.listView);
         Reporte[] aReportes = new Reporte[6];
         for (int i = 0; i < aReportes.length; i++) {
@@ -55,6 +57,23 @@ public class ReportesFragment extends Fragment {
         Adaptador oAdapter = new Adaptador(getActivity(), aReportes);
 
         oLst.setAdapter(oAdapter);
+=======
+        Button btnRepLeves = (Button) rootView.findViewById(R.id.btnReportesLeves);
+
+        btnRepLeves.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test","Reportes Leves");
+
+                FragmentActivity activity = (FragmentActivity) getActivity();
+
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                ReportesLevesFragments reporteDialog = ReportesLevesFragments.newInstance();
+                reporteDialog.show(fm,"fragmentalert");
+
+            }
+        });
+>>>>>>> 1901da95fe1fdc4f70de9345407836553d99bb9b
 
         return rootView;
     }

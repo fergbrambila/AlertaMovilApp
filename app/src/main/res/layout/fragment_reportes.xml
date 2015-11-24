@@ -7,7 +7,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Filtrar Reportes"
-        android:id="@+id/button"
         android:layout_gravity="center_horizontal|top" />
 
     <ImageView
@@ -17,11 +16,20 @@
         android:layout_gravity="center_horizontal|bottom"
         android:src="@mipmap/alerta" />
 
+<<<<<<< HEAD
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="401dp"
         android:id="@+id/listView"
         android:layout_gravity="center" />
+=======
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Generar Reportes Leves"
+        android:layout_gravity="center"
+        android:id="@+id/btnReportesLeves" />
+>>>>>>> 1901da95fe1fdc4f70de9345407836553d99bb9b
     <!-- default -->
 
 </FrameLayout>
