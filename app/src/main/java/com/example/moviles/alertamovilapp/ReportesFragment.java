@@ -43,6 +43,32 @@ public class ReportesFragment extends Fragment {
             }
         });
 
+        Button btnReporteLeve = (Button) rootView.findViewById(R.id.btnReportesLeves);
+        btnReporteLeve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test", "clic Reporte Leve");
+                FragmentActivity activity = (FragmentActivity) getActivity();
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance();
+                alertDialog.show(fm, "fragment_reporte_leve");
+            }
+        });
+
+        Button btnReporteFiltro = (Button) rootView.findViewById(R.id.btnReportesFiltrar);
+        btnReporteFiltro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test", "clic Reporte Leve");
+                FragmentActivity activity = (FragmentActivity) getActivity();
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                ReporteFiltroFragment alertDialog = ReporteFiltroFragment.newInstance();
+                alertDialog.show(fm, "fragment_reporte_filtro");
+            }
+        });
+
+
+
         return rootView;
     }
 

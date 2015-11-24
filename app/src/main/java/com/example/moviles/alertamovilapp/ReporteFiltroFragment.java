@@ -20,26 +20,27 @@ import android.widget.Toast;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ReporteLeveFragment extends DialogFragment {
+public class ReporteFiltroFragment extends DialogFragment {
     Context mContext;
 
-    public ReporteLeveFragment() {
+    public ReporteFiltroFragment() {
         mContext = getActivity();
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "Filtro");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         //ImageButton a = (ImageButton) a
-        View oDialogView = inflater.inflate(R.layout.fragment_reporte_leve, null);
+        View oDialogView = inflater.inflate(R.layout.fragment_reporte_filtro, null);
+
         alertDialogBuilder.setView(oDialogView)
-                .setTitle("Selecciona tipo de Alerta")
-                .setPositiveButton("ok", new DialogInterface.OnClickListener() {
+                .setTitle("Selecciona Filtro")
+                .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...
@@ -54,10 +55,8 @@ public class ReporteLeveFragment extends DialogFragment {
 
         Spinner tipoSpinner = (Spinner) oDialogView.findViewById(R.id.tipospinner);
         final Spinner subtipoSpinner = (Spinner) oDialogView.findViewById(R.id.subtipospinner);
-        Spinner ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
         String[] tipos = new String[] { "Policia", "Bomberos", "Medicos", "Servicios"};
-        String[] ciudades = new String[] { "Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique" };
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
@@ -85,28 +84,13 @@ public class ReporteLeveFragment extends DialogFragment {
             }
         });
 
-        ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
 
-        ciudadSpinner.setAdapter(adapterCiudad);
-
-        ciudadSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
 
         return alertDialogBuilder.create();
     }
 
-    public static ReporteLeveFragment newInstance() {
-        ReporteLeveFragment frag = new ReporteLeveFragment();
+    public static ReporteFiltroFragment newInstance() {
+        ReporteFiltroFragment frag = new ReporteFiltroFragment();
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
