@@ -50,9 +50,9 @@ public class ReportesFragment extends Fragment {
                 FragmentActivity activity = (FragmentActivity) getActivity();
 
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
-                ReportesLevesFragments reporteDialog = ReportesLevesFragments.newInstance();
-                reporteDialog.show(fm,"fragmentalert");
+                ReporteLeveFragment reportDialog = ReporteLeveFragment.newInstance();
 
+                reportDialog.show(fm,"fragmentalert");
             }
         });
 
