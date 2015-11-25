@@ -50,7 +50,8 @@
                 android:layout_weight="0"
                 android:contextClickable="false"
                 android:textSize="27dp"
-                android:layout_marginTop="20dp" />
+                android:layout_marginTop="20dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -61,7 +62,8 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:textSize="27dp" />
+                android:textSize="27dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +74,8 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:textSize="27dp" />
+                android:textSize="27dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,7 +86,8 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:textSize="27dp" />
+                android:textSize="27dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,7 +98,8 @@
                 android:textStyle="bold"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
-                android:textSize="27dp" />
+                android:textSize="27dp"
+                android:textAlignment="center" />
 
             <TextView
                 android:layout_width="wrap_content"

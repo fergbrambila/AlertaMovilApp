@@ -68,7 +68,7 @@ public class ReportesFragment extends Fragment {
         });
 
         oLst = (ListView)rootView.findViewById(R.id.listView);
-        Reporte[] aReportes = new Reporte[6];
+        Reporte[] aReportes = new Reporte[16];
         for (int i = 0; i < aReportes.length; i++) {
             Reporte oReporte = new Reporte();
             oReporte.setTitulo("askjasd");

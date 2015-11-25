@@ -7,18 +7,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Somos"
-        android:id="@+id/textView9"
-        android:layout_gravity="center_horizontal|top" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Somos un grupo de estudiantes de distintas universidades unidos por un sólo fin: Ayudar a que las personas se sientan más seguras y que entre todos combatamos la delincuencia entre otras. Protegamosnos entre todos, y viviermos más tranquilos."
         android:id="@+id/textView2"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:layout_gravity="center" />
+
+    <ImageView
+        android:layout_width="184dp"
+        android:layout_height="184dp"
+        android:id="@+id/imageView2"
+        android:layout_gravity="center_horizontal|top"
+        android:src="@mipmap/logo"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
 </FrameLayout>
