@@ -71,8 +71,8 @@ public class ReportesFragment extends Fragment {
         Reporte[] aReportes = new Reporte[16];
         for (int i = 0; i < aReportes.length; i++) {
             Reporte oReporte = new Reporte();
-            oReporte.setTitulo("askjasd");
-            oReporte.setDescripcion("sdkasdafh");
+            oReporte.setTitulo("Titulo del Reporte");
+            oReporte.setDescripcion("Lorem ipsum latem");
             oReporte.setImg(R.drawable.calle_santiago);
 
             aReportes[i] = oReporte;

@@ -39,7 +39,6 @@ public class ReporteFiltroFragment extends DialogFragment {
         View oDialogView = inflater.inflate(R.layout.fragment_reporte_filtro, null);
 
         alertDialogBuilder.setView(oDialogView)
-                .setTitle("Selecciona Filtro")
                 .setPositiveButton("Filtrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {

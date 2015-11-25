@@ -38,8 +38,7 @@ public class ReporteLeveFragment extends DialogFragment {
         //ImageButton a = (ImageButton) a
         View oDialogView = inflater.inflate(R.layout.fragment_reporte_leve, null);
         alertDialogBuilder.setView(oDialogView)
-                .setTitle("Generar Reporte Leve")
-                .setPositiveButton("Enviar Alerta", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Enviar Reporte", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...

@@ -36,8 +36,8 @@ public class AlertaFragment extends DialogFragment {
         ImageButton oBtnPol = (ImageButton) oDialogView.findViewById(R.id.imageButtonPolicia);
         ImageButton oBtnMed = (ImageButton) oDialogView.findViewById(R.id.imageButtonMedico);
 
+//        .setTitle("Selecciona tipo de Alerta")
         alertDialogBuilder.setView(oDialogView)
-                .setTitle("Selecciona tipo de Alerta")
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();

@@ -120,39 +120,116 @@
 
             </android.support.design.widget.TextInputLayout>
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/fechanacimientoWrapper"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <EditText
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:id="@+id/fechanacimiento"
-                    android:hint="@string/registro_fecha_de_nacimiento_hint"
-                    android:inputType="date" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/ciudadWrapper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:weightSum="1">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceSmall"
-                    android:text="@string/registro_ciudad_hint"
-                    android:id="@+id/textView5" />
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Fecha: "
+                    android:id="@+id/textView12"
+                    android:textColor="#7d7d7d"
+                    android:textSize="20dp" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fechadiaWrapper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:layout_width="40dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:ems="10"
+                        android:id="@+id/fechaDia"
+                        android:layout_weight="0"
+                        android:hint="dd"
+                        android:gravity="center"
+                        android:maxLength="2" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="/"
+                    android:id="@+id/textView13"
+                    android:textColor="#7d7d7d" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fechamesrWrapper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editText2"
+                    android:layout_weight="0"
+                    android:hint="mm"
+                    android:gravity="center"
+                    android:maxLength="2" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="/"
+                    android:id="@+id/textView14"
+                    android:textColor="#7d7d7d" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/fechanoWrapper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:ems="10"
+                    android:id="@+id/editText3"
+                    android:layout_weight="0"
+                    android:hint="aaaa"
+                    android:gravity="center"
+                    android:maxLength="4" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="left|center"
+                android:weightSum="1"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="Ciudad"
+                    android:id="@+id/textView15"
+                    android:textColor="#7d7d7d"
+                    android:textSize="20dp" />
 
                 <Spinner
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/ciudad_spinner"/>
-            </android.support.design.widget.TextInputLayout>
-
+            </LinearLayout>
 
 
             <Button
