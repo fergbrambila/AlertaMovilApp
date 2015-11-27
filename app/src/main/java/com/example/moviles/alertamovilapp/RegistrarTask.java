@@ -1,6 +1,7 @@
 package com.example.moviles.alertamovilapp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -16,25 +17,26 @@ import java.net.SocketTimeoutException;
  * Created by Edgardo on 27/11/2015.
  */
     public class RegistrarTask extends AsyncTask<String, Void, String> {
-        private static final String MAIN_REQUEST_URL = "http://www.w3schools.com/webservices/tempconvert.asmx";
+        private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
         private RegistrarCallback oCallback;
         public RegistrarTask(RegistrarCallback oCallback) {
             this.oCallback = oCallback;
         }
         private String consumirRegistrar(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7) {
+            Log.i("RegistrarTask", "consumirRegistrar");
             String data = null;
             String methodname = "registrar";
             String sNamespace = "http://ws.pruebas.cl/";
 
             SoapObject request = new SoapObject(sNamespace, methodname);
-            request.addProperty("Email", fValue1);
-            request.addProperty("Password", fValue2);
-            request.addProperty("Nombre", fValue3);
-            request.addProperty("Apellido", fValue4);
-            request.addProperty("Celular", fValue5);
-            request.addProperty("FechaNacimiento", fValue6);
-            request.addProperty("Ciudad", fValue7);
+            request.addProperty("sEmail", fValue1);
+            request.addProperty("sPassword", fValue2);
+            request.addProperty("sNombre", fValue3);
+            request.addProperty("sApellido", fValue4);
+            request.addProperty("sCelular", fValue5);
+            request.addProperty("sFechaNacimiento", fValue6);
+            request.addProperty("sCiudad", fValue7);
 
             SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -47,9 +49,12 @@ import java.net.SocketTimeoutException;
 
             } catch (SocketTimeoutException t) {
                 t.printStackTrace();
+                data = "Error";
             } catch (IOException i) {
+                data = "Error";
                 i.printStackTrace();
             } catch (Exception q) {
+                data = "Error";
                 q.printStackTrace();
             }
             return data;
@@ -74,7 +79,8 @@ import java.net.SocketTimeoutException;
 
         @Override
         protected String doInBackground(String... params) {
-            return consumirRegistrar(params[0],params[1],params[2],params[3],params[4],params[5],params[7]);
+            Log.i("RegistrarTask", "doInBackground");
+            return consumirRegistrar(params[0],params[1],params[2],params[3],params[4],params[5],params[6]);
             //return null;
         }
 

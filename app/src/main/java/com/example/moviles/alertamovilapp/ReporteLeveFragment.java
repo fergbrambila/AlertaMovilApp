@@ -41,7 +41,15 @@ public class ReporteLeveFragment extends DialogFragment {
                 .setPositiveButton("Enviar Reporte", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        // sign in the user ...
+
+
+
+
+
+
+
+
+
                     }
                 })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {

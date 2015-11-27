@@ -111,7 +111,8 @@ public class RegisterActivity extends AppCompatActivity {
                         final String mai = _mail.getText().toString();
                         final String pas = _password.getText().toString();
                         final String num = _numcelular.getText().toString();
-                        final String fec = _dia.getText().toString() +  "/" + _mes.getText().toString() +  "/" + _anio.getText().toString();
+                        String fec = _dia.getText().toString() +  "/" + _mes.getText().toString() +  "/" + _anio.getText().toString();
+                        fec = "02/05/2012";
 
 
                         new RegistrarTask(new RegistrarTask.RegistrarCallback() {
