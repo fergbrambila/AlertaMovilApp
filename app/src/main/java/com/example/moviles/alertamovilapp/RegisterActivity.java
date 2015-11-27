@@ -1,6 +1,7 @@
 package com.example.moviles.alertamovilapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,14 +11,26 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RegisterActivity extends AppCompatActivity {
     private static TextView _link_login;
     private static Button _btn_signup;
+    private static EditText _nombre;
+    private static EditText _apellido;
+    private static EditText _mail;
+    private static EditText _password;
+    private static EditText _numcelular;
+    private static EditText _dia;
+    private static EditText _mes;
+    private static EditText _anio;
+    private static String spinnerCiudad;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
+                spinnerCiudad = (String) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -83,7 +97,39 @@ public class RegisterActivity extends AppCompatActivity {
         _btn_signup.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        //login();
+                        _nombre = (EditText)findViewById(R.id.nombre);
+                        _apellido = (EditText)findViewById(R.id.apellido);
+                        _mail = (EditText)findViewById(R.id.email);
+                        _password = (EditText)findViewById(R.id.password);
+                        _numcelular = (EditText)findViewById(R.id.numerocelular);
+                        _dia = (EditText)findViewById(R.id.fechaDia);
+                        _mes =(EditText)findViewById(R.id.fechaMes);
+                        _anio =(EditText)findViewById(R.id.fechaAnio);
+
+                        final String nom = _nombre.getText().toString();
+                        final String ape = _apellido.getText().toString();
+                        final String mai = _mail.getText().toString();
+                        final String pas = _password.getText().toString();
+                        final String num = _numcelular.getText().toString();
+                        final String fec = _dia.getText().toString() +  "/" + _mes.getText().toString() +  "/" + _anio.getText().toString();
+
+
+                        new RegistrarTask(new RegistrarTask.RegistrarCallback() {
+                            @Override
+                            public void onSuccess() {
+                                Toast.makeText(getBaseContext(), "Registro Creado", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFail() {
+                                Toast.makeText(getBaseContext(), "Fallo el Registro - vuelvalo a intentar", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(intent);
+                            }
+                        }).execute(mai, pas, nom, ape, num, fec, spinnerCiudad);
+
                     }
                 }
         );
