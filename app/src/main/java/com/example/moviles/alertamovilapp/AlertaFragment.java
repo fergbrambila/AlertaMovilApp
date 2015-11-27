@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +57,10 @@ public class AlertaFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getBaseContext(), "Policia", Toast.LENGTH_SHORT).show();
+                FragmentActivity activity = (FragmentActivity) getActivity();
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                AlertaPoliciaFragment alertDialog = AlertaPoliciaFragment.newInstance();
+                alertDialog.show(fm, "fragment_reporte_leve");
             }
         });
 
