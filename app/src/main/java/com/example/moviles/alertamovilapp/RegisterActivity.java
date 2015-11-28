@@ -148,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onFail() {
                 Toast.makeText(getBaseContext(), "Fallo el Registro - vuelvalo a intentar", Toast.LENGTH_LONG).show();
             }
-        }).execute(mai, pas, nom, ape, num, fec, spinnerCiudad);
+        }).execute(mai, pas, nom, ape, num, spinnerCiudad);
     }
 
     private void onLoginFailed() {

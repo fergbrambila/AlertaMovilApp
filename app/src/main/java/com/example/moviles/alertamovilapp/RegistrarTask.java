@@ -24,7 +24,7 @@ import java.net.SocketTimeoutException;
         public RegistrarTask(RegistrarCallback oCallback) {
             this.oCallback = oCallback;
         }
-        private String consumirRegistrar(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7) {
+        private String consumirRegistrar(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue7) {
             Log.i("RegistrarTask", "consumirRegistrar");
             data = null;
             String methodname = "registrar";
@@ -36,7 +36,7 @@ import java.net.SocketTimeoutException;
             request.addProperty("sNombre", fValue3);
             request.addProperty("sApellido", fValue4);
             request.addProperty("sCelular", fValue5);
-            request.addProperty("sFechaNacimiento", fValue6);
+            //request.addProperty("sFechaNacimiento", fValue6);
             request.addProperty("sCiudad", fValue7);
 
             SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
@@ -47,6 +47,7 @@ import java.net.SocketTimeoutException;
                 //testHttpResponse(ht);
                 SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
                 data = resultsString.toString();
+                Log.e("data",data);
 
             } catch (SocketTimeoutException t) {
                 t.printStackTrace();
@@ -81,7 +82,7 @@ import java.net.SocketTimeoutException;
         @Override
         protected String doInBackground(String... params) {
             Log.i("RegistrarTask", "doInBackground");
-            return consumirRegistrar(params[0],params[1],params[2],params[3],params[4],params[5],params[6]);
+            return consumirRegistrar(params[0],params[1],params[2],params[3],params[4],params[5]);
             //return null;
         }
 
