@@ -16,26 +16,24 @@ import java.net.SocketTimeoutException;
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class ReporteLeveTask extends AsyncTask<String, Void, String> {
+public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
-    private ReporteLeveCallback oCallback;
-    public ReporteLeveTask(ReporteLeveCallback oCallback) {
+    private ReporteGeneralCallback oCallback;
+    public ReporteGeneralTask(ReporteGeneralCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirReporteLeve(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6) {
-        Log.i("ReporteLeveTask", "consumirReporteLeve");
+    private String consumirReporteGeneral(String fValue1,String fValue2,String fValue3) {
+        Log.i("ReporteGeneralTask", "consumirReporteGeneral");
         String data = null;
-        String methodname = "generarReporte";
+        String methodname = "filtrar";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);
-        request.addProperty("email", fValue1);
-        request.addProperty("fecha", fValue2);
-        request.addProperty("latitud", fValue3);
-        request.addProperty("longitud", fValue4);
-        request.addProperty("subTipo", fValue5);
-        request.addProperty("tipo", fValue6);
+        request.addProperty("fecha", fValue1);
+        request.addProperty("tipo", fValue2);
+        request.addProperty("subTipo", fValue3);
+
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -79,7 +77,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         Log.i("RegistrarTask", "doInBackground");
-        return consumirReporteLeve(params[0],params[1],params[2],params[3],params[4],params[5]);
+        return consumirReporteGeneral(params[0], params[1], params[2]);
         //return null;
     }
 
@@ -89,7 +87,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
         oCallback.onFail();
     }
 
-    public interface ReporteLeveCallback {
+    public interface ReporteGeneralCallback {
         void onSuccess();
         void onFail();
     }
