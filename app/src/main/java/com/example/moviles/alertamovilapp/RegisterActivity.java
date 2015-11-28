@@ -140,15 +140,13 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onSuccess() {
                 Toast.makeText(getBaseContext(), "Registro Creado", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
+                Toast.makeText(getBaseContext(), "Inicia Sesion con tu cuenta", Toast.LENGTH_LONG).show();
+                finish();
             }
 
             @Override
             public void onFail() {
                 Toast.makeText(getBaseContext(), "Fallo el Registro - vuelvalo a intentar", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
             }
         }).execute(mai, pas, nom, ape, num, fec, spinnerCiudad);
     }
