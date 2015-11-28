@@ -30,7 +30,7 @@
     <string name="registro_correo_electronico_hint">Correo electrónico</string>
     <string name="registro_contrasena_hint">Contraseña</string>
     <string name="registro_confirmar_contrasena_hint">Confirmar contraseña</string>
-    <string name="registro_numero_celular_hint">Número Celular</string>
+    <string name="registro_numero_celular_hint">Número Celular (Opcional)</string>
     <string name="registro_fecha_de_nacimiento_hint">Fecha de Nacimiento (dd/mm/aa)</string>
     <string name="registro_ciudad_hint">Ciudad</string>
     <string name="title_activity_maps">Map</string>
