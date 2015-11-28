@@ -18,6 +18,7 @@ import java.net.SocketTimeoutException;
  */
     public class RegistrarTask extends AsyncTask<String, Void, String> {
         private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
+        private static String data;
 
         private RegistrarCallback oCallback;
         public RegistrarTask(RegistrarCallback oCallback) {
@@ -25,7 +26,7 @@ import java.net.SocketTimeoutException;
         }
         private String consumirRegistrar(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6) {
             Log.i("RegistrarTask", "consumirRegistrar");
-            String data = null;
+            data = null;
             String methodname = "registrar";
             String sNamespace = "http://ws.pruebas.cl/";
 
@@ -85,8 +86,12 @@ import java.net.SocketTimeoutException;
 
         @Override
         protected void onPostExecute(String s) {
-            oCallback.onSuccess();
-            oCallback.onFail();
+            //if(data.equalsIgnoreCase("true")) {
+                oCallback.onSuccess();
+            //}
+            //else {
+                oCallback.onFail();
+            //}
         }
 
     public interface RegistrarCallback {
