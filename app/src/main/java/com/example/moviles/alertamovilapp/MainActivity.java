@@ -23,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.moviles.alertamovilapp.gps.GPSTracker;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -32,6 +34,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        GPSTracker gps = new GPSTracker(MainActivity.this);
+        Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

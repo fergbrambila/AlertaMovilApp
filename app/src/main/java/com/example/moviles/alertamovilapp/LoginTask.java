@@ -3,6 +3,8 @@ package com.example.moviles.alertamovilapp;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.moviles.alertamovilapp.clases.Usuario;
+
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
@@ -16,22 +18,24 @@ import java.net.SocketTimeoutException;
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class LoginTask extends AsyncTask<String, Void, String> {
+public class LoginTask extends AsyncTask<String, Void, Usuario> {
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
     private LoginCallback oCallback;
+    private SoapObject resultsString;
+
     public LoginTask(LoginCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirLogin(String fValue1,String fValue2) {
+    private Usuario consumirLogin(String fValue1,String fValue2) {
         Log.i("LoginTask", "consumirLogin");
         String data = null;
-        String methodname = "registrar";
+        String methodname = "login";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);
-        request.addProperty("Email", fValue1);
-        request.addProperty("Password", fValue2);
+        request.addProperty("email", fValue1);
+        request.addProperty("password", fValue2);
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -39,9 +43,14 @@ public class LoginTask extends AsyncTask<String, Void, String> {
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
-            data = resultsString.toString();
 
+             resultsString = (SoapObject)envelope.getResponse();
+            Usuario user = new Usuario();
+            user.setEmail(resultsString.getProperty("email").toString());
+            user.setNombre(resultsString.getProperty("nombre").toString());
+         //   Usuario data2 = ()resultsString.getValue();
+            Log.e("data", resultsString.getProperty("email").toString());
+            return user;
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -52,7 +61,7 @@ public class LoginTask extends AsyncTask<String, Void, String> {
             data = "Error";
             q.printStackTrace();
         }
-        return data;
+        return null;
     }
 
     private final HttpTransportSE getHttpTransportSE() {
@@ -73,20 +82,20 @@ public class LoginTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected Usuario doInBackground(String... params) {
         Log.i("RegistrarTask", "doInBackground");
         return consumirLogin(params[0],params[1]);
         //return null;
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        oCallback.onSuccess();
-        oCallback.onFail();
+    protected void onPostExecute(Usuario s) {
+        oCallback.onSuccess(s);
+        //oCallback.onFail();
     }
 
     public interface LoginCallback {
-        void onSuccess();
+        void onSuccess(Usuario s);
         void onFail();
     }
 }

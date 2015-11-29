@@ -2,6 +2,7 @@ package com.example.moviles.alertamovilapp;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.moviles.alertamovilapp.clases.Usuario;
+
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
@@ -23,11 +26,21 @@ public class LoginActivity extends AppCompatActivity {
     private static EditText _password;
     private static Button _btn_login;
     private static TextView _link_signup;
+    private SharedPreferences editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
+
+        if(editor.getBoolean("login",false)){
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
         layout.getBackground().setAlpha(80);
@@ -68,9 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 new View.OnClickListener() {
                     public void onClick(View v) {
                         login();
-                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(intent);
-                        finish();
                     }
                 }
         );
@@ -107,10 +117,24 @@ public class LoginActivity extends AppCompatActivity {
         _email = (MultiAutoCompleteTextView)findViewById(R.id.email);
         _password = (EditText)findViewById(R.id.password);
 
-        String email = _email.getText().toString();
-        String password = _password.getText().toString();
+        final String email = _email.getText().toString();
+        final String password = _password.getText().toString();
 
-        // TODO: Implementar forma de autenticacion aqui.
+        new LoginTask(new LoginTask.LoginCallback() {
+            @Override
+            public void onSuccess(Usuario s) {
+                Toast.makeText(getBaseContext(),s.getEmail()+" "+s.getNombre(), Toast.LENGTH_LONG).show();//realm
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+                editor.edit().putBoolean("login",true).commit();
+                finish();
+            }
+
+            @Override
+            public void onFail() {
+                Toast.makeText(getBaseContext(), "Fallo el Login", Toast.LENGTH_LONG).show();
+            }
+        }).execute(email, password);
 
     }
 
