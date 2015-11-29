@@ -1,36 +1,66 @@
 package com.example.moviles.alertamovilapp;
 
-/**
- * Created by ThexCrack10 on 20-11-2015.
- */
-public class Reporte {
-    private String titulo, descripcion;
-    private int img;
+import java.io.Serializable;
 
-    public Reporte()
-    {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.img = img;
+public class Reporte implements Serializable {
+    private String fecha;
+    private String email;
+    private String tipo;
+    private double latitud;
+    private double longitud;
+    private String subTipo;
+    private String  comentario;
+    private String ciudad;
+
+    public String getComentario() {
+        return comentario;
     }
-    public String getTitulo(){
-        return titulo;
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
     }
-    public void setTitulo(String titulo){
-        this.titulo = titulo;
+    public String getSubTipo() {
+        return subTipo;
     }
-    public String getDescripcion(){
-        return  descripcion;
+    public void setSubTipo(String subTipo) {
+        this.subTipo = subTipo;
     }
-    public void setDescripcion(String descripcion){
-        this.descripcion = descripcion;
+    public String getFecha() {
+        return fecha;
     }
-    public  int getImg(){
-        return img;
-    }
-    public void setImg(int img){
-        this.img = img;
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
     }
 
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    public double getLatitud() {
+        return latitud;
+    }
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+    public double getLongitud() {
+        return longitud;
+    }
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+
+    public String getCiudad() {
+        return ciudad;
+    }
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
 
 }

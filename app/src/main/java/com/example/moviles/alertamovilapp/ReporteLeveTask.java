@@ -1,8 +1,6 @@
 package com.example.moviles.alertamovilapp;
-
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
@@ -13,29 +11,31 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.io.IOException;
 import java.net.Proxy;
 import java.net.SocketTimeoutException;
-import java.util.ArrayList;
 
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
+public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
-    private ReporteFiltrarFechaCallback oCallback;
-    private SoapObject resultsObject;
-
-    public ReporteFiltrarFechaTask(ReporteFiltrarFechaCallback oCallback) {
+    private ReporteLeveCallback oCallback;
+    public ReporteLeveTask(ReporteLeveCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private ArrayList<Reporte> consumirReporteFiltrarFecha(String fValue1) {
-        Log.i("ReporteFiltrarFechaTask", "consumirReporteFiltrarFecha");
+    private String consumirReporteLeve(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7) {
+        Log.i("ReporteLeveTask", "consumirReporteLeve");
         String data = null;
-        String methodname = "filtrarFecha";
+        String methodname = "generarReporte";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);
-        request.addProperty("dato", fValue1);
-
+        request.addProperty("comentario",fValue1);
+        request.addProperty("email", fValue2);
+        request.addProperty("fecha", fValue3);
+        request.addProperty("latitud", fValue4);
+        request.addProperty("longitud", fValue5);
+        request.addProperty("subTipo", fValue6);
+        request.addProperty("tipo", fValue7);
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -43,20 +43,9 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            resultsObject= (SoapObject)envelope.getResponse();
-            ArrayList<Reporte> reportes = new ArrayList<Reporte>();
-            for(int i=0;i<resultsObject.getPropertyCount();i++){
-                Reporte reporte= new Reporte();
-                SoapObject s_deals_1 = (SoapObject) resultsObject.getProperty(i);
-                reporte.setComentario(s_deals_1.getProperty("comentario").toString());
-                reporte.setEmail(s_deals_1.getProperty("email").toString());
-                reporte.setFecha(s_deals_1.getProperty("fecha").toString());
-                reporte.setSubTipo(s_deals_1.getProperty("subTipo").toString());
-                reporte.setTipo(s_deals_1.getProperty("tipo").toString());
-                reporte.setLatitud(new Double (s_deals_1.getProperty("latitud").toString()));
-                reporte.setLongitud(new Double(s_deals_1.getProperty("longitud").toString()));
-            }
-            return reportes;
+            SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
+            data = resultsString.toString();
+
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -67,7 +56,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
             data = "Error";
             q.printStackTrace();
         }
-        return null;
+        return data;
     }
 
     private final HttpTransportSE getHttpTransportSE() {
@@ -88,20 +77,20 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
     }
 
     @Override
-    protected ArrayList<Reporte> doInBackground(String... params) {
-        Log.i("RegistrarTask", "doInBackground");
-        return consumirReporteFiltrarFecha(params[0]);
+    protected String doInBackground(String... params) {
+        Log.i("ReporteLeveTask", "doInBackground");
+        return consumirReporteLeve(params[0],params[1],params[2],params[3],params[4],params[5],params[6]);
         //return null;
     }
 
     @Override
-    protected void onPostExecute(ArrayLisT<Reporte> s) {
-        oCallback.onSuccess(s);
+    protected void onPostExecute(String s) {
+        oCallback.onSuccess();
         oCallback.onFail();
     }
 
-    public interface ReporteFiltrarFechaCallback {
-        void onSuccess(ArrayList<Reporte> s);
+    public interface ReporteLeveCallback {
+        void onSuccess();
         void onFail();
     }
 }
