@@ -36,13 +36,11 @@ public class ReportesFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_reportes,container,false);//false is dont want to attatch to root
 
-
         ((MainActivity) getActivity()).setActionBarTitle("Reportes");
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
         fecha = df.format(dateobj);
-
 
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
@@ -101,7 +99,6 @@ public class ReportesFragment extends Fragment {
 
         return rootView;
     }
-
 
 }
 

@@ -52,7 +52,7 @@ public class ReporteLeveFragment extends DialogFragment {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
 
-        editor = getActivity().getSharedPreferences("alerta_mobile", MODE_PRIVATE);
+        editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
@@ -141,25 +141,17 @@ public class ReporteLeveFragment extends DialogFragment {
                         longitud = gps.getLongitude();
                         Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
-
-                        new ReporteLeveTask(new ReporteLeveTask() {
+                        new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
-                            public void onSuccess(Usuario s) {
-                                Toast.makeText(getActivity().getBaseContext(),"BUEENA", Toast.LENGTH_LONG).show();//realm
-                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                startActivity(intent);
-                                editor.edit().putBoolean("login", true).commit();
-                                editor.edit().putString("usuario", s.getEmail()).commit();
-                                finish();
+                            public void onSuccess() {
+                                Toast.makeText(getActivity().getBaseContext(),"Reporte Enviado", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void onFail() {
-                                Toast.makeText(getBaseContext(), "Fallo el Login", Toast.LENGTH_LONG).show();
-                                _btn_login.setEnabled(true);
+                                Toast.makeText(getActivity().getBaseContext(),"Error el reporte no pudo ser enviado, intentar de nuevo", Toast.LENGTH_LONG).show();
                             }
-                        }).execute(sDescripcion, usuario, fecha, latitud,longitud, spinSubtipo,spinTipo);
-
+                        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo,spinTipo);
 
                     }
                 })
