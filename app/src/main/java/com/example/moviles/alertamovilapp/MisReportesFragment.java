@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MisReportesFragment extends Fragment {
     private ListView oLst;
 
@@ -18,16 +20,17 @@ public class MisReportesFragment extends Fragment {
         ((MainActivity) getActivity()).setActionBarTitle("Mis Reportes");
 
         oLst = (ListView)rootView.findViewById(R.id.listView3);
+        ArrayList<Reporte> arreglo = null;
         Reporte[] aReportes = new Reporte[10];
         for (int i = 0; i < aReportes.length; i++) {
             Reporte oReporte = new Reporte();
             oReporte.setTitulo("askjasd");
-            oReporte.setDescripcion("sdkasdafh");
+            oReporte.setComentario("sdkasdafh");
             oReporte.setImg(R.drawable.calle_santiago);
 
             aReportes[i] = oReporte;
         }
-        Adaptador oAdapter = new Adaptador(getActivity(), aReportes);
+        Adaptador oAdapter = new Adaptador(getActivity(), arreglo);
 
         oLst.setAdapter(oAdapter);
 

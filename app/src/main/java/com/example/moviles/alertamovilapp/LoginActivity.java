@@ -35,11 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
         editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
 
-        if(editor.getBoolean("login",false)){
+        /*if(editor.getBoolean("login",false)){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
             finish();
-        }
+        }*/
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
@@ -133,6 +133,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onFail() {
                 Toast.makeText(getBaseContext(), "Fallo el Login", Toast.LENGTH_LONG).show();
+                _btn_login.setEnabled(true);
             }
         }).execute(email, password);
 
@@ -164,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginFailed(){
-        Toast.makeText(getBaseContext(), "Fallo el Login", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Completa correctamente los campos", Toast.LENGTH_LONG).show();
 
         _btn_login.setEnabled(true);
     }
