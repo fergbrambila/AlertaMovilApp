@@ -16,6 +16,10 @@ import android.widget.Toast;
 
 public class AlertaPoliciaFragment extends DialogFragment {
     Context mContext;
+    private static ImageButton oBtnChoque;
+    private static ImageButton oBtnAsalto;
+    private static ImageButton oBtnRobo;
+    private static ImageButton oBtnPelea;
 
     public AlertaPoliciaFragment() {
         mContext = getActivity();
@@ -32,9 +36,10 @@ public class AlertaPoliciaFragment extends DialogFragment {
         //ImageButton a = (ImageButton) a
         View oDialogView = inflater.inflate(R.layout.fragment_alerta_policia, null);
 
-        ImageButton oBtnBom = (ImageButton) oDialogView.findViewById(R.id.imageButtonBombero);
-        ImageButton oBtnPol = (ImageButton) oDialogView.findViewById(R.id.imageButtonPolicia);
-        ImageButton oBtnMed = (ImageButton) oDialogView.findViewById(R.id.imageButtonMedico);
+        oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);
+        oBtnAsalto = (ImageButton) oDialogView.findViewById(R.id.imageButtonAsalto);
+        oBtnRobo = (ImageButton) oDialogView.findViewById(R.id.imageButtonRobo);
+        oBtnPelea = (ImageButton) oDialogView.findViewById(R.id.imageButtonPelea);
 
 //        .setTitle("Selecciona tipo de Alerta")
         alertDialogBuilder.setView(oDialogView)
@@ -45,24 +50,31 @@ public class AlertaPoliciaFragment extends DialogFragment {
                     }
                 });
 
-        oBtnBom.setOnClickListener(new View.OnClickListener() {
+        oBtnChoque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getBaseContext(), "Bombero", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(), "Choque", Toast.LENGTH_SHORT).show();
             }
         });
 
-        oBtnPol.setOnClickListener(new View.OnClickListener() {
+        oBtnAsalto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getBaseContext(), "Policia", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(), "Asalto", Toast.LENGTH_SHORT).show();
             }
         });
 
-        oBtnMed.setOnClickListener(new View.OnClickListener() {
+        oBtnRobo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity().getBaseContext(), "Medico", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity().getBaseContext(), "Robo", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        oBtnPelea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity().getBaseContext(), "Pelea", Toast.LENGTH_SHORT).show();
             }
         });
         return alertDialogBuilder.create();
