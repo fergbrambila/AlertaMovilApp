@@ -22,7 +22,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     public ReporteLeveTask(ReporteLeveCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirReporteLeve(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7) {
+    private String consumirReporteLeve(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7,String fValue8) {
         Log.i("ReporteLeveTask", "consumirReporteLeve");
         String data = null;
         String methodname = "generarReporte";
@@ -36,6 +36,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
         request.addProperty("longitud", fValue5);
         request.addProperty("subTipo", fValue6);
         request.addProperty("tipo", fValue7);
+        request.addProperty("ciudad",fValue8);
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -79,7 +80,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         Log.i("ReporteLeveTask", "doInBackground");
-        return consumirReporteLeve(params[0],params[1],params[2],params[3],params[4],params[5],params[6]);
+        return consumirReporteLeve(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
         //return null;
     }
 
