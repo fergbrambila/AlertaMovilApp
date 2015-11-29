@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/calle_santiago"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".LoginActivity"
-    android:orientation="vertical"
-    android:gravity="center_horizontal"
-    android:id="@+id/layout"
-    android:background="@drawable/calle_santiago">
+    tools:context=".LoginActivity">
 
     <ProgressBar
+        android:id="@+id/login_progress"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/login_progress"
         android:layout_marginBottom="8dp"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
         android:visibility="gone" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="fill_parent"
         android:layout_height="150dp"
-        android:id="@+id/imageView"
-        android:src="@mipmap/logo"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/logo" />
 
     <ScrollView
+        android:id="@+id/login_form"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/login_form" >
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/email_login_form"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/email_login_form"
             android:layout_weight="0.5"
             android:orientation="vertical">
 
@@ -44,9 +47,9 @@
                 android:layout_height="wrap_content">
 
                 <MultiAutoCompleteTextView
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/email"
                     android:hint="@string/login_correo_electronico_hint"
                     android:inputType="textEmailAddress" />
 
@@ -59,30 +62,30 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/password"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"
                     android:ems="10"
-                    android:id="@+id/password"
-                    android:hint="@string/contrasena_hint" />
+                    android:hint="@string/contrasena_hint"
+                    android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:id="@+id/btn_login"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/action_sign_in_short"
-                android:id="@+id/btn_login"
-                android:layout_marginTop="16dp" />
+                android:layout_marginTop="16dp"
+                android:text="@string/action_sign_in_short" />
 
             <TextView
+                android:id="@+id/link_signup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="¿No tienes una cuenta? Crea una"
-                android:id="@+id/link_signup"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
+                android:text="¿No tienes una cuenta? Crea una"
+                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textSize="18dp" />
 
         </LinearLayout>

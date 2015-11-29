@@ -27,6 +27,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
     public ReporteFiltrarFechaTask(ReporteFiltrarFechaCallback oCallback) {
         this.oCallback = oCallback;
     }
+
     private ArrayList<Reporte> consumirReporteFiltrarFecha(String fValue1) {
         Log.i("ReporteFiltrarFechaTask", "consumirReporteFiltrarFecha");
         data = null;
@@ -43,10 +44,10 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            resultsObject= (SoapObject)envelope.getResponse();
+            resultsObject = (SoapObject) envelope.getResponse();
             reportes = new ArrayList<Reporte>();
-            for(int i=0;i<resultsObject.getPropertyCount();i++){
-                Reporte reporte= new Reporte();
+            for (int i = 0; i < resultsObject.getPropertyCount(); i++) {
+                Reporte reporte = new Reporte();
                 SoapObject s_deals_1 = (SoapObject) resultsObject.getProperty(i);
                 reporte.setComentario(s_deals_1.getProperty("comentario").toString());
                 reporte.setEmail(s_deals_1.getProperty("email").toString());
@@ -74,7 +75,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
     }
 
     private final HttpTransportSE getHttpTransportSE() {
-        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY,MAIN_REQUEST_URL,60000);
+        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY, MAIN_REQUEST_URL, 60000);
         ht.debug = true;
         ht.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
         return ht;
@@ -99,14 +100,15 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
 
     @Override
     protected void onPostExecute(ArrayList<Reporte> s) {
-        if(!data.equals("Error"))
-        oCallback.onSuccess(s);
+        if (!data.equals("Error"))
+            oCallback.onSuccess(s);
         else
-        oCallback.onFail();
+            oCallback.onFail();
     }
 
     public interface ReporteFiltrarFechaCallback {
         void onSuccess(ArrayList<Reporte> s);
+
         void onFail();
     }
 }

@@ -5,7 +5,6 @@ import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.moviles.alertamovilapp.clases.Usuario;
 import com.example.moviles.alertamovilapp.gps.GPSTracker;
 
 import java.text.DateFormat;
@@ -132,26 +130,28 @@ public class ReporteLeveFragment extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         edTxDescripcion = (EditText) oDialogView.findViewById(R.id.descripcion);
-                        sDescripcion = edTxDescripcion.toString();
+                        sDescripcion = edTxDescripcion.getText().toString();
+                        if (sDescripcion.isEmpty())
+                            sDescripcion = "";
 
-                        usuario = editor.getString("usuario","a@a.com");
+                        usuario = editor.getString("usuario", "a@a.com");
 
                         GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
                         latitud = gps.getLatitude();
                         longitud = gps.getLongitude();
-                        Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
+                        //Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
                             public void onSuccess() {
-                                Toast.makeText(getActivity().getBaseContext(),"Reporte Enviado", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getBaseContext(), "Reporte Enviado", Toast.LENGTH_LONG).show();
                             }
 
                             @Override
                             public void onFail() {
-                                Toast.makeText(getActivity().getBaseContext(),"Error el reporte no pudo ser enviado, intentar de nuevo", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getActivity().getBaseContext(), "Error en la Red intentar de nuevo", Toast.LENGTH_LONG).show();
                             }
-                        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo,spinTipo);
+                        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, spinCiudad);
 
                     }
                 })

@@ -34,7 +34,7 @@ public class ReportesFragment extends Fragment {
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_reportes,container,false);//false is dont want to attatch to root
+        final View rootView = inflater.inflate(R.layout.fragment_reportes, container, false);//false is dont want to attatch to root
 
         ((MainActivity) getActivity()).setActionBarTitle("Reportes");
 
@@ -45,7 +45,7 @@ public class ReportesFragment extends Fragment {
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
             public void onSuccess(ArrayList<Reporte> s) {
-                oLst = (ListView)rootView.findViewById(R.id.listView);
+                oLst = (ListView) rootView.findViewById(R.id.listView);
 
                 Adaptador oAdapter = new Adaptador(getActivity(), s);
 

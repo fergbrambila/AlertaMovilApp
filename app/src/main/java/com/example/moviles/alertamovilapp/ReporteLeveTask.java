@@ -1,4 +1,5 @@
 package com.example.moviles.alertamovilapp;
+
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -24,21 +25,22 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     public ReporteLeveTask(ReporteLeveCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirReporteLeve(String fValue1,String fValue2,String fValue3,String fValue4,String fValue5,String fValue6,String fValue7,String fValue8) {
+
+    private String consumirReporteLeve(String fValue1, String fValue2, String fValue3, String fValue4, String fValue5, String fValue6, String fValue7, String fValue8) {
         Log.i("ReporteLeveTask", "consumirReporteLeve");
         data = null;
         String methodname = "generarReporte";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);
-        request.addProperty("comentario",fValue1);
+        request.addProperty("comentario", fValue1);
         request.addProperty("email", fValue2);
         request.addProperty("fecha", fValue3);
         request.addProperty("latitud", fValue4);
         request.addProperty("longitud", fValue5);
         request.addProperty("subTipo", fValue6);
         request.addProperty("tipo", fValue7);
-        request.addProperty("ciudad",fValue8);
+        request.addProperty("ciudad", fValue8);
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
 
@@ -46,7 +48,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
+            SoapPrimitive resultsString = (SoapPrimitive) envelope.getResponse();
             data = resultsString.toString();
 
         } catch (SocketTimeoutException t) {
@@ -63,7 +65,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     }
 
     private final HttpTransportSE getHttpTransportSE() {
-        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY,MAIN_REQUEST_URL,60000);
+        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY, MAIN_REQUEST_URL, 60000);
         ht.debug = true;
         ht.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
         return ht;
@@ -82,22 +84,22 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... params) {
         Log.i("ReporteLeveTask", "doInBackground");
-        return consumirReporteLeve(params[0],params[1],params[2],params[3],params[4],params[5],params[6],params[7]);
+        return consumirReporteLeve(params[0], params[1], params[2], params[3], params[4], params[5], params[6], params[7]);
         //return null;
     }
 
     @Override
     protected void onPostExecute(String s) {
-        if(data.equalsIgnoreCase("true")||!data.equals("Error")) {
+        if (data.equalsIgnoreCase("true") || !data.equals("Error")) {
             oCallback.onSuccess();
-        }
-        else {
+        } else {
             oCallback.onFail();
         }
     }
 
     public interface ReporteLeveCallback {
         void onSuccess();
+
         void onFail();
     }
 }

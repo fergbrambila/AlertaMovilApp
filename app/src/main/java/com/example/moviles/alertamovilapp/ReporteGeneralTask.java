@@ -20,10 +20,12 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
     private ReporteGeneralCallback oCallback;
+
     public ReporteGeneralTask(ReporteGeneralCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirReporteGeneral(String fValue1,String fValue2,String fValue3) {
+
+    private String consumirReporteGeneral(String fValue1, String fValue2, String fValue3) {
         Log.i("ReporteGeneralTask", "consumirReporteGeneral");
         String data = null;
         String methodname = "filtrar";
@@ -41,7 +43,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
+            SoapPrimitive resultsString = (SoapPrimitive) envelope.getResponse();
             data = resultsString.toString();
 
         } catch (SocketTimeoutException t) {
@@ -58,7 +60,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
     }
 
     private final HttpTransportSE getHttpTransportSE() {
-        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY,MAIN_REQUEST_URL,60000);
+        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY, MAIN_REQUEST_URL, 60000);
         ht.debug = true;
         ht.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
         return ht;
@@ -89,6 +91,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
 
     public interface ReporteGeneralCallback {
         void onSuccess();
+
         void onFail();
     }
 }

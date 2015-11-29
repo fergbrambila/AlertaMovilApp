@@ -81,8 +81,7 @@ public class MainActivity extends AppCompatActivity
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Cerrar Aplicación")
                     .setMessage("Esta seguro que desea salir de la aplicación?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
@@ -130,34 +129,34 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(getApplicationContext(),"Inicio - Mapa",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Inicio - Mapa", Toast.LENGTH_SHORT).show();
             //Intent i = new Intent(getApplicationContext(), MapsActivity.class);
             //startActivity(i);
-            fm.beginTransaction().replace(R.id.content_frame, MapFragment.newInstance("","")).commit();
+            fm.beginTransaction().replace(R.id.content_frame, MapFragment.newInstance("", "")).commit();
             //fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
         } else if (id == R.id.nav_reportes) {
             Toast.makeText(getApplicationContext(), "Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
         } else if (id == R.id.nav_misreportes) {
-            Toast.makeText(getApplicationContext(),"Mis Reportes",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Mis Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
         } else if (id == R.id.nav_seguidos) {
-            Toast.makeText(getApplicationContext(),"Reportes Seguidos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
-            Toast.makeText(getApplicationContext(),"Números de Emergencia",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Números de Emergencia", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new EmergenciasFragment()).commit();
         } else if (id == R.id.nav_ayuda) {
-            Toast.makeText(getApplicationContext(),"Ayuda",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ayuda", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new AyudaFragment()).commit();
         } else if (id == R.id.nav_somos) {
-            Toast.makeText(getApplicationContext(),"Quienes Somos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Quienes Somos", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new SomosFragment()).commit();
         } else if (id == R.id.nav_donar) {
-            Toast.makeText(getApplicationContext(),"Donar",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Donar", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new DonarFragment()).commit();
         } else if (id == R.id.nav_cerrar) {
-            editor.edit().putBoolean("login",false).commit();
+            editor.edit().putBoolean("login", false).commit();
             finish();
         }
 

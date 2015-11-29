@@ -28,7 +28,8 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
     public LoginTask(LoginCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private Usuario consumirLogin(String fValue1,String fValue2) {
+
+    private Usuario consumirLogin(String fValue1, String fValue2) {
         Log.i("LoginTask", "consumirLogin");
         data = null;
         String methodname = "login";
@@ -45,11 +46,11 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
 
-             resultsString = (SoapObject)envelope.getResponse();
+            resultsString = (SoapObject) envelope.getResponse();
             Usuario user = new Usuario();
             user.setEmail(resultsString.getProperty("email").toString());
             user.setNombre(resultsString.getProperty("nombre").toString());
-         //   Usuario data2 = ()resultsString.getValue();
+            //   Usuario data2 = ()resultsString.getValue();
             Log.e("data", resultsString.getProperty("email").toString());
             return user;
         } catch (SocketTimeoutException t) {
@@ -66,7 +67,7 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
     }
 
     private final HttpTransportSE getHttpTransportSE() {
-        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY,MAIN_REQUEST_URL,60000);
+        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY, MAIN_REQUEST_URL, 60000);
         ht.debug = true;
         ht.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
         return ht;
@@ -85,20 +86,21 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
     @Override
     protected Usuario doInBackground(String... params) {
         Log.i("RegistrarTask", "doInBackground");
-        return consumirLogin(params[0],params[1]);
+        return consumirLogin(params[0], params[1]);
         //return null;
     }
 
     @Override
     protected void onPostExecute(Usuario s) {
-        if(!data.equals("Error"))
-        oCallback.onSuccess(s);
+        if (!data.equals("Error"))
+            oCallback.onSuccess(s);
         else
-        oCallback.onFail();
+            oCallback.onFail();
     }
 
     public interface LoginCallback {
         void onSuccess(Usuario s);
+
         void onFail();
     }
 }

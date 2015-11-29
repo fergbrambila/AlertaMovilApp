@@ -45,15 +45,15 @@ public class ReporteFiltroFragment extends DialogFragment {
         tipoSpinner = (Spinner) oDialogView.findViewById(R.id.tipospinner);
         subtipoSpinner = (Spinner) oDialogView.findViewById(R.id.subtipospinner);
 
-        String[] tipos = new String[] {"Elegir Tipo", "Policia", "Bomberos", "Medicos", "Servicios"};
+        String[] tipos = new String[]{"Elegir Tipo", "Policia", "Bomberos", "Medicos", "Servicios"};
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
-        oMapSubTipos.put("Elegir Tipo", new String[] {"Elegir Tipo Primero"});
-        oMapSubTipos.put("Policia", new String[] {"Elegir Opcion", "Choque Auto", "Robo Casa Habitacion", "Robo Casa Deshabitad", "Asalto", "Pelea de Personas", "Vehiculo/Persona Sospechosa", "Peligro en la Via / Obras Publicas"});
-        oMapSubTipos.put("Bomberos", new String[] {"Elegir Opcion", "Incendio Casa", "Incendio Forestal", "Gato sobre un arbol"});
-        oMapSubTipos.put("Servicios", new String[] {"Elegir Opcion", "Luminaria Apagada/Rota", "Semaforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
-        oMapSubTipos.put("Medicos", new String[] {"Elegir Opcion", "Emergencia Medica"});
+        oMapSubTipos.put("Elegir Tipo", new String[]{"Elegir Tipo Primero"});
+        oMapSubTipos.put("Policia", new String[]{"Elegir Opcion", "Choque Auto", "Robo Casa Habitacion", "Robo Casa Deshabitad", "Asalto", "Pelea de Personas", "Vehiculo/Persona Sospechosa", "Peligro en la Via / Obras Publicas"});
+        oMapSubTipos.put("Bomberos", new String[]{"Elegir Opcion", "Incendio Casa", "Incendio Forestal", "Gato sobre un arbol"});
+        oMapSubTipos.put("Servicios", new String[]{"Elegir Opcion", "Luminaria Apagada/Rota", "Semaforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
+        oMapSubTipos.put("Medicos", new String[]{"Elegir Opcion", "Emergencia Medica"});
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
@@ -76,7 +76,7 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
-        String[] ciudades = new String[] {"Elegir Ciudad", "Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique" };
+        String[] ciudades = new String[]{"Elegir Ciudad", "Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
 

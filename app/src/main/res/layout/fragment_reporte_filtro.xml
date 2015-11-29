@@ -1,161 +1,162 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:context="com.example.moviles.alertamovilapp.ReporteFiltroFragment"
+    android:gravity="center"
     android:orientation="vertical"
-    android:gravity="center">
+    tools:context="com.example.moviles.alertamovilapp.ReporteFiltroFragment">
 
 
     <ImageView
+        android:id="@+id/imageView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView5"
+        android:layout_gravity="center"
         android:background="#FFFFD333"
-        android:src="@drawable/header_alerta_filtro"
-        android:layout_gravity="center" />
+        android:src="@drawable/header_alerta_filtro" />
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="10dp"
         android:gravity="center"
-        android:weightSum="1"
-        android:layout_margin="10dp">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
+            android:id="@+id/textView12"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Fecha: "
-            android:id="@+id/textView12" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/fechadiaWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/fechaDia"
-            android:layout_weight="0"
-            android:hint="dd"
-            android:gravity="center"
-            android:maxLength="2" />
+            <EditText
+                android:id="@+id/fechaDia"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="dd"
+                android:inputType="number"
+                android:maxLength="2" />
 
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="/"
-            android:id="@+id/textView13" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/fechamesWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText2"
-            android:layout_weight="0"
-            android:hint="mm"
-            android:gravity="center"
-            android:maxLength="2" />
+            <EditText
+                android:id="@+id/editText2"
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="mm"
+                android:inputType="number"
+                android:maxLength="2" />
         </android.support.design.widget.TextInputLayout>
 
         <TextView
+            android:id="@+id/textView14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="/"
-            android:id="@+id/textView14" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/fechamesrWrapper"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-        <EditText
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText3"
-            android:layout_weight="0"
-            android:hint="aaaa"
-            android:gravity="center"
-            android:maxLength="4" />
+            <EditText
+                android:id="@+id/editText3"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="aaaa"
+                android:inputType="number"
+                android:maxLength="4" />
         </android.support.design.widget.TextInputLayout>
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView15"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Tipo:"
-            android:id="@+id/textView15" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
+            android:id="@+id/tipospinner"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/tipospinner" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Subtipo:"
-            android:id="@+id/textView16" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
+            android:id="@+id/subtipospinner"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:id="@+id/subtipospinner" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"
-        android:gravity="center" >
+        android:gravity="center"
+        android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Ciudad:"
-            android:id="@+id/textView17" />
+            android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <Spinner
+            android:id="@+id/ciudadspinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ciudadspinner"
             android:layout_weight=".5" />
     </LinearLayout>
 

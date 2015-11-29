@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.ciudad_spinner);
 
-        String[] items = new String[] { "Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique" };
+        String[] items = new String[]{"Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, items);
@@ -83,14 +83,13 @@ public class RegisterActivity extends AppCompatActivity {
         onButtonListener();
     }
 
-    protected void hideKeyboard(View view)
-    {
+    protected void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void onLinkListener(){
-        _link_login = (TextView)findViewById(R.id.link_login);
+    public void onLinkListener() {
+        _link_login = (TextView) findViewById(R.id.link_login);
         _link_login.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -100,9 +99,9 @@ public class RegisterActivity extends AppCompatActivity {
         );
     }
 
-    public void onButtonListener(){
+    public void onButtonListener() {
 
-        _btn_signup = (Button)findViewById(R.id.btn_signup);
+        _btn_signup = (Button) findViewById(R.id.btn_signup);
         _btn_signup.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -112,16 +111,16 @@ public class RegisterActivity extends AppCompatActivity {
         );
     }
 
-    public void registrar () {
+    public void registrar() {
         Log.d("register", "registrar");
 
-        _nombre = (EditText)findViewById(R.id.name);
-        _apellido = (EditText)findViewById(R.id.apellido);
-        _mail = (EditText)findViewById(R.id.email);
-        _password = (EditText)findViewById(R.id.password);
-        _passwordConfirmar = (EditText)findViewById(R.id.confirmpassword);
-        _numcelular = (EditText)findViewById(R.id.numerocelular);
-        _anio =(EditText)findViewById(R.id.fechaAnio);
+        _nombre = (EditText) findViewById(R.id.name);
+        _apellido = (EditText) findViewById(R.id.apellido);
+        _mail = (EditText) findViewById(R.id.email);
+        _password = (EditText) findViewById(R.id.password);
+        _passwordConfirmar = (EditText) findViewById(R.id.confirmpassword);
+        _numcelular = (EditText) findViewById(R.id.numerocelular);
+        _anio = (EditText) findViewById(R.id.fechaAnio);
 
         nom = _nombre.getText().toString();
         ape = _apellido.getText().toString();
@@ -159,43 +158,43 @@ public class RegisterActivity extends AppCompatActivity {
     private boolean validate() {
         boolean valid = true;
 
-        if (mai.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mai).matches()){
+        if (mai.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(mai).matches()) {
             _mail.setError("Ingresar un correo correcto");
             valid = false;
         }
 
-        if (pas.isEmpty()){
+        if (pas.isEmpty()) {
             _password.setError("Ingresar Contrasena");
             valid = false;
         }
 
-        if(!pas.equals(pasC)){
+        if (!pas.equals(pasC)) {
             _passwordConfirmar.setError("La contrasena no concuerda");
             valid = false;
         }
 
-        if (nom.isEmpty()){
+        if (nom.isEmpty()) {
             _nombre.setError("Ingresar Nombre");
             valid = false;
         }
 
-        if (ape.isEmpty()){
+        if (ape.isEmpty()) {
             _apellido.setError("Ingresar Apellido");
             valid = false;
         }
 
-        if(valid == true && fec.isEmpty()){
+        if (valid == true && fec.isEmpty()) {
             _anio.setText("");
         }
 
-        if(!fec.isEmpty()){
+        if (!fec.isEmpty()) {
             int iFecha = Integer.parseInt("fec");
-            if(!(iFecha > 1900 && iFecha <2020)){
+            if (!(iFecha > 1900 && iFecha < 2020)) {
                 _anio.setError("Año invalido");
             }
         }
 
-        if (valid == true && num.isEmpty()){
+        if (valid == true && num.isEmpty()) {
             _numcelular.setText("");
         }
 

@@ -1,15 +1,16 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.DonarFragment">
 
     <TextView
+        android:id="@+id/Tv_Donar2"
         android:layout_width="299dp"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="¿ Te gusta la app y   te es útil ? Te estaríamos agradecidos si nos pudieras cooperar con alguna donación."
-        android:id="@+id/Tv_Donar2"
+        android:layout_gravity="center_horizontal|top"
         android:layout_marginTop="40dp"
-        android:layout_gravity="center_horizontal|top" />
+        android:text="¿ Te gusta la app y   te es útil ? Te estaríamos agradecidos si nos pudieras cooperar con alguna donación."
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>
