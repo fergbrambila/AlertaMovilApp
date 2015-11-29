@@ -146,7 +146,8 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFail() {
-                Toast.makeText(getBaseContext(), "Fallo el Registro - vuelvalo a intentar", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "Error durante el proceso de registro", Toast.LENGTH_LONG).show();
+                finish();
             }
         }).execute(mai, pas, nom, ape, num, spinnerCiudad);
     }

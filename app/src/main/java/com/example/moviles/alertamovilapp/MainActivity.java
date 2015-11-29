@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         GPSTracker gps = new GPSTracker(MainActivity.this);
-        Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
+        //Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

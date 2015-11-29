@@ -23,13 +23,14 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
 
     private LoginCallback oCallback;
     private SoapObject resultsString;
+    private String data;
 
     public LoginTask(LoginCallback oCallback) {
         this.oCallback = oCallback;
     }
     private Usuario consumirLogin(String fValue1,String fValue2) {
         Log.i("LoginTask", "consumirLogin");
-        String data = null;
+        data = null;
         String methodname = "login";
         String sNamespace = "http://ws.pruebas.cl/";
 
@@ -90,8 +91,10 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
 
     @Override
     protected void onPostExecute(Usuario s) {
+        if(!data.equals("Error"))
         oCallback.onSuccess(s);
-        //oCallback.onFail();
+        else
+        oCallback.onFail();
     }
 
     public interface LoginCallback {

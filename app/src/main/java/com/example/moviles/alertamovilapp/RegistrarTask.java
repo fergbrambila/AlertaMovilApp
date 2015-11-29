@@ -88,12 +88,12 @@ import java.net.SocketTimeoutException;
 
         @Override
         protected void onPostExecute(String s) {
-            //if(data.equalsIgnoreCase("true")) {
+            if(data.equalsIgnoreCase("true")||!data.equals("Error")) {
                 oCallback.onSuccess();
-            //}
-            //else {
+            }
+            else {
                 oCallback.onFail();
-            //}
+            }
         }
 
     public interface RegistrarCallback {

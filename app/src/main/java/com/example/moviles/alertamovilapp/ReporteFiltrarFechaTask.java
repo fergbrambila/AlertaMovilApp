@@ -21,13 +21,15 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
 
     private ReporteFiltrarFechaCallback oCallback;
     private SoapObject resultsObject;
+    private ArrayList<Reporte> reportes;
+    private String data;
 
     public ReporteFiltrarFechaTask(ReporteFiltrarFechaCallback oCallback) {
         this.oCallback = oCallback;
     }
     private ArrayList<Reporte> consumirReporteFiltrarFecha(String fValue1) {
         Log.i("ReporteFiltrarFechaTask", "consumirReporteFiltrarFecha");
-        String data = null;
+        data = null;
         String methodname = "filtrarFecha";
         String sNamespace = "http://ws.pruebas.cl/";
 
@@ -42,7 +44,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
             resultsObject= (SoapObject)envelope.getResponse();
-            ArrayList<Reporte> reportes = new ArrayList<Reporte>();
+            reportes = new ArrayList<Reporte>();
             for(int i=0;i<resultsObject.getPropertyCount();i++){
                 Reporte reporte= new Reporte();
                 SoapObject s_deals_1 = (SoapObject) resultsObject.getProperty(i);
@@ -54,8 +56,10 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
                 reporte.setLatitud(new Double(s_deals_1.getProperty("latitud").toString()));
                 reporte.setLongitud(new Double(s_deals_1.getProperty("longitud").toString()));
                 reporte.setCiudad(s_deals_1.getProperty("ciudad").toString());
+
+                reportes.add(reporte);
             }
-            return reportes;
+            //return reportes;
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -66,7 +70,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
             data = "Error";
             q.printStackTrace();
         }
-        return null;
+        return reportes;
     }
 
     private final HttpTransportSE getHttpTransportSE() {
@@ -95,7 +99,9 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
 
     @Override
     protected void onPostExecute(ArrayList<Reporte> s) {
+        if(!data.equals("Error"))
         oCallback.onSuccess(s);
+        else
         oCallback.onFail();
     }
 

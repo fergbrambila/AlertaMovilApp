@@ -12,21 +12,53 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.moviles.alertamovilapp.clases.Usuario;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class ReportesFragment extends Fragment {
     private ListView oLst;
+    private String fecha;
+    //private ArrayList<Reporte> arregloReportes;
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_reportes,container,false);//false is dont want to attatch to root
 
+
         ((MainActivity) getActivity()).setActionBarTitle("Reportes");
+
+        DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
+        Date dateobj = new Date();
+        fecha = df.format(dateobj);
+
+
+        new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
+            @Override
+            public void onSuccess(ArrayList<Reporte> s) {
+                oLst = (ListView)rootView.findViewById(R.id.listView);
+
+                Adaptador oAdapter = new Adaptador(getActivity(), s);
+
+                oLst.setAdapter(oAdapter);
+            }
+
+            @Override
+            public void onFail() {
+                Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
+            }
+        }).execute(fecha);
 
         ImageView mImageView = (ImageView) rootView.findViewById(R.id.imageView);
         mImageView.setOnClickListener(new View.OnClickListener() {
@@ -59,27 +91,13 @@ public class ReportesFragment extends Fragment {
         btnReporteFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("test", "clic Reporte Leve");
+                Log.d("test", "clic Reporte Filtro");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
                 ReporteFiltroFragment alertDialog = ReporteFiltroFragment.newInstance();
                 alertDialog.show(fm, "fragment_reporte_filtro");
             }
         });
-
-        oLst = (ListView)rootView.findViewById(R.id.listView);
-        Reporte[] aReportes = new Reporte[16];
-        for (int i = 0; i < aReportes.length; i++) {
-            Reporte oReporte = new Reporte();
-            oReporte.setTitulo("Titulo del Reporte");
-            oReporte.setDescripcion("Lorem ipsum latem");
-            oReporte.setImg(R.drawable.calle_santiago);
-
-            aReportes[i] = oReporte;
-        }
-        Adaptador oAdapter = new Adaptador(getActivity(), aReportes);
-
-        oLst.setAdapter(oAdapter);
 
         return rootView;
     }
