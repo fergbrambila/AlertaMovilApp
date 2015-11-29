@@ -2,11 +2,9 @@ package com.example.moviles.alertamovilapp;
 
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
@@ -18,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
+public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<Reporte>> {
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
     private ReporteFiltrarFechaCallback oCallback;
@@ -53,8 +51,9 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
                 reporte.setFecha(s_deals_1.getProperty("fecha").toString());
                 reporte.setSubTipo(s_deals_1.getProperty("subTipo").toString());
                 reporte.setTipo(s_deals_1.getProperty("tipo").toString());
-                reporte.setLatitud(new Double (s_deals_1.getProperty("latitud").toString()));
+                reporte.setLatitud(new Double(s_deals_1.getProperty("latitud").toString()));
                 reporte.setLongitud(new Double(s_deals_1.getProperty("longitud").toString()));
+                reporte.setCiudad(s_deals_1.getProperty("ciudad").toString());
             }
             return reportes;
         } catch (SocketTimeoutException t) {
@@ -95,7 +94,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, Reporte> {
     }
 
     @Override
-    protected void onPostExecute(ArrayLisT<Reporte> s) {
+    protected void onPostExecute(ArrayList<Reporte> s) {
         oCallback.onSuccess(s);
         oCallback.onFail();
     }
