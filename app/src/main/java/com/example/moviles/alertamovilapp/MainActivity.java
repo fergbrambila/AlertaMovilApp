@@ -5,6 +5,7 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -27,6 +28,7 @@ import com.example.moviles.alertamovilapp.gps.GPSTracker;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private SharedPreferences editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
+
 
         GPSTracker gps = new GPSTracker(MainActivity.this);
         //Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
@@ -152,7 +157,8 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(),"Donar",Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new DonarFragment()).commit();
         } else if (id == R.id.nav_cerrar) {
-
+            editor.edit().putBoolean("login",false).commit();
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -35,11 +35,11 @@ public class LoginActivity extends AppCompatActivity {
 
         editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
 
-        /*if(editor.getBoolean("login",false)){
+        if(editor.getBoolean("login",false)){
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);
             finish();
-        }*/
+        }
 
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
@@ -127,6 +127,7 @@ public class LoginActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 startActivity(intent);
                 editor.edit().putBoolean("login",true).commit();
+                editor.edit().putString("usuario",s.getEmail()).commit();
                 finish();
             }
 
@@ -160,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _btn_login.setEnabled(true);
-        Toast.makeText(getBaseContext(), "REdireccionando", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Redireccionando", Toast.LENGTH_LONG).show();
         finish();
     }
 
