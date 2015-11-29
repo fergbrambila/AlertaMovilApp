@@ -20,19 +20,23 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
 
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp">
 
                 <ImageButton
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/imageButtonBombero"
+                    android:id="@+id/imageButtonChoque"
                     android:layout_gravity="left|top"
                     android:src="@mipmap/policia"
                     android:background="#707bf0"
@@ -50,12 +54,13 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
 
                 <ImageButton
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/imageButton"
+                    android:id="@+id/imageButtonAsalto"
                     android:layout_gravity="center_horizontal|top"
                     android:src="@mipmap/policia"
                     android:background="#707bf0"
@@ -70,15 +75,24 @@
                     android:layout_gravity="center" />
             </LinearLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp">
 
                 <ImageButton
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/imageButtonPolicia"
+                    android:id="@+id/imageButtonRobo"
                     android:layout_gravity="center_horizontal|top"
                     android:src="@mipmap/policia"
                     android:background="#707bf0"
@@ -96,12 +110,13 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp">
 
                 <ImageButton
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/imageButtonMedico"
+                    android:id="@+id/imageButtonPelea"
                     android:layout_gravity="right|top"
                     android:src="@mipmap/policia"
                     android:background="#707bf0"
@@ -115,7 +130,6 @@
                     android:id="@+id/textView19"
                     android:layout_gravity="center" />
             </LinearLayout>
-
         </LinearLayout>
 
     </LinearLayout>
