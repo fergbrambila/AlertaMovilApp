@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.moviles.alertamovilapp.gps.GPSTracker;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +29,8 @@ public class ReporteLeveFragment extends DialogFragment {
     private static String spinTipo;
     private static String spinSubtipo;
     private static String sDescripcion;
+    private static double latitud;
+    private static double longitud;
 
     public ReporteLeveFragment() {
         mContext = getActivity();
@@ -112,17 +116,13 @@ public class ReporteLeveFragment extends DialogFragment {
                 .setPositiveButton("Enviar Reporte", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-
-                        if (!validate()) {
-                            onEnviarFailed();
-                            return;
-                        }
-
                         edTxDescripcion = (EditText)oDialogView.findViewById(R.id.descripcion);
                         sDescripcion = edTxDescripcion.toString();
 
-
-
+                        GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
+                        latitud = gps.getLatitude();
+                        longitud = gps.getLongitude();
+                        Toast.makeText(getActivity().getBaseContext(),latitud+" "+longitud, Toast.LENGTH_LONG).show();//realm
 
 
                     }
@@ -140,16 +140,6 @@ public class ReporteLeveFragment extends DialogFragment {
 
     private void onEnviarFailed() {
         Toast.makeText(getActivity().getBaseContext(),"Llenar Datos Correctamente",Toast.LENGTH_SHORT).show();
-    }
-
-    private boolean validate() {
-        boolean valid = true;
-
-        if (sDescripcion.isEmpty()){
-            edTxDescripcion.setError("Ingresar una Descripcion");
-            valid = false;
-        }
-        return valid;
     }
 
     public static ReporteLeveFragment newInstance() {
