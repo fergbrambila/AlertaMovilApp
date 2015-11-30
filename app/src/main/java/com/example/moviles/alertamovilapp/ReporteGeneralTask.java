@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.Proxy;
 import java.net.SocketTimeoutException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 /**
  * Created by Edgardo on 27/11/2015.
@@ -46,22 +47,38 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Report
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            resultsObject= (SoapObject)envelope.getResponse();
+            Vector resultsObject = (Vector) envelope.getResponse();
             reportes = new ArrayList<Reporte>();
-            for(int i=0;i<resultsObject.getPropertyCount();i++) {
+
+            //for (int i = 0; i < s_deals.getPropertyCount(); i++) {
+            for(Object obj : resultsObject){
                 Reporte reporte = new Reporte();
-                SoapObject s_deals_1 = (SoapObject) resultsObject.getProperty(i);
-                reporte.setComentario(s_deals_1.getProperty("comentario").toString());
+                //SoapObject s_deals_1 = (SoapObject) s_deals.getProperty(i);
+                SoapObject s_deals_1 = (SoapObject) obj;
+                if(s_deals_1.getProperty("comentario").toString().equalsIgnoreCase("anyType{}") || s_deals_1.getProperty("comentario").toString().isEmpty()){
+                    reporte.setComentario("");
+                }
+                else
+                    reporte.setComentario(s_deals_1.getProperty("comentario").toString());
                 reporte.setEmail(s_deals_1.getProperty("email").toString());
-                reporte.setFecha(s_deals_1.getProperty("fecha").toString());
+                //reporte.setFecha(s_deals_1.getProperty("fecha").toString()); Traer fecha de webservice
                 reporte.setSubTipo(s_deals_1.getProperty("subTipo").toString());
                 reporte.setTipo(s_deals_1.getProperty("tipo").toString());
-                reporte.setLatitud(new Double(s_deals_1.getProperty("latitud").toString()));
-                reporte.setLongitud(new Double(s_deals_1.getProperty("longitud").toString()));
+                reporte.setLatitud(Double.parseDouble(s_deals_1.getProperty("latitud").toString()));
+                reporte.setLongitud(Double.parseDouble(s_deals_1.getProperty("longitud").toString()));
                 reporte.setCiudad(s_deals_1.getProperty("ciudad").toString());
 
+                if(s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Policia"))
+                    reporte.setImg(R.mipmap.policia);
+                else if (s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Bombero"))
+                    reporte.setImg(R.mipmap.bombero);
+                else if (s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Medico"))
+                    reporte.setImg(R.mipmap.doctor);
+                else if (s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Servicios"))
+                    reporte.setImg(R.mipmap.logo);
                 reportes.add(reporte);
             }
+            //return reportes;
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
