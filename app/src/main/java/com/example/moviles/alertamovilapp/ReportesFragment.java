@@ -41,7 +41,7 @@ public class ReportesFragment extends Fragment {
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
         fecha = df.format(dateobj);
-
+        //.start()
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
             public void onSuccess(ArrayList<Reporte> s) {
@@ -50,11 +50,13 @@ public class ReportesFragment extends Fragment {
                 Adaptador oAdapter = new Adaptador(getActivity(), s);
 
                 oLst.setAdapter(oAdapter);
+                //.stop()
             }
 
             @Override
             public void onFail() {
                 Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
+                //.stop()
             }
         }).execute(fecha);
 

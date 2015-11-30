@@ -1,5 +1,6 @@
 package com.example.moviles.alertamovilapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -43,6 +44,7 @@ public class AlertaMedicoFragment extends DialogFragment {
     private Geocoder geocoder;
     private View oDialogView;
     private AlertDialog alert;
+    private Activity activity;
 
     public AlertaMedicoFragment() {
         mContext = getActivity();
@@ -118,20 +120,27 @@ public class AlertaMedicoFragment extends DialogFragment {
     public void enviarAlerta(String subTipo){
         sDescripcion = "Alerta creada por Botón de Pánico";
         usuario = editor.getString("usuario", "a@a.com");
+        final String sSubtipo = subTipo;
 
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
                 oBtnEmergencia.setEnabled(false);
                 oBtnChoque.setEnabled(false);
+                if (activity != null) {
+                    Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + sSubtipo , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Reporte Medico Enviado", Toast.LENGTH_LONG).show();
+                }
                 alert.dismiss();
             }
 
             @Override
             public void onFail() {
+                if (activity != null) {
+                    Toast.makeText(activity, "Error! Reporte No Enviado", Toast.LENGTH_LONG).show();
+                }
             }
         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Medico", cityName);
-        Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + subTipo, Toast.LENGTH_SHORT).show();
         alert.dismiss();
     }
 
@@ -140,6 +149,11 @@ public class AlertaMedicoFragment extends DialogFragment {
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
+    }
+
+    public void onAttach (Activity attachedActivity) {
+        super.onAttach(attachedActivity);
+        activity = attachedActivity;
     }
 
     public void show(FragmentManager fragmentManager, String fragmentDialog) {
