@@ -42,7 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
-
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
         layout.getBackground().setAlpha(80);
 

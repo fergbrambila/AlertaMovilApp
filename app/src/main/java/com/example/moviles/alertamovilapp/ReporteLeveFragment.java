@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -64,14 +65,14 @@ public class ReporteLeveFragment extends DialogFragment {
         Spinner ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
         String[] tipos = new String[]{"Policia", "Bomberos", "Medicos", "Servicios"};
-        String[] ciudades = new String[]{"Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique"};
+        String[] ciudades = new String[]{"Santiago", "Concepción", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
-        oMapSubTipos.put("Policia", new String[]{"Choque Auto", "Robo Casa Habitacion", "Robo Casa Deshabitad", "Asalto", "Pelea de Personas", "Vehiculo/Persona Sospechosa", "Peligro en la Via / Obras Publicas"});
-        oMapSubTipos.put("Bomberos", new String[]{"Incendio Casa", "Incendio Forestal", "Gato sobre un arbol"});
-        oMapSubTipos.put("Servicios", new String[]{"Luminaria Apagada/Rota", "Semaforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
-        oMapSubTipos.put("Medicos", new String[]{"Emergencia Medica"});
+        oMapSubTipos.put("Policia", new String[]{"Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
+        oMapSubTipos.put("Bomberos", new String[]{"Incendio Casa", "Incendio Forestal", "Gato sobre un árbol"});
+        oMapSubTipos.put("Servicios", new String[]{"Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
+        oMapSubTipos.put("Medicos", new String[]{"Emergencia Médica"});
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
@@ -144,12 +145,16 @@ public class ReporteLeveFragment extends DialogFragment {
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
                             public void onSuccess() {
-                                Toast.makeText(getActivity().getBaseContext(), "Reporte Enviado", Toast.LENGTH_LONG).show();
+                                //Toast.makeText(getActivity().getBaseContext(), "Reporte Enviado", Toast.LENGTH_LONG).show();
+                                //Tiene que traer la actividad dentro del AsyncTask para que Toast funcione
+                                //http://stackoverflow.com/questions/17625857/toast-inside-of-asynctask-inside-of-fragment-causes-crashes
+                                Log.d("test", "FUNCIONO");
                             }
 
                             @Override
                             public void onFail() {
-                                Toast.makeText(getActivity().getBaseContext(), "Error en la Red intentar de nuevo", Toast.LENGTH_LONG).show();
+                                Log.d("test", "FALLO");
+                                //Toast.makeText(getActivity().getBaseContext(), "Error en la Red", Toast.LENGTH_LONG).show();
                             }
                         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, spinCiudad);
 
