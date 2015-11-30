@@ -19,7 +19,7 @@ import java.net.SocketTimeoutException;
  * Created by Edgardo on 27/11/2015.
  */
 public class LoginTask extends AsyncTask<String, Void, Usuario> {
-    private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
+    private static final String MAIN_REQUEST_URL = "http://192.168.96.71:8080/Prueba1Web/PruebaWS";
 
     private LoginCallback oCallback;
     private SoapObject resultsString;
@@ -31,7 +31,7 @@ public class LoginTask extends AsyncTask<String, Void, Usuario> {
 
     private Usuario consumirLogin(String fValue1, String fValue2) {
         Log.i("LoginTask", "consumirLogin");
-        data = null;
+        data = "";
         String methodname = "login";
         String sNamespace = "http://ws.pruebas.cl/";
 

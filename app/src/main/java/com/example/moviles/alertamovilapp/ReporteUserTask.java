@@ -1,3 +1,4 @@
+
 package com.example.moviles.alertamovilapp;
 
 import android.os.AsyncTask;
@@ -16,26 +17,26 @@ import java.util.ArrayList;
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<Reporte>> {
-    private static final String MAIN_REQUEST_URL = "http://192.168.96.71/Prueba1Web/PruebaWS";
+public class ReporteUserTask extends AsyncTask<String, Void, ArrayList<Reporte>> {
+    private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
     private ReporteFiltrarFechaCallback oCallback;
     private SoapObject resultsObject;
     private ArrayList<Reporte> reportes;
     private String data;
 
-    public ReporteFiltrarFechaTask(ReporteFiltrarFechaCallback oCallback) {
+    public ReporteUserTask (ReporteFiltrarFechaCallback oCallback) {
         this.oCallback = oCallback;
     }
 
-    private ArrayList<Reporte> consumirReporteFiltrarFecha(String fValue1) {
-        Log.i("ReporteFiltrarFechaTask", "consumirReporteFiltrarFecha");
+    private ArrayList<Reporte> consumirReporteUser(String fValue1) {
+        Log.i("ReporteUserTask", "consumirReporteUser");
         data = null;
-        String methodname = "filtrarFecha";
+        String methodname = "reporteUser";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);
-        request.addProperty("dato", fValue1);
+        request.addProperty("email", fValue1);
 
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
@@ -94,7 +95,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
     @Override
     protected ArrayList<Reporte> doInBackground(String... params) {
         Log.i("RegistrarTask", "doInBackground");
-        return consumirReporteFiltrarFecha(params[0]);
+        return consumirReporteUser(params[0]);
         //return null;
     }
 

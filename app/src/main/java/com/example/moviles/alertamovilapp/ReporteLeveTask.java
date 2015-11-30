@@ -17,7 +17,7 @@ import java.net.SocketTimeoutException;
  * Created by Edgardo on 27/11/2015.
  */
 public class ReporteLeveTask extends AsyncTask<String, Void, String> {
-    private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
+    private static final String MAIN_REQUEST_URL = "http://192.168.96.71/Prueba1Web/PruebaWS";
 
     private ReporteLeveCallback oCallback;
     private String data;
