@@ -38,7 +38,7 @@
                     android:id="@+id/imageButtonChoque"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_gravity="left|top"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
                     android:src="@mipmap/policia" />
@@ -62,7 +62,7 @@
                     android:id="@+id/imageButtonAsalto"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_gravity="center_horizontal|top"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
                     android:src="@mipmap/policia" />
@@ -94,7 +94,7 @@
                     android:id="@+id/imageButtonRobo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_gravity="center_horizontal|top"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
                     android:src="@mipmap/policia" />
@@ -118,10 +118,10 @@
                     android:id="@+id/imageButtonPelea"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_gravity="right|top"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:src="@mipmap/policia"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:id="@+id/textView19"

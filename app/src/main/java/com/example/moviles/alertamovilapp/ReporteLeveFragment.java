@@ -64,15 +64,15 @@ public class ReporteLeveFragment extends DialogFragment {
         final Spinner subtipoSpinner = (Spinner) oDialogView.findViewById(R.id.subtipospinner);
         Spinner ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
-        String[] tipos = new String[]{"Policia", "Bomberos", "Medicos", "Servicios"};
+        String[] tipos = new String[]{"Policia", "Bombero", "Medico", "Servicios"};
         String[] ciudades = new String[]{"Santiago", "Concepción", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
         oMapSubTipos.put("Policia", new String[]{"Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
-        oMapSubTipos.put("Bomberos", new String[]{"Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
+        oMapSubTipos.put("Bombero", new String[]{"Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
         oMapSubTipos.put("Servicios", new String[]{"Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
-        oMapSubTipos.put("Medicos", new String[]{"Emergencia Médica"});
+        oMapSubTipos.put("Medico", new String[]{"Emergencia Médica", "Choque Auto"});
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
