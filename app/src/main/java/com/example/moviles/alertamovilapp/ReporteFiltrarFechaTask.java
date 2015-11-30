@@ -53,7 +53,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
                 Reporte reporte = new Reporte();
                 //SoapObject s_deals_1 = (SoapObject) s_deals.getProperty(i);
                 SoapObject s_deals_1 = (SoapObject) obj;
-                if(s_deals_1.getProperty("comentario").toString().isEmpty()){
+                if(s_deals_1.getProperty("comentario").toString().equalsIgnoreCase("anyType{}") || s_deals_1.getProperty("comentario").toString().isEmpty()){
                     reporte.setComentario("");
                 }
                 else

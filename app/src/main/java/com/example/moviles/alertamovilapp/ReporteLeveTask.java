@@ -29,7 +29,7 @@ public class ReporteLeveTask extends AsyncTask<String, Void, String> {
     private String consumirReporteLeve(String fValue1, String fValue2, String fValue3, String fValue4, String fValue5, String fValue6, String fValue7, String fValue8) {
         Log.i("ReporteLeveTask", "consumirReporteLeve");
         data = null;
-        String methodname = "generarReporte";
+        String methodname = "generarReportes";
         String sNamespace = "http://ws.pruebas.cl/";
 
         SoapObject request = new SoapObject(sNamespace, methodname);

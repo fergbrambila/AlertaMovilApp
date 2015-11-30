@@ -130,7 +130,7 @@ public class AlertaMedicoFragment extends DialogFragment {
             @Override
             public void onFail() {
             }
-        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Policia", cityName);
+        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Medico", cityName);
         Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + subTipo, Toast.LENGTH_SHORT).show();
         alert.dismiss();
     }

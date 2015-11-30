@@ -25,7 +25,7 @@ public class Adaptador extends ArrayAdapter {
         View item = inflater.inflate(R.layout.adaptador_reportes, null);
 
         TextView titulo = (TextView) item.findViewById(R.id.Titulo);
-        titulo.setText(datos.get(position).getTitulo());
+        titulo.setText(datos.get(position).getSubTipo());
         TextView ciudad = (TextView) item.findViewById(R.id.Ciudad);
         ciudad.setText(datos.get(position).getCiudad());
         TextView desc = (TextView) item.findViewById(R.id.Desc);
