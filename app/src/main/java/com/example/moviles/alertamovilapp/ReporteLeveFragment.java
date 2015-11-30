@@ -76,6 +76,8 @@ public class ReporteLeveFragment extends DialogFragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         tipoSpinner.setAdapter(adapter);
 
         tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -85,6 +87,7 @@ public class ReporteLeveFragment extends DialogFragment {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 spinTipo = (String) parent.getItemAtPosition(position);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 subtipoSpinner.setAdapter(adapter);
             }
 
@@ -109,7 +112,7 @@ public class ReporteLeveFragment extends DialogFragment {
         });
 
         ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
-
+        adapterCiudad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         ciudadSpinner.setAdapter(adapterCiudad);
 
         ciudadSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

@@ -59,6 +59,8 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         tipoSpinner.setAdapter(adapter);
 
         tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -66,8 +68,9 @@ public class ReporteFiltroFragment extends DialogFragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
-                subtipoSpinner.setAdapter(adapter);
+                ArrayAdapter<String> adapterSubtipo = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
+                adapterSubtipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                subtipoSpinner.setAdapter(adapterSubtipo);
                 spinTipo = (String) parent.getItemAtPosition(position);
             }
 
@@ -79,9 +82,11 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
-        String[] ciudades = new String[]{"Elegir Ciudad", "Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique"};
+        String[] ciudades = new String[]{"Elegir Ciudad", "Santiago", "Concepción", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
+
+        adapterCiudad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         ciudadSpinner.setAdapter(adapterCiudad);
 
@@ -128,10 +133,10 @@ public class ReporteFiltroFragment extends DialogFragment {
                         if (spinTipo.equalsIgnoreCase("Elegir Tipo"))
                             spinTipo = "";
 
-                        if (spinSubtipo.equalsIgnoreCase("Elegir Tipo Primero")||spinSubtipo.equalsIgnoreCase("Elegir Opción"))
+                        if (spinSubtipo.equalsIgnoreCase("Elegir Tipo Primero") || spinSubtipo.equalsIgnoreCase("Elegir Opción"))
                             spinTipo = "";
 
-                        if(spinCiudad.equalsIgnoreCase("Elegir Ciudad"))
+                        if (spinCiudad.equalsIgnoreCase("Elegir Ciudad"))
                             spinCiudad = "";
 
                         Toast.makeText(getActivity().getBaseContext(), fecha, Toast.LENGTH_LONG).show();

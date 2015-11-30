@@ -136,10 +136,10 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(getApplicationContext(), "Inicio - Mapa", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Mapa", Toast.LENGTH_SHORT).show();
             //Intent i = new Intent(getApplicationContext(), MapsActivity.class);
             //startActivity(i);
-            fm.beginTransaction().replace(R.id.content_frame, MapFragment.newInstance("", "")).commit();
+            fm.beginTransaction().replace(R.id.content_frame, com.google.android.gms.maps.MapFragment.newInstance()).commit();
             //fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
         } else if (id == R.id.nav_reportes) {
             Toast.makeText(getApplicationContext(), "Reportes", Toast.LENGTH_SHORT).show();
