@@ -1,6 +1,5 @@
 package com.example.moviles.alertamovilapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -13,7 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -25,7 +24,11 @@ public class ReporteFiltroFragment extends DialogFragment {
     private static Spinner tipoSpinner;
     private static Spinner subtipoSpinner;
     private static Spinner ciudadSpinner;
+    private static String spinTipo;
+    private static String spinSubtipo;
     private static String spinCiudad;
+    private static DatePicker datePicker;
+    private static String fecha;
 
     public ReporteFiltroFragment() {
         mContext = getActivity();
@@ -36,24 +39,23 @@ public class ReporteFiltroFragment extends DialogFragment {
         Log.d("test", "Filtro");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View oDialogView = inflater.inflate(R.layout.fragment_reporte_filtro, null);
 
-
         tipoSpinner = (Spinner) oDialogView.findViewById(R.id.tipospinner);
         subtipoSpinner = (Spinner) oDialogView.findViewById(R.id.subtipospinner);
+        datePicker = (DatePicker) oDialogView.findViewById(R.id.datePicker);
 
         String[] tipos = new String[]{"Elegir Tipo", "Policia", "Bomberos", "Medicos", "Servicios"};
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
         oMapSubTipos.put("Elegir Tipo", new String[]{"Elegir Tipo Primero"});
-        oMapSubTipos.put("Policia", new String[]{"Elegir Opcion", "Choque Auto", "Robo Casa Habitacion", "Robo Casa Deshabitad", "Asalto", "Pelea de Personas", "Vehiculo/Persona Sospechosa", "Peligro en la Via / Obras Publicas"});
-        oMapSubTipos.put("Bomberos", new String[]{"Elegir Opcion", "Incendio Casa", "Incendio Forestal", "Gato sobre un arbol"});
-        oMapSubTipos.put("Servicios", new String[]{"Elegir Opcion", "Luminaria Apagada/Rota", "Semaforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
-        oMapSubTipos.put("Medicos", new String[]{"Elegir Opcion", "Emergencia Medica"});
+        oMapSubTipos.put("Policia", new String[]{"Elegir Opción", "Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
+        oMapSubTipos.put("Bomberos", new String[]{"Elegir Opción", "Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
+        oMapSubTipos.put("Servicios", new String[]{"Elegir Opción", "Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
+        oMapSubTipos.put("Medicos", new String[]{"Elegir Opción", "Emergencia Médica", "Choque Auto"});
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, tipos);
 
@@ -66,6 +68,7 @@ public class ReporteFiltroFragment extends DialogFragment {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
                 subtipoSpinner.setAdapter(adapter);
+                spinTipo = (String) parent.getItemAtPosition(position);
             }
 
             @Override
@@ -96,11 +99,42 @@ public class ReporteFiltroFragment extends DialogFragment {
             }
         });
 
+        subtipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.v("item", (String) parent.getItemAtPosition(position));
+                spinSubtipo = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         alertDialogBuilder.setView(oDialogView)
                 .setPositiveButton("Filtrar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // sign in the user ...
+                        int day = datePicker.getDayOfMonth();
+                        int month = datePicker.getMonth() + 1;
+                        int year = datePicker.getYear();
+                        fecha = day + "/" + month + "/" + year;
+
+                        if (fecha.isEmpty())
+                            fecha = "";
+
+                        if (spinTipo.equalsIgnoreCase("Elegir Tipo"))
+                            spinTipo = "";
+
+                        if (spinSubtipo.equalsIgnoreCase("Elegir Tipo Primero")||spinSubtipo.equalsIgnoreCase("Elegir Opción"))
+                            spinTipo = "";
+
+                        if(spinCiudad.equalsIgnoreCase("Elegir Ciudad"))
+                            spinCiudad = "";
+
+                        Toast.makeText(getActivity().getBaseContext(), fecha, Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
