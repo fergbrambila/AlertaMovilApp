@@ -1,13 +1,17 @@
 package com.example.moviles.alertamovilapp;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
@@ -15,6 +19,11 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class MapFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -24,8 +33,8 @@ public class MapFragment extends Fragment {
     private GoogleMap googleMap;
     private int vista;
     MapView mMapView;
-
-
+    private String fecha;
+    private ArrayList<Reporte> reportes;
     private OnFragmentInteractionListener mListener;
 
     public static MapFragment newInstance() {
@@ -37,7 +46,6 @@ public class MapFragment extends Fragment {
 
     public MapFragment() {
         // Required empty public constructor
-
     }
 
     @Override
@@ -48,10 +56,12 @@ public class MapFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_map, container, false);
         ((MainActivity) getActivity()).setActionBarTitle("Mapa");
 
+        DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
+        Date dateobj = new Date();
+        fecha = df.format(dateobj);
 
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
@@ -66,12 +76,27 @@ public class MapFragment extends Fragment {
 
         Log.e("MAPA", "INFLAR");
 
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(new LatLng(-33,-77));
-        markerOptions.title("Hola");
+        ImageView mImageView = (ImageView) mMapView.findViewById(R.id.imageBtnPanico);
+        /*mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("test", "clic imagen");
+            }
+        });
+/*        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(getActivity().getBaseContext(),"Alerta Seleccionada",Toast.LENGTH_SHORT).show();
+                Log.d("test", "clic imagen");
+                FragmentActivity activity = (FragmentActivity) getActivity();
 
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                AlertaFragment alertDialog = AlertaFragment.newInstance();
+                alertDialog.show(fm, "fragment_alert");
 
-        googleMap.addMarker(markerOptions);
+            }
+        });
+*/
         onMapReady(googleMap);
 
         return view;
@@ -84,40 +109,29 @@ public class MapFragment extends Fragment {
         }
     }
 
-    public void onMapReady(GoogleMap map) {
+    public void onMapReady(final GoogleMap map) {
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(10, 10))
-                .title("Hello world"));
+                .title("hola"));
+
+        new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
+            @Override
+            public void onSuccess(ArrayList<Reporte> s) {
+                for (int i = 0; i< s.size();i++){
+                    map.addMarker(new MarkerOptions()
+                            .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
+                            .title(s.get(i).getSubTipo()));
+                }
+            }
+
+            @Override
+            public void onFail() {
+                Log.e("Mapa", "fallo");
+                //Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
+            }
+        }).execute(fecha);
     }
-/*
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-*/
-    /*
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-*/
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);

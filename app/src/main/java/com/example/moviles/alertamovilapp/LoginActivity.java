@@ -36,6 +36,9 @@ public class LoginActivity extends AppCompatActivity {
 
         editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
 
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(i);
+
         if (editor.getBoolean("login", false)) {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);

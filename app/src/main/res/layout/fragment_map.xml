@@ -4,17 +4,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.MapFragment">
 
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="79dp"
-        android:layout_height="79dp"
-        android:layout_gravity="center_horizontal|bottom"
-        android:src="@mipmap/alerta" />
-
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="439dp" />
+        android:layout_height="fill_parent" />
+
+    <ImageView
+        android:id="@+id/imageBtnPanico"
+        android:layout_width="79dp"
+        android:layout_height="79dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@mipmap/alerta" />
 
 </FrameLayout>
