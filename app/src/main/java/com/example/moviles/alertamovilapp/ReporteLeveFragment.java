@@ -1,5 +1,6 @@
 package com.example.moviles.alertamovilapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -39,6 +40,7 @@ public class ReporteLeveFragment extends DialogFragment {
     private static String usuario;
     private SharedPreferences editor;
     private String fecha;
+    private Activity activity;
 
     public ReporteLeveFragment() {
         mContext = getActivity();
@@ -148,7 +150,9 @@ public class ReporteLeveFragment extends DialogFragment {
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
                             public void onSuccess() {
-                                //Toast.makeText(getActivity().getBaseContext(), "Reporte Enviado", Toast.LENGTH_LONG).show();
+                                if (activity != null) {
+                                    Toast.makeText(activity, "Reporte Enviado", Toast.LENGTH_LONG).show();
+                                }
                                 //Tiene que traer la actividad dentro del AsyncTask para que Toast funcione
                                 //http://stackoverflow.com/questions/17625857/toast-inside-of-asynctask-inside-of-fragment-causes-crashes
                                 Log.d("test", "FUNCIONO");
@@ -157,7 +161,9 @@ public class ReporteLeveFragment extends DialogFragment {
                             @Override
                             public void onFail() {
                                 Log.d("test", "FALLO");
-                                //Toast.makeText(getActivity().getBaseContext(), "Error en la Red", Toast.LENGTH_LONG).show();
+                                if (activity != null) {
+                                    Toast.makeText(activity, "Error en la Red", Toast.LENGTH_LONG).show();
+                                }
                             }
                         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, spinCiudad);
 
@@ -183,6 +189,11 @@ public class ReporteLeveFragment extends DialogFragment {
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
+    }
+
+    public void onAttach (Activity attachedActivity) {
+        super.onAttach(attachedActivity);
+        activity = attachedActivity;
     }
 
     public void show(FragmentManager fragmentManager, String fragmentDialog) {

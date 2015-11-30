@@ -19,7 +19,7 @@ import java.util.Vector;
  * Created by Edgardo on 27/11/2015.
  */
 public class ReporteUserTask extends AsyncTask<String, Void, ArrayList<Reporte>> {
-    private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
+    private static final String MAIN_REQUEST_URL = Constantes.ENDPOINT;
 
     private ReporteFiltrarFechaCallback oCallback;
     private SoapObject resultsObject;
@@ -117,7 +117,7 @@ public class ReporteUserTask extends AsyncTask<String, Void, ArrayList<Reporte>>
 
     @Override
     protected void onPostExecute(ArrayList<Reporte> s) {
-        if (!data.equals("Error"))
+        if (data != null && !data.equals("Error"))
             oCallback.onSuccess(s);
         else
             oCallback.onFail();
