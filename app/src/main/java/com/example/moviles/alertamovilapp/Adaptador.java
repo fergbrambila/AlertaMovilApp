@@ -30,6 +30,9 @@ public class Adaptador extends ArrayAdapter {
         ciudad.setText(datos.get(position).getCiudad());
         TextView desc = (TextView) item.findViewById(R.id.Desc);
         desc.setText(datos.get(position).getComentario());
+        if(datos.get(position).getImg() == 0) {
+            datos.get(position).setImg(R.mipmap.alerta);
+        }
         ImageView imagen = (ImageView) item.findViewById(R.id.ImagenContain);
         imagen.setImageResource(datos.get(position).getImg());
 
