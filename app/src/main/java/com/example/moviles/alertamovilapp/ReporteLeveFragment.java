@@ -70,7 +70,7 @@ public class ReporteLeveFragment extends DialogFragment {
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
         oMapSubTipos.put("Policia", new String[]{"Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
-        oMapSubTipos.put("Bomberos", new String[]{"Incendio Casa", "Incendio Forestal", "Gato sobre un árbol"});
+        oMapSubTipos.put("Bomberos", new String[]{"Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
         oMapSubTipos.put("Servicios", new String[]{"Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
         oMapSubTipos.put("Medicos", new String[]{"Emergencia Médica"});
 
