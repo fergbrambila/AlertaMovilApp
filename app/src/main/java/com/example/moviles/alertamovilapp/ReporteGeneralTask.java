@@ -76,7 +76,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Report
     }
 
     private final HttpTransportSE getHttpTransportSE() {
-        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY,MAIN_REQUEST_URL,60000);
+        HttpTransportSE ht = new HttpTransportSE(Proxy.NO_PROXY, MAIN_REQUEST_URL, 60000);
         ht.debug = true;
         ht.setXmlVersionTag("<!--?xml version=\"1.0\" encoding= \"UTF-8\" ?-->");
         return ht;
@@ -107,6 +107,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Report
 
     public interface ReporteGeneralCallback {
         void onSuccess();
+
         void onFail();
     }
 }

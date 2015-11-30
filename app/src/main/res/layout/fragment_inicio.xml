@@ -2,14 +2,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.moviles.alertamovilapp.InicioFragment" android:tag="Inicio">
+    android:tag="Inicio"
+    tools:context="com.example.moviles.alertamovilapp.InicioFragment">
 
     <TextView
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="145dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_gravity="right|top"
         android:text="INICIO MAPA"
-        android:id="@+id/textView3"
-        android:layout_gravity="right|top" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
 </FrameLayout>

@@ -32,7 +32,7 @@ public class MisReportesFragment extends Fragment {
         }
         Adaptador oAdapter = new Adaptador(getActivity(), arreglo);
 
-        oLst.setAdapter(oAdapter);
+        //oLst.setAdapter(oAdapter);
 
         return rootView;
     }

@@ -50,6 +50,10 @@ public class AlertaFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getBaseContext(), "Bombero", Toast.LENGTH_SHORT).show();
+                FragmentActivity activity = (FragmentActivity) getActivity();
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                AlertaBomberoFragment alertDialog = AlertaBomberoFragment.newInstance();
+                alertDialog.show(fm, "fragment_reporte_leve");
             }
         });
 
@@ -68,6 +72,10 @@ public class AlertaFragment extends DialogFragment {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity().getBaseContext(), "Medico", Toast.LENGTH_SHORT).show();
+                FragmentActivity activity = (FragmentActivity) getActivity();
+                android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+                AlertaMedicoFragment alertDialog = AlertaMedicoFragment.newInstance();
+                alertDialog.show(fm, "fragment_reporte_leve");
             }
         });
         return alertDialogBuilder.create();

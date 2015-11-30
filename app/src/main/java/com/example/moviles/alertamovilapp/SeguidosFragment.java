@@ -12,15 +12,16 @@ import java.util.ArrayList;
 
 public class SeguidosFragment extends Fragment {
     private ListView oLst;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_seguidos, container, false);
-                ((MainActivity) getActivity()).setActionBarTitle("Reportes Seguidos");
+        ((MainActivity) getActivity()).setActionBarTitle("Reportes Seguidos");
 
-        oLst = (ListView)rootView.findViewById(R.id.listView2);
+        oLst = (ListView) rootView.findViewById(R.id.listView2);
         ArrayList<Reporte> arreglo = null;
         Reporte[] aReportes = new Reporte[10];
         for (int i = 0; i < aReportes.length; i++) {
@@ -33,7 +34,7 @@ public class SeguidosFragment extends Fragment {
         }
         Adaptador oAdapter = new Adaptador(getActivity(), arreglo);
 
-        oLst.setAdapter(oAdapter);
+//        oLst.setAdapter(oAdapter);
 
 
         return rootView;

@@ -25,12 +25,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AlertaPoliciaFragment extends DialogFragment {
+public class AlertaMedicoFragment extends DialogFragment {
     Context mContext;
+    private static ImageButton oBtnEmergencia;
     private static ImageButton oBtnChoque;
-    private static ImageButton oBtnAsalto;
-    private static ImageButton oBtnRobo;
-    private static ImageButton oBtnPelea;
     private String sDescripcion;
     private String usuario;
     private SharedPreferences editor;
@@ -46,7 +44,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
     private View oDialogView;
     private AlertDialog alert;
 
-    public AlertaPoliciaFragment() {
+    public AlertaMedicoFragment() {
         mContext = getActivity();
     }
 
@@ -64,12 +62,10 @@ public class AlertaPoliciaFragment extends DialogFragment {
         Date dateobj = new Date();
         fecha = df.format(dateobj);
 
-        oDialogView = inflater.inflate(R.layout.fragment_alerta_policia, null);
+        oDialogView = inflater.inflate(R.layout.fragment_alerta_medico, null);
 
+        oBtnEmergencia = (ImageButton) oDialogView.findViewById(R.id.imageButtonEmergencia);
         oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);
-        oBtnAsalto = (ImageButton) oDialogView.findViewById(R.id.imageButtonAsalto);
-        oBtnRobo = (ImageButton) oDialogView.findViewById(R.id.imageButtonRobo);
-        oBtnPelea = (ImageButton) oDialogView.findViewById(R.id.imageButtonPelea);
 
         alertDialogBuilder.setView(oDialogView)
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
@@ -79,6 +75,14 @@ public class AlertaPoliciaFragment extends DialogFragment {
                     }
                 });
 
+        oBtnEmergencia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                generarDireccion();
+                enviarAlerta("Emergencia Médica");
+            }
+        });
+
         oBtnChoque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,29 +91,6 @@ public class AlertaPoliciaFragment extends DialogFragment {
             }
         });
 
-        oBtnAsalto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generarDireccion();
-                enviarAlerta("Asalto");
-            }
-        });
-
-        oBtnRobo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generarDireccion();
-                enviarAlerta("Robo");
-            }
-        });
-
-        oBtnPelea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                generarDireccion();
-                enviarAlerta("Pelea de Personas");
-            }
-        });
         alert = alertDialogBuilder.create();
         return alert;
     }
@@ -141,9 +122,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
-                oBtnRobo.setEnabled(false);
-                oBtnAsalto.setEnabled(false);
-                oBtnPelea.setEnabled(false);
+                oBtnEmergencia.setEnabled(false);
                 oBtnChoque.setEnabled(false);
                 alert.dismiss();
             }
@@ -156,8 +135,8 @@ public class AlertaPoliciaFragment extends DialogFragment {
         alert.dismiss();
     }
 
-    public static AlertaPoliciaFragment newInstance() {
-        AlertaPoliciaFragment frag = new AlertaPoliciaFragment();
+    public static AlertaMedicoFragment newInstance() {
+        AlertaMedicoFragment frag = new AlertaMedicoFragment();
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;

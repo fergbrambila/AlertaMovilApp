@@ -1,11 +1,20 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.moviles.alertamovilapp.MapFragment">
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="79dp"
+        android:layout_height="79dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:src="@mipmap/alerta" />
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
-        android:layout_height="match_parent"
+        class="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        class="com.google.android.gms.maps.SupportMapFragment" />
+        android:layout_height="439dp" />
 
 </FrameLayout>

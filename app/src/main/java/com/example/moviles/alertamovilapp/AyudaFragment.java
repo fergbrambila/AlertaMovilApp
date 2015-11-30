@@ -15,7 +15,7 @@ public class AyudaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_ayuda,container,false);//false is dont want to attatch to root
+        View rootView = inflater.inflate(R.layout.fragment_ayuda, container, false);//false is dont want to attatch to root
         ((MainActivity) getActivity()).setActionBarTitle("Ayuda");
 
         Button btnPanico = (Button) rootView.findViewById(R.id.btn_Panico);

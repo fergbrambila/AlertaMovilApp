@@ -1,63 +1,63 @@
 <LinearLayout
-    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:orientation="vertical">
 
-        <RelativeLayout
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="219dp"
+        android:layout_weight=".5">
+
+        <ImageView
+            android:id="@+id/ivreporte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/reporte" />
+
+        <Button
+            android:id="@+id/btn_Crear"
             android:layout_width="match_parent"
-            android:layout_height="219dp"
-            android:layout_weight=".5">
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#68000000"
+            android:text="¿Cómo crear un reporte?"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivreporte"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/reporte" />
+    </RelativeLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="¿Cómo crear un reporte?"
-                android:id="@+id/btn_Crear"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentBottom="true"
-                android:textSize="30dp"
-                android:background="#68000000"
-                android:textColor="#ffffff" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="231dp"
+        android:layout_weight=".5">
 
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/ivpanico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/panico" />
 
-        <RelativeLayout
+        <Button
+            android:id="@+id/btn_Panico"
             android:layout_width="match_parent"
-            android:layout_height="231dp"
-            android:layout_weight=".5">
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:background="#68000000"
+            android:text="¿Cómo funciona el boton de pánico ?"
+            android:textColor="#ffffff"
+            android:textSize="30dp" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ivpanico"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/panico" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="¿Cómo funciona el boton de pánico ?"
-                android:id="@+id/btn_Panico"
-                android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
-                android:textSize="30dp"
-                android:background="#68000000"
-                android:textColor="#ffffff" />
-
-        </RelativeLayout>
+    </RelativeLayout>
 </LinearLayout>

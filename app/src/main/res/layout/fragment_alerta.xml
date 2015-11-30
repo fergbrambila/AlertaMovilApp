@@ -6,92 +6,92 @@
     android:id="@+id/alertapanico">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="10dp">
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imageView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView3"
+            android:layout_gravity="center"
             android:background="#FFFFD333"
-            android:src="@drawable/header_alerta_panico"
-            android:layout_gravity="center" />
+            android:src="@drawable/header_alerta_panico" />
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
                     android:id="@+id/imageButtonBombero"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_gravity="left|top"
-                    android:src="@mipmap/bombero"
+                    android:layout_margin="10dp"
                     android:background="#ff7777"
-                    android:layout_margin="10dp" />
+                    android:src="@mipmap/bombero" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
-                    android:text="Bomberos"
                     android:id="@+id/textView9"
-                    android:layout_gravity="center" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Bomberos"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <ImageButton
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
                     android:id="@+id/imageButtonPolicia"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
                     android:layout_gravity="center_horizontal|top"
-                    android:src="@mipmap/policia"
+                    android:layout_margin="10dp"
                     android:background="#707bf0"
-                    android:layout_margin="10dp" />
+                    android:src="@mipmap/policia" />
 
                 <TextView
+                    android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center"
                     android:text="Policia"
-                    android:id="@+id/textView18"
-                    android:layout_gravity="center" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
             <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
                 <ImageButton
+                    android:id="@+id/imageButtonMedico"
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:id="@+id/imageButtonMedico"
                     android:layout_gravity="right|top"
-                    android:src="@mipmap/doctor"
+                    android:layout_margin="10dp"
                     android:background="#b6b6b6"
-                    android:layout_margin="10dp" />
+                    android:src="@mipmap/doctor" />
 
                 <TextView
+                    android:id="@+id/textView19"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_gravity="center"
                     android:text="Medico"
-                    android:id="@+id/textView19"
-                    android:layout_gravity="center" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
         </LinearLayout>

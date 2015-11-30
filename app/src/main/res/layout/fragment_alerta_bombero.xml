@@ -1,8 +1,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.moviles.alertamovilapp.AlertaPoliciaFragment">
+    tools:context="com.example.moviles.alertamovilapp.AlertaBomberoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,23 +31,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:gravity="center">
 
                 <ImageButton
-                    android:id="@+id/imageButtonChoque"
+                    android:id="@+id/imageButtonCasa"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:background="#ff7777"
+                    android:src="@mipmap/bombero" />
 
                 <TextView
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Choque"
+                    android:text="Incendio Casa"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
@@ -59,20 +59,20 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonAsalto"
+                    android:id="@+id/imageButtonForestal"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:background="#ff7777"
+                    android:src="@mipmap/bombero" />
 
                 <TextView
                     android:id="@+id/textView23"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Asalto"
+                    android:text="Incendio Forestal"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
@@ -91,20 +91,20 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonRobo"
+                    android:id="@+id/imageButtonEdificio"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:background="#ff7777"
+                    android:src="@mipmap/bombero" />
 
                 <TextView
                     android:id="@+id/textView18"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Robo "
+                    android:text="Incendio Edificio"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
@@ -115,12 +115,12 @@
                 android:orientation="vertical">
 
                 <ImageButton
-                    android:id="@+id/imageButtonPelea"
+                    android:id="@+id/imageButtonGato"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
-                    android:background="#707bf0"
-                    android:src="@mipmap/policia"
+                    android:background="#ff7777"
+                    android:src="@mipmap/bombero"
                     android:layout_gravity="center" />
 
                 <TextView
@@ -128,7 +128,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Pelea"
+                    android:text="Gato sobre Árbol"
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
         </LinearLayout>

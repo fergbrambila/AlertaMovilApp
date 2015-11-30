@@ -1,4 +1,5 @@
 package com.example.moviles.alertamovilapp;
+
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -35,12 +36,11 @@ public class LoginActivity extends AppCompatActivity {
 
         editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
 
-        /*if(editor.getBoolean("login",false)){
-            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+        if (editor.getBoolean("login", false)) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
-        }*/
-
+        }
 
         LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
         layout.getBackground().setAlpha(80);
@@ -69,14 +69,13 @@ public class LoginActivity extends AppCompatActivity {
         //FIN MANITO <3*/
     }
 
-    protected void hideKeyboard(View view)
-    {
+    protected void hideKeyboard(View view) {
         InputMethodManager in = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
-    public void onButtonListener(){
-        _btn_login = (Button)findViewById(R.id.btn_login);
+    public void onButtonListener() {
+        _btn_login = (Button) findViewById(R.id.btn_login);
         _btn_login.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
@@ -86,12 +85,12 @@ public class LoginActivity extends AppCompatActivity {
         );
     }
 
-    public void onLinkListener(){
-        _link_signup = (TextView)findViewById(R.id.link_signup);
+    public void onLinkListener() {
+        _link_signup = (TextView) findViewById(R.id.link_signup);
         _link_signup.setOnClickListener(
                 new View.OnClickListener() {
                     public void onClick(View v) {
-                        Intent i = new Intent(getApplicationContext(),RegisterActivity.class);
+                        Intent i = new Intent(getApplicationContext(), RegisterActivity.class);
                         startActivity(i);
                     }
                 }
@@ -114,8 +113,8 @@ public class LoginActivity extends AppCompatActivity {
         progressDialog.setMessage("Autenticando...");
         progressDialog.show();*/
 
-        _email = (MultiAutoCompleteTextView)findViewById(R.id.email);
-        _password = (EditText)findViewById(R.id.password);
+        _email = (MultiAutoCompleteTextView) findViewById(R.id.email);
+        _password = (EditText) findViewById(R.id.password);
 
         final String email = _email.getText().toString();
         final String password = _password.getText().toString();
@@ -123,10 +122,11 @@ public class LoginActivity extends AppCompatActivity {
         new LoginTask(new LoginTask.LoginCallback() {
             @Override
             public void onSuccess(Usuario s) {
-                Toast.makeText(getBaseContext(),s.getEmail()+" "+s.getNombre(), Toast.LENGTH_LONG).show();//realm
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Toast.makeText(getBaseContext(), s.getEmail() + " " + s.getNombre(), Toast.LENGTH_LONG).show();//realm
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                editor.edit().putBoolean("login",true).commit();
+                editor.edit().putBoolean("login", true).commit();
+                editor.edit().putString("usuario", s.getEmail()).commit();
                 finish();
             }
 
@@ -142,16 +142,16 @@ public class LoginActivity extends AppCompatActivity {
     public boolean validate() {
         boolean valid = true;
 
-        _email = (MultiAutoCompleteTextView)findViewById(R.id.email);
-        _password = (EditText)findViewById(R.id.password);
+        _email = (MultiAutoCompleteTextView) findViewById(R.id.email);
+        _password = (EditText) findViewById(R.id.password);
 
         String email = _email.getText().toString();
         String password = _password.getText().toString();
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _email.setError("Ingresar un correo correcto");
             valid = false;
         }
-        if (password.isEmpty()){
+        if (password.isEmpty()) {
             _password.setError("Ingresar Contrasena");
             valid = false;
         }
@@ -160,11 +160,11 @@ public class LoginActivity extends AppCompatActivity {
 
     public void onLoginSuccess() {
         _btn_login.setEnabled(true);
-        Toast.makeText(getBaseContext(), "REdireccionando", Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseContext(), "Redireccionando", Toast.LENGTH_LONG).show();
         finish();
     }
 
-    public void onLoginFailed(){
+    public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Completa correctamente los campos", Toast.LENGTH_LONG).show();
 
         _btn_login.setEnabled(true);

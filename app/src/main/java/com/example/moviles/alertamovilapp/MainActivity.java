@@ -5,6 +5,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.SpannableStringBuilder;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -25,8 +29,13 @@ import android.widget.Toast;
 
 import com.example.moviles.alertamovilapp.gps.GPSTracker;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private SharedPreferences editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +44,11 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
+
         GPSTracker gps = new GPSTracker(MainActivity.this);
         //Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
+
 
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +88,7 @@ public class MainActivity extends AppCompatActivity
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .setTitle("Cerrar Aplicación")
                     .setMessage("Esta seguro que desea salir de la aplicación?")
-                    .setPositiveButton("Si", new DialogInterface.OnClickListener()
-                    {
+                    .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             finish();
@@ -125,34 +136,35 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fm = getFragmentManager();
 
         if (id == R.id.nav_inicio) {
-            Toast.makeText(getApplicationContext(),"Inicio - Mapa",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Mapa", Toast.LENGTH_SHORT).show();
             //Intent i = new Intent(getApplicationContext(), MapsActivity.class);
             //startActivity(i);
-            fm.beginTransaction().replace(R.id.content_frame, MapFragment.newInstance("","")).commit();
+            fm.beginTransaction().replace(R.id.content_frame, com.google.android.gms.maps.MapFragment.newInstance()).commit();
             //fm.beginTransaction().replace(R.id.content_frame,new InicioFragment()).commit();
         } else if (id == R.id.nav_reportes) {
             Toast.makeText(getApplicationContext(), "Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
         } else if (id == R.id.nav_misreportes) {
-            Toast.makeText(getApplicationContext(),"Mis Reportes",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Mis Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
         } else if (id == R.id.nav_seguidos) {
-            Toast.makeText(getApplicationContext(),"Reportes Seguidos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
-            Toast.makeText(getApplicationContext(),"Números de Emergencia",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Números de Emergencia", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new EmergenciasFragment()).commit();
         } else if (id == R.id.nav_ayuda) {
-            Toast.makeText(getApplicationContext(),"Ayuda",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Ayuda", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new AyudaFragment()).commit();
         } else if (id == R.id.nav_somos) {
-            Toast.makeText(getApplicationContext(),"Quienes Somos",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Quienes Somos", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new SomosFragment()).commit();
         } else if (id == R.id.nav_donar) {
-            Toast.makeText(getApplicationContext(),"Donar",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Donar", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new DonarFragment()).commit();
         } else if (id == R.id.nav_cerrar) {
-
+            editor.edit().putBoolean("login", false).commit();
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

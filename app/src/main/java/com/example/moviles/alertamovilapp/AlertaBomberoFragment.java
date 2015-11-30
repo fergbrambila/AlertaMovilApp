@@ -25,12 +25,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class AlertaPoliciaFragment extends DialogFragment {
+public class AlertaBomberoFragment extends DialogFragment {
     Context mContext;
-    private static ImageButton oBtnChoque;
-    private static ImageButton oBtnAsalto;
-    private static ImageButton oBtnRobo;
-    private static ImageButton oBtnPelea;
+    private static ImageButton oBtnCasa;
+    private static ImageButton oBtnForestal;
+    private static ImageButton oBtnEdificio;
+    private static ImageButton oBtnGato;
     private String sDescripcion;
     private String usuario;
     private SharedPreferences editor;
@@ -46,13 +46,13 @@ public class AlertaPoliciaFragment extends DialogFragment {
     private View oDialogView;
     private AlertDialog alert;
 
-    public AlertaPoliciaFragment() {
+    public AlertaBomberoFragment() {
         mContext = getActivity();
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "dialogo de Bomberos");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
@@ -64,12 +64,12 @@ public class AlertaPoliciaFragment extends DialogFragment {
         Date dateobj = new Date();
         fecha = df.format(dateobj);
 
-        oDialogView = inflater.inflate(R.layout.fragment_alerta_policia, null);
+        oDialogView = inflater.inflate(R.layout.fragment_alerta_bombero, null);
 
-        oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);
-        oBtnAsalto = (ImageButton) oDialogView.findViewById(R.id.imageButtonAsalto);
-        oBtnRobo = (ImageButton) oDialogView.findViewById(R.id.imageButtonRobo);
-        oBtnPelea = (ImageButton) oDialogView.findViewById(R.id.imageButtonPelea);
+        oBtnCasa = (ImageButton) oDialogView.findViewById(R.id.imageButtonCasa);
+        oBtnForestal = (ImageButton) oDialogView.findViewById(R.id.imageButtonForestal);
+        oBtnEdificio = (ImageButton) oDialogView.findViewById(R.id.imageButtonEdificio);
+        oBtnGato = (ImageButton) oDialogView.findViewById(R.id.imageButtonGato);
 
         alertDialogBuilder.setView(oDialogView)
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
@@ -79,35 +79,35 @@ public class AlertaPoliciaFragment extends DialogFragment {
                     }
                 });
 
-        oBtnChoque.setOnClickListener(new View.OnClickListener() {
+        oBtnCasa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generarDireccion();
-                enviarAlerta("Choque Auto");
+                enviarAlerta("Incendio Casa");
             }
         });
 
-        oBtnAsalto.setOnClickListener(new View.OnClickListener() {
+        oBtnForestal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generarDireccion();
-                enviarAlerta("Asalto");
+                enviarAlerta("Incendio Forestal");
             }
         });
 
-        oBtnRobo.setOnClickListener(new View.OnClickListener() {
+        oBtnEdificio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generarDireccion();
-                enviarAlerta("Robo");
+                enviarAlerta("Incendio Edificio");
             }
         });
 
-        oBtnPelea.setOnClickListener(new View.OnClickListener() {
+        oBtnGato.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 generarDireccion();
-                enviarAlerta("Pelea de Personas");
+                enviarAlerta("Gato sobre un árbol");
             }
         });
         alert = alertDialogBuilder.create();
@@ -128,6 +128,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
             e.printStackTrace();
             Log.e("error", "MAPA");
         }
+
         streetName = addresses.get(0).getAddressLine(0); //Calle
         cityName = addresses.get(0).getLocality(); //Ciudad
         stateName = addresses.get(0).getAdminArea(); //Area
@@ -141,23 +142,23 @@ public class AlertaPoliciaFragment extends DialogFragment {
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
-                oBtnRobo.setEnabled(false);
-                oBtnAsalto.setEnabled(false);
-                oBtnPelea.setEnabled(false);
-                oBtnChoque.setEnabled(false);
+                oBtnCasa.setEnabled(false);
+                oBtnForestal.setEnabled(false);
+                oBtnEdificio.setEnabled(false);
+                oBtnGato.setEnabled(false);
                 alert.dismiss();
             }
 
             @Override
             public void onFail() {
             }
-        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Policia", cityName);
+        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Bomberos", cityName);
         Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + subTipo, Toast.LENGTH_SHORT).show();
         alert.dismiss();
     }
 
-    public static AlertaPoliciaFragment newInstance() {
-        AlertaPoliciaFragment frag = new AlertaPoliciaFragment();
+    public static AlertaBomberoFragment newInstance() {
+        AlertaBomberoFragment frag = new AlertaBomberoFragment();
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
