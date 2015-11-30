@@ -12,18 +12,22 @@ import org.ksoap2.transport.HttpTransportSE;
 import java.io.IOException;
 import java.net.Proxy;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 
 /**
  * Created by Edgardo on 27/11/2015.
  */
-public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
+public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Reporte>>{
     private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
 
     private ReporteGeneralCallback oCallback;
+    private SoapObject resultsObject;
+    private ArrayList<Reporte> reportes;
+
     public ReporteGeneralTask(ReporteGeneralCallback oCallback) {
         this.oCallback = oCallback;
     }
-    private String consumirReporteGeneral(String fValue1,String fValue2,String fValue3) {
+    private ArrayList<Reporte> consumirReporteGeneral(String fValue1,String fValue2,String fValue3,String fValue4) {
         Log.i("ReporteGeneralTask", "consumirReporteGeneral");
         String data = null;
         String methodname = "filtrar";
@@ -33,6 +37,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
         request.addProperty("fecha", fValue1);
         request.addProperty("tipo", fValue2);
         request.addProperty("subTipo", fValue3);
+        request.addProperty("ciudad",fValue4);
 
 
         SoapSerializationEnvelope envelope = getSoapSerializationEnvelope(request);
@@ -41,9 +46,22 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
         try {
             ht.call(sNamespace + methodname, envelope);
             //testHttpResponse(ht);
-            SoapPrimitive resultsString = (SoapPrimitive)envelope.getResponse();
-            data = resultsString.toString();
+            resultsObject= (SoapObject)envelope.getResponse();
+            reportes = new ArrayList<Reporte>();
+            for(int i=0;i<resultsObject.getPropertyCount();i++) {
+                Reporte reporte = new Reporte();
+                SoapObject s_deals_1 = (SoapObject) resultsObject.getProperty(i);
+                reporte.setComentario(s_deals_1.getProperty("comentario").toString());
+                reporte.setEmail(s_deals_1.getProperty("email").toString());
+                reporte.setFecha(s_deals_1.getProperty("fecha").toString());
+                reporte.setSubTipo(s_deals_1.getProperty("subTipo").toString());
+                reporte.setTipo(s_deals_1.getProperty("tipo").toString());
+                reporte.setLatitud(new Double(s_deals_1.getProperty("latitud").toString()));
+                reporte.setLongitud(new Double(s_deals_1.getProperty("longitud").toString()));
+                reporte.setCiudad(s_deals_1.getProperty("ciudad").toString());
 
+                reportes.add(reporte);
+            }
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -54,7 +72,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
             data = "Error";
             q.printStackTrace();
         }
-        return data;
+        return reportes;
     }
 
     private final HttpTransportSE getHttpTransportSE() {
@@ -75,14 +93,14 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, String> {
     }
 
     @Override
-    protected String doInBackground(String... params) {
+    protected ArrayList<Reporte> doInBackground(String... params) {
         Log.i("RegistrarTask", "doInBackground");
-        return consumirReporteGeneral(params[0], params[1], params[2]);
+        return consumirReporteGeneral(params[0], params[1], params[2],params[3]);
         //return null;
     }
 
     @Override
-    protected void onPostExecute(String s) {
+    protected void onPostExecute(ArrayList<Reporte> s) {
         oCallback.onSuccess();
         oCallback.onFail();
     }
