@@ -19,6 +19,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -130,14 +131,40 @@ public class MapFragment extends Fragment implements GoogleMap.OnMapClickListene
                 .position(new LatLng(10, 10))
                 .title("hola"));*/
 
-
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
             public void onSuccess(ArrayList<Reporte> s) {
                 for (int i = 0; i< s.size();i++){
-                    map.addMarker(new MarkerOptions()
-                            .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
-                            .title(s.get(i).getSubTipo()));
+                    if(s.get(i).getTipo().equalsIgnoreCase("policia")){
+                        map.addMarker(new MarkerOptions()
+                                .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+                                .title(s.get(i).getSubTipo()));
+                    }
+                    else if(s.get(i).getTipo().equalsIgnoreCase("bombero")){
+                        map.addMarker(new MarkerOptions()
+                                .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_RED ))
+                                .title(s.get(i).getSubTipo()));
+                    }
+                    else if(s.get(i).getTipo().equalsIgnoreCase("medico")){
+                        map.addMarker(new MarkerOptions()
+                                .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_ORANGE ))
+                                .title(s.get(i).getSubTipo()));
+                    }
+                    else {
+                        map.addMarker(new MarkerOptions()
+                                .position(new LatLng(s.get(i).getLatitud(), s.get(i).getLongitud()))
+                                .icon(BitmapDescriptorFactory
+                                        .defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                                .title(s.get(i).getSubTipo()));
+                    }
+
+
                 }
             }
 

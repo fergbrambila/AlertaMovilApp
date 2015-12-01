@@ -186,8 +186,10 @@ public class ReporteLeveFragment extends DialogFragment {
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                        if(btn != null)
                         btn.setEnabled(true);
                         Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                        if(btn2 != null)
                         btn2.setEnabled(true);
                         dialog.dismiss();
                     }
@@ -226,10 +228,14 @@ public class ReporteLeveFragment extends DialogFragment {
             Log.e("error", "MAPA");
         }
 
+        if(addresses.get(0).getAddressLine(0)!=null)
         streetName = addresses.get(0).getAddressLine(0); //Calle
-        cityName = addresses.get(0).getLocality(); //Ciudad
-        stateName = addresses.get(0).getAdminArea(); //Area
-        countryName = addresses.get(0).getCountryName(); //Pais
+        if(addresses.get(0).getLocality()!=null)
+            cityName = addresses.get(0).getLocality(); //Ciudad
+        if(addresses.get(0).getAdminArea()!=null)
+            stateName = addresses.get(0).getAdminArea(); //Area
+        if(addresses.get(0).getCountryName()!=null)
+            countryName = addresses.get(0).getCountryName(); //Pais
     }
 
 
