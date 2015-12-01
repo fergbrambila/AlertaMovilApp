@@ -128,7 +128,7 @@ public class AlertaMedicoFragment extends DialogFragment {
                 oBtnEmergencia.setEnabled(false);
                 oBtnChoque.setEnabled(false);
                 if (activity != null) {
-                    Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + sSubtipo , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo , Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Medico Enviado", Toast.LENGTH_LONG).show();
                 }
                 alert.dismiss();

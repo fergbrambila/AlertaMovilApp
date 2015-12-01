@@ -151,7 +151,7 @@ public class AlertaBomberoFragment extends DialogFragment {
                 oBtnEdificio.setEnabled(false);
                 oBtnGato.setEnabled(false);
                 if (activity != null) {
-                    Toast.makeText(getActivity().getBaseContext(), "ALERTA ENVIADA - " + sSubtipo, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo, Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Bombero Enviado", Toast.LENGTH_LONG).show();
                 }
                 alert.dismiss();
