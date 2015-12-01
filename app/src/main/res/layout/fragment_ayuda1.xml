@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="1. Debes de pulsar el boton de generar reporte. "
+        android:text="1. Debes pulsar el boton de generar reporte. "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="2. Debes de pulsar el boton de generar reporte. "
+        android:text="2. Luego debes ingresar un tipo, sub-tipo y una descripción de lo que este sucediendo. "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -39,6 +39,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
-        android:text="3. Debes de pulsar el boton de generar reporte. "
+        android:text="3. Finalmente debes apretar el boton enviar reporte . "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>
