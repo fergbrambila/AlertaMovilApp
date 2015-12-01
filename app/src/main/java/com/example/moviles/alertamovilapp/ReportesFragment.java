@@ -26,15 +26,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ReportesFragment extends Fragment {
+public class ReportesFragment extends Fragment implements  ReporteGeneralTask.ReporteGeneralCallback {
     private ListView oLst;
     private String fecha;
+    private View rootView;
     //private ArrayList<Reporte> arregloReportes;
 
     @Nullable
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_reportes, container, false);//false is dont want to attatch to root
+        rootView = inflater.inflate(R.layout.fragment_reportes, container, false);//false is dont want to attatch to root
 
         ((MainActivity) getActivity()).setActionBarTitle("Reportes");
 
@@ -94,7 +95,7 @@ public class ReportesFragment extends Fragment {
                 Log.d("test", "clic Reporte Filtro");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
-                ReporteFiltroFragment alertDialog = ReporteFiltroFragment.newInstance();
+                ReporteFiltroFragment alertDialog = ReporteFiltroFragment.newInstance(ReportesFragment.this);
                 alertDialog.show(fm, "fragment_reporte_filtro");
             }
         });
@@ -102,5 +103,21 @@ public class ReportesFragment extends Fragment {
         return rootView;
     }
 
+
+    @Override
+    public void onSuccess(ArrayList<Reporte> s) {
+        oLst = (ListView) rootView.findViewById(R.id.listView);
+
+        Adaptador oAdapter = new Adaptador(getActivity(), s);
+
+        oLst.setAdapter(oAdapter);
+        Toast.makeText(getActivity().getBaseContext(), "Reportes Actualizado", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onFail() {
+        Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes - Filtro", Toast.LENGTH_LONG).show();
+
+    }
 }
 
