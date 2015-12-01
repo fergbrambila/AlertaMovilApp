@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moviles.alertamovilapp.clases.Usuario;
@@ -30,6 +32,8 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
     private ListView oLst;
     private String fecha;
     private View rootView;
+    private ProgressBar spinner;
+    private TextView txtRepVacio;
     //private ArrayList<Reporte> arregloReportes;
 
     @Nullable
@@ -39,25 +43,30 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
 
         ((MainActivity) getActivity()).setActionBarTitle("Reportes");
 
+        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);
+
+        txtRepVacio = (TextView)rootView.findViewById(R.id.txtViewReporteVacio);
+        txtRepVacio.setVisibility(View.GONE);
+
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
         fecha = df.format(dateobj);
-        //.start()
+
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
             public void onSuccess(ArrayList<Reporte> s) {
                 oLst = (ListView) rootView.findViewById(R.id.listView);
-
                 Adaptador oAdapter = new Adaptador(getActivity(), s);
-
                 oLst.setAdapter(oAdapter);
-                //.stop()
+                spinner.setVisibility(View.GONE);
             }
 
             @Override
             public void onFail() {
                 Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
-                //.stop()
+                txtRepVacio.setVisibility(View.VISIBLE);
+                spinner.setVisibility(View.GONE);
             }
         }).execute(fecha);
 
@@ -107,9 +116,7 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
     @Override
     public void onSuccess(ArrayList<Reporte> s) {
         oLst = (ListView) rootView.findViewById(R.id.listView);
-
         Adaptador oAdapter = new Adaptador(getActivity(), s);
-
         oLst.setAdapter(oAdapter);
         Toast.makeText(getActivity().getBaseContext(), "Reportes Actualizado", Toast.LENGTH_LONG).show();
     }

@@ -40,8 +40,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="____________________________________"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:text="________________________________________________________________"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textSize="10dp" />
+
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:id="@+id/txtViewReporteVacio"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:text="No hay reportes disponibles"
+            android:textColor="#cacaca"
+            android:layout_marginTop="10dp" />
 
         <ListView
             android:id="@+id/listView"
