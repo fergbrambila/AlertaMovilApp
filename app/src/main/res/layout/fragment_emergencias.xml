@@ -40,79 +40,73 @@
                 android:textSize="16dp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/Tv_Bomberos"
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:layout_weight="0"
-                android:contextClickable="false"
-                android:text="132 Bomberos"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="27dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/Tv_Incendio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
                 android:text="130 Incendios forestales"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="27dp"
-                android:textStyle="bold" />
+                android:id="@+id/btn_forestal"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp" />
 
-            <TextView
-                android:id="@+id/Tv_Carabineros"
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="133 Carabineros"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="27dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/Tv_Pdi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
-                android:text="134 Policia de Investigaciones"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="27dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/Tv_Ambulancias"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="20dp"
                 android:text="131 Ambulancias"
-                android:textAlignment="center"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textSize="27dp"
-                android:textStyle="bold" />
+                android:id="@+id/btn_ambulancias"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="132 Bomberos"
+                android:id="@+id/btn_bomberos"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="0.19"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="133 Carabineros"
+                android:id="@+id/btn_carabineros"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="134 Policia de Investigaciones"
+                android:id="@+id/btn_pdi"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp" />
 
             <TextView
                 android:id="@+id/textView11"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_marginTop="0dp"
                 android:text="_____________________________________________"
                 android:textSize="16dp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="10dp"
+                android:text="Presionar el boton para llamar al numero de emergencia"
+                android:textAlignment="center"
+                android:textSize="16dp"
                 android:textStyle="bold" />
+
+
         </LinearLayout>
     </ScrollView>
 
