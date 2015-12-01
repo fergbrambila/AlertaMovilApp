@@ -19,18 +19,20 @@ import java.util.Vector;
  * Created by Edgardo on 27/11/2015.
  */
 public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Reporte>>{
-    private static final String MAIN_REQUEST_URL = "http://Edgardo-PC:8080/Prueba1Web/PruebaWS";
+    private static final String MAIN_REQUEST_URL = Constantes.ENDPOINT;
 
     private ReporteGeneralCallback oCallback;
     private SoapObject resultsObject;
     private ArrayList<Reporte> reportes;
+    private String data;
 
     public ReporteGeneralTask(ReporteGeneralCallback oCallback) {
         this.oCallback = oCallback;
     }
+
     private ArrayList<Reporte> consumirReporteGeneral(String fValue1,String fValue2,String fValue3,String fValue4) {
         Log.i("ReporteGeneralTask", "consumirReporteGeneral");
-        String data = null;
+        data = "";
         String methodname = "filtrar";
         String sNamespace = "http://ws.pruebas.cl/";
 
@@ -79,6 +81,7 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Report
                 reportes.add(reporte);
             }
             //return reportes;
+            data = "ok";
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -118,12 +121,15 @@ public class ReporteGeneralTask extends AsyncTask<String, Void, ArrayList<Report
 
     @Override
     protected void onPostExecute(ArrayList<Reporte> s) {
-        oCallback.onSuccess();
-        oCallback.onFail();
+        if(!data.equals("Error")){
+            oCallback.onSuccess(s);
+        }
+        else
+            oCallback.onFail();
     }
 
     public interface ReporteGeneralCallback {
-        void onSuccess();
+        void onSuccess(ArrayList<Reporte> s);
 
         void onFail();
     }

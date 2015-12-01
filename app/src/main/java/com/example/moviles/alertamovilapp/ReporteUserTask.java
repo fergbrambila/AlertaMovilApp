@@ -45,14 +45,11 @@ public class ReporteUserTask extends AsyncTask<String, Void, ArrayList<Reporte>>
         HttpTransportSE ht = getHttpTransportSE();
         try {
             ht.call(sNamespace + methodname, envelope);
-            //testHttpResponse(ht);
             Vector resultsObject = (Vector) envelope.getResponse();
             reportes = new ArrayList<Reporte>();
 
-            //for (int i = 0; i < s_deals.getPropertyCount(); i++) {
             for(Object obj : resultsObject){
                 Reporte reporte = new Reporte();
-                //SoapObject s_deals_1 = (SoapObject) s_deals.getProperty(i);
                 SoapObject s_deals_1 = (SoapObject) obj;
                 if(s_deals_1.getProperty("comentario").toString().equalsIgnoreCase("anyType{}") || s_deals_1.getProperty("comentario").toString().isEmpty()){
                     reporte.setComentario("");
@@ -78,16 +75,21 @@ public class ReporteUserTask extends AsyncTask<String, Void, ArrayList<Reporte>>
                 reportes.add(reporte);
             }
             //return reportes;
-        } catch (SocketTimeoutException t) {
-            t.printStackTrace();
+            data = "ok";
+        } catch (SocketTimeoutException q) {
+            q.printStackTrace();
             data = "Error";
-        } catch (IOException i) {
+            Log.e("Mis_Reportes",q.getMessage(),q);
+        } catch (IOException q) {
             data = "Error";
-            i.printStackTrace();
+            q.printStackTrace();
+            Log.e("Mis_Reportes",q.getMessage(),q );
         } catch (Exception q) {
             data = "Error";
             q.printStackTrace();
+            Log.e("Mis_Reportes",q.getMessage(),q);
         }
+
         return reportes;
     }
 

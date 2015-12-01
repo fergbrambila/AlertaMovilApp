@@ -163,7 +163,7 @@ public class AlertaBomberoFragment extends DialogFragment {
                     Toast.makeText(activity, "Error! Reporte No Enviado", Toast.LENGTH_LONG).show();
                 }
             }
-        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Bomberos", cityName);
+        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), subTipo, "Bombero", cityName);
         alert.dismiss();
     }
 

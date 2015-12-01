@@ -20,7 +20,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="1. Debes de pulsar el boton de generar reporte. "
+        android:text="1. Debes de pulsar el boton de reporte rapido. "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="2. Debes de pulsar el boton de generar reporte. "
+        android:text="2. Debes seleccionar el tipo de alerta y posteriormente su sub-tipo "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -40,6 +40,6 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="3. Debes de pulsar el boton de generar reporte. "
+        android:text="3. Finalmente como es un boton de alerta rapida no se le agrega una descripción y apretas salir. "
         android:textAppearance="?android:attr/textAppearanceMedium" />
 </LinearLayout>

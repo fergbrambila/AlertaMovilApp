@@ -77,6 +77,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
                 reportes.add(reporte);
             }
             //return reportes;
+            data = "ok";
         } catch (SocketTimeoutException t) {
             t.printStackTrace();
             data = "Error";
@@ -116,7 +117,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
 
     @Override
     protected void onPostExecute(ArrayList<Reporte> s) {
-        if (!data.equals("Error"))
+        if (!data.equals("Error") )
             oCallback.onSuccess(s);
         else
             oCallback.onFail();
