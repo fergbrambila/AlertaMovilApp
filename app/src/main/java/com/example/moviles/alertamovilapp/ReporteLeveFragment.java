@@ -17,8 +17,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.moviles.alertamovilapp.gps.GPSTracker;
@@ -135,11 +138,22 @@ public class ReporteLeveFragment extends DialogFragment {
                         generarDireccion();
                         //Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
+                        final ProgressBar spinner = (ProgressBar) activity.findViewById(R.id.progressBar1);
+                        spinner.setVisibility(View.VISIBLE);
+
+                        final TextView txtRepVacio = (TextView) activity.findViewById(R.id.txtViewReporteVacio);
+                        txtRepVacio.setVisibility(View.GONE);
+
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
                             public void onSuccess() {
                                 if (activity != null) {
                                     Toast.makeText(activity, "Reporte Enviado", Toast.LENGTH_LONG).show();
+                                    Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                                    btn.setEnabled(true);
+                                    Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                                    btn2.setEnabled(true);
+                                    spinner.setVisibility(View.GONE);
                                 }
                                 //Tiene que traer la actividad dentro del AsyncTask para que Toast funcione
                                 //http://stackoverflow.com/questions/17625857/toast-inside-of-asynctask-inside-of-fragment-causes-crashes
@@ -151,6 +165,12 @@ public class ReporteLeveFragment extends DialogFragment {
                                 Log.d("test", "FALLO");
                                 if (activity != null) {
                                     Toast.makeText(activity, "Error en la Red - Reporte Enviado", Toast.LENGTH_LONG).show();
+                                    Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                                    btn.setEnabled(true);
+                                    Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                                    btn2.setEnabled(true);
+                                    spinner.setVisibility(View.GONE);
+                                    txtRepVacio.setVisibility(View.VISIBLE);
                                 }
                             }
                         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, cityName);
@@ -159,6 +179,10 @@ public class ReporteLeveFragment extends DialogFragment {
                 })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                        btn.setEnabled(true);
+                        Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                        btn2.setEnabled(true);
                         dialog.dismiss();
                     }
                 });

@@ -1,5 +1,6 @@
 package com.example.moviles.alertamovilapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -12,9 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -34,6 +38,7 @@ public class ReporteFiltroFragment extends DialogFragment {
     private ListView oLst;
     private View oDialogView;
     ReporteGeneralTask.ReporteGeneralCallback oCallback;
+    private Activity activity;
 
     public ReporteFiltroFragment(ReporteGeneralTask.ReporteGeneralCallback oCallback) {
         mContext = getActivity();
@@ -82,7 +87,6 @@ public class ReporteFiltroFragment extends DialogFragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -106,7 +110,6 @@ public class ReporteFiltroFragment extends DialogFragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -119,7 +122,6 @@ public class ReporteFiltroFragment extends DialogFragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
             }
         });
 
@@ -145,7 +147,11 @@ public class ReporteFiltroFragment extends DialogFragment {
                         if (spinCiudad.equalsIgnoreCase("Elegir Ciudad"))
                             spinCiudad = "";
 
+                        ProgressBar spinner = (ProgressBar) activity.findViewById(R.id.progressBar1);
+                        spinner.setVisibility(View.VISIBLE);
 
+                        TextView txtRepVacio = (TextView) activity.findViewById(R.id.txtViewReporteVacio);
+                        txtRepVacio.setVisibility(View.GONE);
 
                         new ReporteGeneralTask(oCallback/*new ReporteGeneralTask.ReporteGeneralCallback() {
                             @Override
@@ -165,13 +171,16 @@ public class ReporteFiltroFragment extends DialogFragment {
                             }
                         }*/).execute(fecha, spinTipo, spinSubtipo, spinCiudad);
 
-
                         Toast.makeText(getActivity().getBaseContext(), fecha, Toast.LENGTH_LONG).show();
                     }
                 })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
+                        Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                        btn.setEnabled(true);
+                        Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                        btn2.setEnabled(true);
                         //LoginDialogFragment.this.getDialog().cancel();
                     }
                 });
@@ -184,6 +193,11 @@ public class ReporteFiltroFragment extends DialogFragment {
         Bundle args = new Bundle();
         frag.setArguments(args);
         return frag;
+    }
+
+    public void onAttach (Activity attachedActivity) {
+        super.onAttach(attachedActivity);
+        activity = attachedActivity;
     }
 
     public void show(FragmentManager fragmentManager, String fragmentDialog) {

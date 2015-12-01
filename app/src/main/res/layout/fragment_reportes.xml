@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/btnRefresh"
                 android:text=""
-                android:drawableLeft="@android:drawable/ic_menu_rotate"/>
+                android:drawableLeft="@android:drawable/ic_menu_rotate" />
 
             <Button
                 android:id="@+id/btnReportesLeves"

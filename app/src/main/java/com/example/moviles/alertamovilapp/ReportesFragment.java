@@ -85,10 +85,14 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
             }
         });
 
-        Button btnReporteLeve = (Button) rootView.findViewById(R.id.btnReportesLeves);
+        final Button btnReporteFiltro = (Button) rootView.findViewById(R.id.btnReportesFiltrar);
+        final Button btnReporteLeve = (Button) rootView.findViewById(R.id.btnReportesLeves);
+
         btnReporteLeve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnReporteFiltro.setEnabled(false);
+                btnReporteLeve.setEnabled(false);
                 Log.d("test", "clic Reporte Leve");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
@@ -97,10 +101,11 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
             }
         });
 
-        Button btnReporteFiltro = (Button) rootView.findViewById(R.id.btnReportesFiltrar);
         btnReporteFiltro.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                btnReporteFiltro.setEnabled(false);
+                btnReporteLeve.setEnabled(false);
                 Log.d("test", "clic Reporte Filtro");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
@@ -117,10 +122,8 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                 fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
             }
         });
-
         return rootView;
     }
-
 
     @Override
     public void onSuccess(ArrayList<Reporte> s) {
@@ -128,12 +131,22 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
         Adaptador oAdapter = new Adaptador(getActivity(), s);
         oLst.setAdapter(oAdapter);
         Toast.makeText(getActivity().getBaseContext(), "Reportes Actualizado", Toast.LENGTH_LONG).show();
+        Button btn = (Button) getActivity().findViewById(R.id.btnReportesFiltrar);
+        Button btn2 = (Button) getActivity().findViewById(R.id.btnReportesLeves);
+        btn.setEnabled(true);
+        btn2.setEnabled(true);
+        spinner.setVisibility(View.GONE);
     }
 
     @Override
     public void onFail() {
         Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes - Filtro", Toast.LENGTH_LONG).show();
-
+        Button btn = (Button) getActivity().findViewById(R.id.btnReportesFiltrar);
+        Button btn2 = (Button) getActivity().findViewById(R.id.btnReportesLeves);
+        btn.setEnabled(true);
+        btn2.setEnabled(true);
+        spinner.setVisibility(View.GONE);
+        txtRepVacio.setVisibility(View.VISIBLE);
     }
 }
 
