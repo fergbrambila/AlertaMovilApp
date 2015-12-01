@@ -13,9 +13,6 @@ import java.io.IOException;
 import java.net.Proxy;
 import java.net.SocketTimeoutException;
 
-/**
- * Created by Edgardo on 27/11/2015.
- */
 public class RegistrarTask extends AsyncTask<String, Void, String> {
     private static final String MAIN_REQUEST_URL = Constantes.ENDPOINT;
     private static String data;
@@ -28,7 +25,7 @@ public class RegistrarTask extends AsyncTask<String, Void, String> {
 
     private String consumirRegistrar(String fValue1, String fValue2, String fValue3, String fValue4, String fValue5, String fValue6) {
         Log.i("RegistrarTask", "consumirRegistrar");
-        data = null;
+        data = "";
         String methodname = "registrar";
         String sNamespace = "http://ws.pruebas.cl/";
 

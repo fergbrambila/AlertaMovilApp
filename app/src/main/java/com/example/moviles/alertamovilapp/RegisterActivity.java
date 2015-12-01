@@ -1,7 +1,6 @@
 package com.example.moviles.alertamovilapp;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,7 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -36,12 +35,15 @@ public class RegisterActivity extends AppCompatActivity {
     private static String pas;
     private static String pasC;
     private static String num;
-
+    private ProgressBar spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.GONE);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
 
@@ -75,7 +77,6 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
             }
         });
 
@@ -100,7 +101,6 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void onButtonListener() {
-
         _btn_signup = (Button) findViewById(R.id.btn_signup);
         _btn_signup.setOnClickListener(
                 new View.OnClickListener() {
@@ -133,16 +133,22 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        _btn_signup.setEnabled(false);
+        spinner.setVisibility(View.VISIBLE);
+
         new RegistrarTask(new RegistrarTask.RegistrarCallback() {
             @Override
             public void onSuccess() {
                 Toast.makeText(getBaseContext(), "Registro Creado", Toast.LENGTH_LONG).show();
                 Toast.makeText(getBaseContext(), "Inicia Sesion con tu cuenta", Toast.LENGTH_LONG).show();
+                _btn_signup.setEnabled(true);
+                spinner.setVisibility(View.GONE);
                 finish();
             }
 
             @Override
             public void onFail() {
+                spinner.setVisibility(View.GONE);
                 Toast.makeText(getBaseContext(), "Error durante el proceso de registro", Toast.LENGTH_LONG).show();
                 finish();
             }
@@ -187,6 +193,4 @@ public class RegisterActivity extends AppCompatActivity {
 
         return valid;
     }
-
-
 }

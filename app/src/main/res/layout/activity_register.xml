@@ -12,12 +12,11 @@
     tools:context=".RegisterActivity">
 
     <ProgressBar
-        android:id="@+id/login_progress"
-        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone" />
+        android:layout_centerHorizontal="true" />
 
     <ScrollView
         android:id="@+id/login_form"
@@ -43,7 +42,7 @@
                     android:layout_gravity="right"
                     android:capitalize="sentences"
                     android:hint="@string/registro_nombre_hint"
-                    android:inputType="textPersonName" />
+                    android:inputType="textCapSentences|textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -59,7 +58,7 @@
                     android:layout_gravity="right"
                     android:capitalize="sentences"
                     android:hint="@string/registro_apellido_hint"
-                    android:inputType="textPersonName" />
+                    android:inputType="textCapSentences|textPersonName" />
 
             </android.support.design.widget.TextInputLayout>
 
