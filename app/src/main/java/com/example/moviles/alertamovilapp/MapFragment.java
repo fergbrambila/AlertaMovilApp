@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MapFragment extends Fragment {
+public class MapFragment extends Fragment implements GoogleMap.OnMapClickListener {
     private static final LatLng Chile = new LatLng(23,70);
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -106,6 +106,8 @@ public class MapFragment extends Fragment {
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(AUSTRALIA.getCenter(), 15));
         googleMap.setMyLocationEnabled(true);
 
+        googleMap.setOnMapClickListener(this);
+
         return view;
     }
 
@@ -140,6 +142,17 @@ public class MapFragment extends Fragment {
                 //Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
             }
         }).execute(fecha);
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title("Mantener presionado para Generar Reporte");
+        googleMap.clear();
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+
+        googleMap.addMarker(markerOptions);
     }
 
     public interface OnFragmentInteractionListener {

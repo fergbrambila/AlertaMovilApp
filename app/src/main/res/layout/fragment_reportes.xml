@@ -13,9 +13,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -27,11 +27,19 @@
                 android:text="Filtrar Reportes" />
 
             <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/btnRefresh"
+                android:text=""
+                android:drawableLeft="@android:drawable/ic_menu_rotate"/>
+
+            <Button
                 android:id="@+id/btnReportesLeves"
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="Generar Reportes Leves" />
+                android:text="Generar Reportes" />
 
         </LinearLayout>
 

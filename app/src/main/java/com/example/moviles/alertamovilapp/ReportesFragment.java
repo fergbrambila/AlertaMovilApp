@@ -34,6 +34,7 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
     private View rootView;
     private ProgressBar spinner;
     private TextView txtRepVacio;
+    private Button btnRefresh;
     //private ArrayList<Reporte> arregloReportes;
 
     @Nullable
@@ -105,6 +106,15 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
                 ReporteFiltroFragment alertDialog = ReporteFiltroFragment.newInstance(ReportesFragment.this);
                 alertDialog.show(fm, "fragment_reporte_filtro");
+            }
+        });
+
+        btnRefresh = (Button)rootView.findViewById(R.id.btnRefresh);
+        btnRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fm = getFragmentManager();
+                fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
             }
         });
 
