@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_misreportes) {
             Toast.makeText(getApplicationContext(), "Mis Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
-        } else if (id == R.id.nav_seguidos) {
-            Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
-            fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
+        //} else if (id == R.id.nav_seguidos) {
+          //  Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
+            //fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
             Toast.makeText(getApplicationContext(), "Números de Emergencia", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new EmergenciasFragment()).commit();

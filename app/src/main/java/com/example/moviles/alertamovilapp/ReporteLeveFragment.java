@@ -59,7 +59,6 @@ public class ReporteLeveFragment extends DialogFragment {
         Log.d("test", "dialogo");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-        // Get the layout inflater
 
         editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);
 
@@ -151,7 +150,7 @@ public class ReporteLeveFragment extends DialogFragment {
                             public void onFail() {
                                 Log.d("test", "FALLO");
                                 if (activity != null) {
-                                    Toast.makeText(activity, "Error en la Red", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity, "Error en la Red - Reporte Enviado", Toast.LENGTH_LONG).show();
                                 }
                             }
                         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, cityName);
@@ -161,11 +160,8 @@ public class ReporteLeveFragment extends DialogFragment {
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
-                        //LoginDialogFragment.this.getDialog().cancel();
                     }
                 });
-
-
         return alertDialogBuilder.create();
     }
 
