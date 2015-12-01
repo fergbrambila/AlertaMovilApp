@@ -39,8 +39,9 @@
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:background="#b6b6b6"
-                    android:src="@mipmap/doctor"
-                    android:layout_gravity="center" />
+                    android:src="@drawable/panico_emergencia_medica"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -64,7 +65,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#b6b6b6"
-                    android:src="@mipmap/doctor" />
+                    android:src="@drawable/panico_choque_auto_medico"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView23"

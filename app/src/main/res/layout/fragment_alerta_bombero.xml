@@ -41,7 +41,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#ff7777"
-                    android:src="@mipmap/bombero" />
+                    android:src="@drawable/panico_incendio_casa"
+                    android:scaleType="fitStart" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -65,7 +66,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#ff7777"
-                    android:src="@mipmap/bombero" />
+                    android:src="@drawable/panico_incendio_forestal"
+                    android:scaleType="fitStart" />
 
                 <TextView
                     android:id="@+id/textView23"
@@ -97,7 +99,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#ff7777"
-                    android:src="@mipmap/bombero" />
+                    android:src="@drawable/panico_incendio_edificio"
+                    android:scaleType="fitStart" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -120,8 +123,9 @@
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:background="#ff7777"
-                    android:src="@mipmap/bombero"
-                    android:layout_gravity="center" />
+                    android:src="@drawable/panico_gato_arbol"
+                    android:layout_gravity="center"
+                    android:scaleType="fitStart" />
 
                 <TextView
                     android:id="@+id/textView19"

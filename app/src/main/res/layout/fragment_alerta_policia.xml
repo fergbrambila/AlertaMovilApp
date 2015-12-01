@@ -41,7 +41,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:src="@drawable/panico_choque_auto"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView9"
@@ -65,7 +66,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:src="@drawable/panico_asalto"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView23"
@@ -97,7 +99,8 @@
                     android:layout_gravity="center"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
-                    android:src="@mipmap/policia" />
+                    android:src="@drawable/panico_robo"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView18"
@@ -120,8 +123,9 @@
                     android:layout_height="80dp"
                     android:layout_margin="5dp"
                     android:background="#707bf0"
-                    android:src="@mipmap/policia"
-                    android:layout_gravity="center" />
+                    android:src="@drawable/panico_pelea"
+                    android:layout_gravity="center"
+                    android:scaleType="fitCenter" />
 
                 <TextView
                     android:id="@+id/textView19"

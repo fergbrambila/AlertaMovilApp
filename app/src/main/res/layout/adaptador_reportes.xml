@@ -31,7 +31,8 @@
                 android:id="@+id/Titulo"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@+id/ImagenContain"
-                android:layout_toEndOf="@+id/ImagenContain" />
+                android:layout_toEndOf="@+id/ImagenContain"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:id="@+id/Ciudad"

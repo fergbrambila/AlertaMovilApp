@@ -77,7 +77,6 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                 //Toast.makeText(getActivity().getBaseContext(),"Alerta Seleccionada",Toast.LENGTH_SHORT).show();
                 Log.d("test", "clic imagen");
                 FragmentActivity activity = (FragmentActivity) getActivity();
-
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
                 AlertaFragment alertDialog = AlertaFragment.newInstance();
                 alertDialog.show(fm, "fragment_alert");
