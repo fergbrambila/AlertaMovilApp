@@ -73,7 +73,7 @@ public class ReporteFiltrarFechaTask extends AsyncTask<String, Void, ArrayList<R
                 else if (s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Medico"))
                     reporte.setImg(R.mipmap.doctor);
                 else if (s_deals_1.getProperty("tipo").toString().equalsIgnoreCase("Servicios"))
-                    reporte.setImg(R.mipmap.logo);
+                    reporte.setImg(R.mipmap.servicios);
                 reportes.add(reporte);
             }
             //return reportes;
