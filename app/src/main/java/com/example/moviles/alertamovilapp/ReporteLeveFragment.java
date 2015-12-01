@@ -7,6 +7,8 @@ import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
@@ -21,17 +23,19 @@ import android.widget.Toast;
 
 import com.example.moviles.alertamovilapp.gps.GPSTracker;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class ReporteLeveFragment extends DialogFragment {
     Context mContext;
     private static View oDialogView;
     private static EditText edTxDescripcion;
-    private static String spinCiudad;
     private static String spinTipo;
     private static String spinSubtipo;
     private static String sDescripcion;
@@ -41,6 +45,10 @@ public class ReporteLeveFragment extends DialogFragment {
     private SharedPreferences editor;
     private String fecha;
     private Activity activity;
+    private String streetName;
+    private String cityName;
+    private String stateName;
+    private String countryName;
 
     public ReporteLeveFragment() {
         mContext = getActivity();
@@ -64,10 +72,8 @@ public class ReporteLeveFragment extends DialogFragment {
 
         Spinner tipoSpinner = (Spinner) oDialogView.findViewById(R.id.tipospinner);
         final Spinner subtipoSpinner = (Spinner) oDialogView.findViewById(R.id.subtipospinner);
-        Spinner ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
         String[] tipos = new String[]{"Policia", "Bombero", "Medico", "Servicios"};
-        String[] ciudades = new String[]{"Santiago", "Concepción", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         final Map<String, String[]> oMapSubTipos = new HashMap<>();
 
@@ -113,24 +119,6 @@ public class ReporteLeveFragment extends DialogFragment {
             }
         });
 
-        ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
-        adapterCiudad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        ciudadSpinner.setAdapter(adapterCiudad);
-
-        ciudadSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
-                spinCiudad = (String) parent.getItemAtPosition(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-
         alertDialogBuilder.setView(oDialogView)
                 .setPositiveButton("Enviar Reporte", new DialogInterface.OnClickListener() {
                     @Override
@@ -145,6 +133,7 @@ public class ReporteLeveFragment extends DialogFragment {
                         GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
                         latitud = gps.getLatitude();
                         longitud = gps.getLongitude();
+                        generarDireccion();
                         //Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
@@ -165,7 +154,7 @@ public class ReporteLeveFragment extends DialogFragment {
                                     Toast.makeText(activity, "Error en la Red", Toast.LENGTH_LONG).show();
                                 }
                             }
-                        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, spinCiudad);
+                        }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, cityName);
 
                     }
                 })
@@ -190,6 +179,28 @@ public class ReporteLeveFragment extends DialogFragment {
         frag.setArguments(args);
         return frag;
     }
+
+    public void generarDireccion(){
+        Geocoder geocoder = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());//INFORMACION GPS
+        List<Address> addresses = null;
+
+        GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
+        latitud = gps.getLatitude();
+        longitud = gps.getLongitude();
+
+        try {
+            addresses = geocoder.getFromLocation(latitud, longitud, 1);//addresses.get(0).getAddressLine(0) 0->Calle 1->Ciudad 2->Region 3->Chile
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("error", "MAPA");
+        }
+
+        streetName = addresses.get(0).getAddressLine(0); //Calle
+        cityName = addresses.get(0).getLocality(); //Ciudad
+        stateName = addresses.get(0).getAdminArea(); //Area
+        countryName = addresses.get(0).getCountryName(); //Pais
+    }
+
 
     public void onAttach (Activity attachedActivity) {
         super.onAttach(attachedActivity);

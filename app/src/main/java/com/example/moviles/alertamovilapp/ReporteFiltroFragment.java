@@ -88,7 +88,7 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         ciudadSpinner = (Spinner) oDialogView.findViewById(R.id.ciudadspinner);
 
-        String[] ciudades = new String[]{"Elegir Ciudad", "Santiago", "Concepción", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
+        String[] ciudades = new String[]{"Elegir Ciudad", "Santiago", "Concepción", "Valparaíso", "Viña del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapterCiudad = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, ciudades);
 

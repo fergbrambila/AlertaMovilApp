@@ -29,7 +29,6 @@ public class RegisterActivity extends AppCompatActivity {
     private static EditText _numcelular;
     private static EditText _dia;
     private static EditText _mes;
-    private static EditText _anio;
     private static String spinnerCiudad;
     private static String nom;
     private static String ape;
@@ -37,7 +36,6 @@ public class RegisterActivity extends AppCompatActivity {
     private static String pas;
     private static String pasC;
     private static String num;
-    private static String fec;
 
 
     @Override
@@ -58,10 +56,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.ciudad_spinner);
 
-        String[] items = new String[]{"Santiago", "Concepcion", "Valparaiso/Vina del Mar", "Coquimbo", "Valdivia", "Ranagua", "Temuco", "Iquique"};
+        String[] items = new String[]{"Santiago", "Concepción", "Valparaíso", "Viña del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, items);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         dynamicSpinner.setAdapter(adapter);
 
@@ -120,7 +120,6 @@ public class RegisterActivity extends AppCompatActivity {
         _password = (EditText) findViewById(R.id.password);
         _passwordConfirmar = (EditText) findViewById(R.id.confirmpassword);
         _numcelular = (EditText) findViewById(R.id.numerocelular);
-        _anio = (EditText) findViewById(R.id.fechaAnio);
 
         nom = _nombre.getText().toString();
         ape = _apellido.getText().toString();
@@ -128,7 +127,6 @@ public class RegisterActivity extends AppCompatActivity {
         pas = _password.getText().toString();
         pasC = _passwordConfirmar.getText().toString();
         num = _numcelular.getText().toString();
-        fec = _anio.getText().toString();
 
         if (!validate()) {
             onLoginFailed();
@@ -181,17 +179,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (ape.isEmpty()) {
             _apellido.setError("Ingresar Apellido");
             valid = false;
-        }
-
-        if (valid == true && fec.isEmpty()) {
-            _anio.setText("");
-        }
-
-        if (!fec.isEmpty()) {
-            int iFecha = Integer.parseInt("fec");
-            if (!(iFecha > 1900 && iFecha < 2020)) {
-                _anio.setError("Año invalido");
-            }
         }
 
         if (valid == true && num.isEmpty()) {
