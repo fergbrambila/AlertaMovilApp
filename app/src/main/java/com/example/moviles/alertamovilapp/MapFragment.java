@@ -21,6 +21,7 @@ import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.text.DateFormat;
@@ -28,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class MapFragment extends Fragment implements GoogleMap.OnMapClickListener {
+public class MapFragment extends Fragment implements GoogleMap.OnMapClickListener, GoogleMap.OnMapLongClickListener {
     private static final LatLng Chile = new LatLng(23,70);
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -41,6 +42,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMapClickListene
     private View view;
     private double latitud;
     private double longitud;
+    private Marker marker;
 
     public static MapFragment newInstance() {
         MapFragment fragment = new MapFragment();
@@ -67,6 +69,8 @@ public class MapFragment extends Fragment implements GoogleMap.OnMapClickListene
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
         fecha = df.format(dateobj);
+
+        marker = null;
 
         mMapView = (MapView) view.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
@@ -107,6 +111,7 @@ public class MapFragment extends Fragment implements GoogleMap.OnMapClickListene
         googleMap.setMyLocationEnabled(true);
 
         googleMap.setOnMapClickListener(this);
+        googleMap.setOnMapLongClickListener(this);
 
         return view;
     }
@@ -146,13 +151,38 @@ public class MapFragment extends Fragment implements GoogleMap.OnMapClickListene
 
     @Override
     public void onMapClick(LatLng latLng) {
+        if(marker != null){
+            marker.remove();
+        }
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("Mantener presionado para Generar Reporte");
-        googleMap.clear();
+
+        //googleMap.clear();
         googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
 
-        googleMap.addMarker(markerOptions);
+        marker = googleMap.addMarker(markerOptions);
+    }
+
+    @Override
+    public void onMapLongClick(LatLng latLng) {
+        if(marker != null){
+            marker.remove();
+        }
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(latLng);
+        markerOptions.title("PRESIONADO");
+        //googleMap.clear();
+        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+        marker = googleMap.addMarker(markerOptions);
+
+        Double lat = latLng.latitude;
+        Double lng = latLng.longitude;
+        FragmentActivity activity = (FragmentActivity) getActivity();
+        android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
+        ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance(lat,lng);
+        alertDialog.show(fm, "fragment_reporte_leve");
     }
 
     public interface OnFragmentInteractionListener {

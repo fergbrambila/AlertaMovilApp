@@ -96,7 +96,9 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                 Log.d("test", "clic Reporte Leve");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
-                ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance();
+                Double a = null;
+                Double b = null;
+                ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance(a,b);
                 alertDialog.show(fm, "fragment_reporte_leve");
             }
         });

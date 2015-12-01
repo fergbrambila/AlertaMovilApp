@@ -42,8 +42,8 @@ public class ReporteLeveFragment extends DialogFragment {
     private static String spinTipo;
     private static String spinSubtipo;
     private static String sDescripcion;
-    private static double latitud;
-    private static double longitud;
+    private static Double latitud;
+    private static Double longitud;
     private static String usuario;
     private SharedPreferences editor;
     private String fecha;
@@ -132,17 +132,16 @@ public class ReporteLeveFragment extends DialogFragment {
 
                         usuario = editor.getString("usuario", "a@a.com");
 
-                        GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
-                        latitud = gps.getLatitude();
-                        longitud = gps.getLongitude();
                         generarDireccion();
                         //Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
                         final ProgressBar spinner = (ProgressBar) activity.findViewById(R.id.progressBar1);
-                        spinner.setVisibility(View.VISIBLE);
+                        if (spinner != null)
+                            spinner.setVisibility(View.VISIBLE);
 
                         final TextView txtRepVacio = (TextView) activity.findViewById(R.id.txtViewReporteVacio);
-                        txtRepVacio.setVisibility(View.GONE);
+                        if(txtRepVacio != null)
+                            txtRepVacio.setVisibility(View.GONE);
 
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
@@ -150,9 +149,12 @@ public class ReporteLeveFragment extends DialogFragment {
                                 if (activity != null) {
                                     Toast.makeText(activity, "Reporte Enviado", Toast.LENGTH_LONG).show();
                                     Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                                    if(btn != null)
                                     btn.setEnabled(true);
                                     Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                                    if(btn2 != null)
                                     btn2.setEnabled(true);
+                                    if(spinner != null)
                                     spinner.setVisibility(View.GONE);
                                 }
                                 //Tiene que traer la actividad dentro del AsyncTask para que Toast funcione
@@ -166,10 +168,14 @@ public class ReporteLeveFragment extends DialogFragment {
                                 if (activity != null) {
                                     Toast.makeText(activity, "Error en la Red - Reporte Enviado", Toast.LENGTH_LONG).show();
                                     Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
+                                    if(btn != null)
                                     btn.setEnabled(true);
                                     Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
+                                    if(btn2 != null)
                                     btn2.setEnabled(true);
+                                    if(spinner != null)
                                     spinner.setVisibility(View.GONE);
+                                    if(txtRepVacio != null)
                                     txtRepVacio.setVisibility(View.VISIBLE);
                                 }
                             }
@@ -193,7 +199,9 @@ public class ReporteLeveFragment extends DialogFragment {
         Toast.makeText(getActivity().getBaseContext(), "Llenar Datos Correctamente", Toast.LENGTH_SHORT).show();
     }
 
-    public static ReporteLeveFragment newInstance() {
+    public static ReporteLeveFragment newInstance(Double lat, Double lng) {
+        latitud = lat;
+        longitud = lng;
         ReporteLeveFragment frag = new ReporteLeveFragment();
         Bundle args = new Bundle();
         frag.setArguments(args);
@@ -205,8 +213,11 @@ public class ReporteLeveFragment extends DialogFragment {
         List<Address> addresses = null;
 
         GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
-        latitud = gps.getLatitude();
-        longitud = gps.getLongitude();
+        if(latitud == null)
+            latitud = gps.getLatitude();
+
+        if(longitud == null)
+            longitud = gps.getLongitude();
 
         try {
             addresses = geocoder.getFromLocation(latitud, longitud, 1);//addresses.get(0).getAddressLine(0) 0->Calle 1->Ciudad 2->Region 3->Chile
