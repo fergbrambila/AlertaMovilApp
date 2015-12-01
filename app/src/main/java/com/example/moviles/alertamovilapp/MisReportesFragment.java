@@ -39,6 +39,8 @@ public class MisReportesFragment extends Fragment {
                 Adaptador oAdapter = new Adaptador(getActivity(), s);
 
                 oLst.setAdapter(oAdapter);
+
+                Toast.makeText(getActivity().getBaseContext(), "Bienvenido a Mis Reportes", Toast.LENGTH_LONG).show();
             }
 
             @Override
