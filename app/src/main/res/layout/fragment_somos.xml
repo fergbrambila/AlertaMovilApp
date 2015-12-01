@@ -21,7 +21,8 @@
         android:layout_gravity="center"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
-        android:text="Somos un grupo de estudiantes de distintas universidades unidos por un sólo fin: Ayudar a que las personas se sientan más seguras y que entre todos combatamos la delincuencia entre otras. Protegamosnos entre todos, y viviermos más tranquilos."
+        android:text="Somos un grupo de estudiantes de distintas universidades unidos por un sólo fin: ayudar a que las personas se sientan más seguras y que entre todos nos ayudemos para informarnos sobre lo que acontece a nuestro alrededor. Visite nuestro sitio web http://alertamovilapp.webnode.cl para más información."
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
 
 </LinearLayout>
