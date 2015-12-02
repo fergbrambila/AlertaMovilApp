@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -46,6 +47,8 @@ public class RegisterActivity extends AppCompatActivity {
         spinner.setVisibility(View.GONE);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
+
+        layout.getBackground().setAlpha(60);
 
         layout.setOnTouchListener(new View.OnTouchListener()//esconder tecleado
         {

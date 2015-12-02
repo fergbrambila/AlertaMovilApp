@@ -1,11 +1,13 @@
 package com.example.moviles.alertamovilapp;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -35,6 +37,18 @@ public class Adaptador extends ArrayAdapter {
         }
         ImageView imagen = (ImageView) item.findViewById(R.id.ImagenContain);
         imagen.setImageResource(datos.get(position).getImg());
+
+        String tipo = datos.get(position).getTipo();
+
+        LinearLayout layout = (LinearLayout) item.findViewById(R.id.layoutadaptador);
+        if(tipo.equalsIgnoreCase("Policia"))
+            layout.setBackgroundColor(Color.parseColor("#C9CDF6"));
+        else if(tipo.equalsIgnoreCase("Bombero"))
+            layout.setBackgroundColor(Color.parseColor("#f6c9c9"));
+        else if(tipo.equalsIgnoreCase("Medico"))
+            layout.setBackgroundColor(Color.parseColor("#F6DAC9"));
+        else
+            layout.setBackgroundColor(Color.parseColor("#C9F6D2"));
 
         return item;
     }

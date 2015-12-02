@@ -229,7 +229,7 @@ public class ReporteLeveFragment extends DialogFragment {
         }
 
         if(addresses.get(0).getAddressLine(0)!=null)
-        streetName = addresses.get(0).getAddressLine(0); //Calle
+            streetName = addresses.get(0).getAddressLine(0); //Calle
         if(addresses.get(0).getLocality()!=null)
             cityName = addresses.get(0).getLocality(); //Ciudad
         if(addresses.get(0).getAdminArea()!=null)

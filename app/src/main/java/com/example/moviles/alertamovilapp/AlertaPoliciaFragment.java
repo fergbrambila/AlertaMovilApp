@@ -143,13 +143,15 @@ public class AlertaPoliciaFragment extends DialogFragment {
         usuario = editor.getString("usuario", "a@a.com");
         sSubtipo = subTipo;
 
+        oBtnRobo.setEnabled(false);
+        oBtnAsalto.setEnabled(false);
+        oBtnPelea.setEnabled(false);
+        oBtnChoque.setEnabled(false);
+
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
-                oBtnRobo.setEnabled(false);
-                oBtnAsalto.setEnabled(false);
-                oBtnPelea.setEnabled(false);
-                oBtnChoque.setEnabled(false);
+
                 if (activity != null) {
                     Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo, Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Policia Enviado", Toast.LENGTH_LONG).show();

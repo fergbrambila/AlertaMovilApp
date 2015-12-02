@@ -18,16 +18,14 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp" />
 
-        <TextView
-            android:id="@+id/textView14"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="________________________________________________________________"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="10dp" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="10dp"
+            android:id="@+id/imageView10"
+            android:background="#ba2133" />
 
         <ProgressBar
             style="?android:attr/progressBarStyleLarge"

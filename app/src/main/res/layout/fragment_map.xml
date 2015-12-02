@@ -15,6 +15,6 @@
         android:layout_width="79dp"
         android:layout_height="79dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:src="@mipmap/alerta" />
+        android:src="@drawable/btnalerta" />
 
 </FrameLayout>

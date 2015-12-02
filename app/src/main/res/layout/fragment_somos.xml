@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal|top"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="10dp"
-        android:src="@mipmap/logo" />
+        android:src="@drawable/logo_alerta_movil" />
 
     <TextView
         android:id="@+id/textView2"
@@ -22,7 +22,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginTop="20dp"
         android:text="Somos un grupo de estudiantes de distintas universidades unidos por un sólo fin: ayudar a que las personas se sientan más seguras y que entre todos nos ayudemos para informarnos sobre lo que acontece a nuestro alrededor. Visite nuestro sitio web http://alertamovilapp.webnode.cl para más información."
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center" />
 
 
 </LinearLayout>

@@ -143,13 +143,15 @@ public class AlertaBomberoFragment extends DialogFragment {
         usuario = editor.getString("usuario", "a@a.com");
         sSubtipo = subTipo;
 
+        oBtnCasa.setEnabled(false);
+        oBtnForestal.setEnabled(false);
+        oBtnEdificio.setEnabled(false);
+        oBtnGato.setEnabled(false);
+
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
-                oBtnCasa.setEnabled(false);
-                oBtnForestal.setEnabled(false);
-                oBtnEdificio.setEnabled(false);
-                oBtnGato.setEnabled(false);
+
                 if (activity != null) {
                     Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo, Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Bombero Enviado", Toast.LENGTH_LONG).show();

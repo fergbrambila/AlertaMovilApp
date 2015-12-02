@@ -110,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         new LoginTask(new LoginTask.LoginCallback() {
             @Override
             public void onSuccess(Usuario s) {
-                Toast.makeText(getBaseContext(), s.getEmail() + " " + s.getNombre(), Toast.LENGTH_LONG).show();//realm
+                Toast.makeText(getBaseContext(), "Bienvenido " + s.getNombre(), Toast.LENGTH_LONG).show();//realm
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
                 editor.edit().putBoolean("login", true).commit();

@@ -122,11 +122,13 @@ public class AlertaMedicoFragment extends DialogFragment {
         usuario = editor.getString("usuario", "a@a.com");
         final String sSubtipo = subTipo;
 
+        oBtnEmergencia.setEnabled(false);
+        oBtnChoque.setEnabled(false);
+
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
-                oBtnEmergencia.setEnabled(false);
-                oBtnChoque.setEnabled(false);
+
                 if (activity != null) {
                     Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo , Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Medico Enviado", Toast.LENGTH_LONG).show();

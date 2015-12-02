@@ -13,9 +13,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -24,7 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_horizontal|top"
-                android:text="Filtrar Reportes" />
+                android:text="Filtrar Reportes"
+                android:textStyle="bold" />
 
             <Button
                 style="?android:attr/buttonStyleSmall"
@@ -39,18 +40,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
-                android:text="Generar Reportes" />
+                android:text="Generar Reportes"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="________________________________________________________________"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="10dp" />
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="10dp"
+            android:id="@+id/imageView9"
+            android:background="#ba2133"
+            android:layout_marginTop="5dp" />
 
         <ProgressBar
             android:id="@+id/progressBar1"
@@ -78,6 +78,12 @@
             android:layout_height="401dp"
             android:layout_gravity="center" />
 
+        <ImageView
+            android:layout_width="fill_parent"
+            android:layout_height="10dp"
+            android:id="@+id/imageView7"
+            android:background="#ba2133" />
+
     </LinearLayout>
 
     <ImageView
@@ -85,6 +91,6 @@
         android:layout_width="79dp"
         android:layout_height="79dp"
         android:layout_gravity="center_horizontal|bottom"
-        android:src="@mipmap/alerta" />
+        android:src="@drawable/btnalerta" />
 
 </FrameLayout>
