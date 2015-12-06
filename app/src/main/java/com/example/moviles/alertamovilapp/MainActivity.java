@@ -33,6 +33,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Clase MainActivity a la cual se le manejan todos los fragmentos de la app, contiene el appbar
+ * y es inflado con un layout y la bar y infla el menu para poder elegir las opciones
+ */
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private SharedPreferences editor;
@@ -44,26 +48,10 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);
+        editor = getSharedPreferences("alerta_mobile", MODE_PRIVATE);//inicialixza el editor
 
         GPSTracker gps = new GPSTracker(MainActivity.this);
         //Toast.makeText(getBaseContext(),gps.getLatitude()+" "+gps.getLongitude(), Toast.LENGTH_LONG).show();//realm
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                SpannableStringBuilder builder = new SpannableStringBuilder();
-                builder.append("My message ").append(" ");
-                builder.setSpan(new ImageSpan(MainActivity.this, R.drawable.common_signin_btn_icon_light), builder.length() - 1, builder.length(), 0);
-                builder.append(" next message");
-                Snackbar.make(view, builder, Snackbar.LENGTH_LONG).show();
-
-                //Snackbar.make(view, "Prueba de funcionamiento", Snackbar.LENGTH_LONG)
-                        //.setAction("Action", null).show();
-            }
-        });*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -78,6 +66,10 @@ public class MainActivity extends AppCompatActivity
         fm.beginTransaction().replace(R.id.content_frame, new ReportesFragment()).commit();
     }
 
+    /**
+     * Metodo que explica lo que ocurre cuando se presiona el boton de atras, genera una alarta
+     * que te pregunta si deseas ssalir de la aplicacion
+     */
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -100,6 +92,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * metodo donde se infla el menu
+     *
+     * @param menu
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -111,6 +109,12 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
     }
 
+    /**
+     * consigue el id del item de las opciones que se eligen del menu
+     *
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -126,7 +130,13 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * Acciones que sucederan al momento de darle click a las opciones del menu utilizando ifs,
+     * donde se compara el id con el R.id. correspondiente
+     *
+     * @param item
+     * @return
+     */
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -135,7 +145,7 @@ public class MainActivity extends AppCompatActivity
 
         FragmentManager fm = getFragmentManager();
 
-        if (id == R.id.nav_inicio) {
+        if (id == R.id.nav_inicio) {//Abre el mapa y todos los demas abren fragmentos correspondientes
             Toast.makeText(getApplicationContext(), "Mapa", Toast.LENGTH_SHORT).show();
             //Intent i = new Intent(getApplicationContext(), MapsActivity.class);
             //startActivity(i);
@@ -147,8 +157,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_misreportes) {
             Toast.makeText(getApplicationContext(), "Mis Reportes", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new MisReportesFragment()).commit();
-        //} else if (id == R.id.nav_seguidos) {
-          //  Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
+            //} else if (id == R.id.nav_seguidos) {
+            //  Toast.makeText(getApplicationContext(), "Reportes Seguidos", Toast.LENGTH_SHORT).show();
             //fm.beginTransaction().replace(R.id.content_frame, new SeguidosFragment()).commit();
         } else if (id == R.id.nav_emergencias) {
             Toast.makeText(getApplicationContext(), "Números de Emergencia", Toast.LENGTH_SHORT).show();
@@ -162,13 +172,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_donar) {
             Toast.makeText(getApplicationContext(), "Donar", Toast.LENGTH_SHORT).show();
             fm.beginTransaction().replace(R.id.content_frame, new DonarFragment()).commit();
-        } else if (id == R.id.nav_cerrar) {
+        } else if (id == R.id.nav_cerrar) {//cierra sesion
             editor.edit().putBoolean("login", false).commit();
             finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START);//cierra el menu despues de elegir la opcion
         return true;
     }
 }

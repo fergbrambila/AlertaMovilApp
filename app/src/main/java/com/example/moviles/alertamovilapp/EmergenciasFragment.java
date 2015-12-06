@@ -10,6 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+/**
+ * Clase EmergenciasFragment que extiende a Fragmento y maneja los numeros de emergencia que se pueden
+ * marcar desde el celular de forma directa
+ */
 public class EmergenciasFragment extends Fragment {
     @Nullable
     @Override
@@ -19,7 +23,6 @@ public class EmergenciasFragment extends Fragment {
         final View rootView = inflater.inflate(R.layout.fragment_emergencias, container, false);//false is dont want to attatch to root
         // Inflate the layout for this fragment
         ((MainActivity) getActivity()).setActionBarTitle("Numeros de Emergencia");
-        //return inflater.inflate(R.layout.fragment_emergencias, container, false);
 
         //MODIFICAR
         Button btnForestal = (Button) rootView.findViewById(R.id.btn_forestal);
@@ -32,6 +35,7 @@ public class EmergenciasFragment extends Fragment {
                 startActivity(surf);
             }
         });
+
         Button btnAmbulancia = (Button) rootView.findViewById(R.id.btn_ambulancias);
         btnAmbulancia.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +46,7 @@ public class EmergenciasFragment extends Fragment {
                 startActivity(surf);
             }
         });
+
         Button btnBombero = (Button) rootView.findViewById(R.id.btn_bomberos);
         btnBombero.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +57,7 @@ public class EmergenciasFragment extends Fragment {
                 startActivity(surf);
             }
         });
+
         Button btnCarabineros = (Button) rootView.findViewById(R.id.btn_carabineros);
         btnCarabineros.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +68,7 @@ public class EmergenciasFragment extends Fragment {
                 startActivity(surf);
             }
         });
+
         Button btnPdi = (Button) rootView.findViewById(R.id.btn_pdi);
         btnPdi.setOnClickListener(new View.OnClickListener() {
             @Override

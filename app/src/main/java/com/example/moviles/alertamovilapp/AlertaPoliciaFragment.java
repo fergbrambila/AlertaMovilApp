@@ -26,7 +26,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * clase AlertaPoliciaFragement es un DialogFragment que actua sobre el layout fragment_alerta_policia
+ */
 public class AlertaPoliciaFragment extends DialogFragment {
+    //Declaracion de todas las variables para poder ser usado en toda la clase
     Context mContext;
     private static ImageButton oBtnChoque;
     private static ImageButton oBtnAsalto;
@@ -36,7 +40,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
     private String usuario;
     private SharedPreferences editor;
     private String fecha;
-    private double latitud ;
+    private double latitud;
     private double longitud;
     private String cityName;
     private String stateName;
@@ -49,33 +53,42 @@ public class AlertaPoliciaFragment extends DialogFragment {
     private Activity activity;
     private String sSubtipo;
 
-
+    /**
+     * Constructor de la clase
+     */
     public AlertaPoliciaFragment() {
         mContext = getActivity();
     }
 
+    /**
+     * OnCreateDialog es llamado cuando se crea la instancia de la clase e infla la vista y agrega
+     * todos sus elementos y se ponen listeners para la accion de cada boton
+     *
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "dialogoPolicia");//Log para Policia
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);
+        editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);  //inicializar SharedPreferences
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
-        fecha = df.format(dateobj);
+        fecha = df.format(dateobj);//crea la fecha con dicho formato
 
-        oDialogView = inflater.inflate(R.layout.fragment_alerta_policia, null);
+        oDialogView = inflater.inflate(R.layout.fragment_alerta_policia, null);//infla la vista del fragmento
 
-        oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);
+        oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);//obtiene todos los view por id de la vista
         oBtnAsalto = (ImageButton) oDialogView.findViewById(R.id.imageButtonAsalto);
         oBtnRobo = (ImageButton) oDialogView.findViewById(R.id.imageButtonRobo);
         oBtnPelea = (ImageButton) oDialogView.findViewById(R.id.imageButtonPelea);
 
-        alertDialogBuilder.setView(oDialogView)
+        alertDialogBuilder.setView(oDialogView)// crea un dialogo de alerta usando el fragmento con un boton negativo de Salir
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
@@ -114,11 +127,15 @@ public class AlertaPoliciaFragment extends DialogFragment {
                 enviarAlerta("Pelea de Personas");
             }
         });
-        alert = alertDialogBuilder.create();
+        alert = alertDialogBuilder.create();//crea la alerta
         return alert;
     }
 
-    public void generarDireccion(){
+    /**
+     * Genera la direccion de la ubicacion actual inicializando la latitud y longitud y consigue la
+     * direcciones de ciudad calle area y pais
+     */
+    public void generarDireccion() {
         Geocoder geocoder = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());//INFORMACION GPS
         List<Address> addresses = null;
 
@@ -138,9 +155,15 @@ public class AlertaPoliciaFragment extends DialogFragment {
         countryName = addresses.get(0).getCountryName(); //Pais
     }
 
-    public void enviarAlerta(String subTipo){
-        sDescripcion = "Alerta creada por Botón de Pánico";
-        usuario = editor.getString("usuario", "a@a.com");
+    /**
+     * Recibe como parametro el subtipo para enviar al task toda la informacion necesaria para
+     * generar una alerta
+     *
+     * @param subTipo
+     */
+    public void enviarAlerta(String subTipo) {
+        sDescripcion = "Alerta creada por Botón de Pánico";//poner descripcion del reporte
+        usuario = editor.getString("usuario", "a@a.com");//consigue el usuario que envia el reporte
         sSubtipo = subTipo;
 
         oBtnRobo.setEnabled(false);
@@ -148,6 +171,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
         oBtnPelea.setEnabled(false);
         oBtnChoque.setEnabled(false);
 
+        //llama a reportelevetask que manda la informacion al webservice
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
@@ -170,6 +194,11 @@ public class AlertaPoliciaFragment extends DialogFragment {
         alert.dismiss();
     }
 
+    /**
+     * Nueva instancia de AlertaPoliciaFragment
+     *
+     * @return
+     */
     public static AlertaPoliciaFragment newInstance() {
         AlertaPoliciaFragment frag = new AlertaPoliciaFragment();
         Bundle args = new Bundle();
@@ -178,7 +207,7 @@ public class AlertaPoliciaFragment extends DialogFragment {
     }
 
 
-    public void onAttach (Activity attachedActivity) {
+    public void onAttach(Activity attachedActivity) {
         super.onAttach(attachedActivity);
         activity = attachedActivity;
     }

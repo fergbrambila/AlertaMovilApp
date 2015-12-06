@@ -35,6 +35,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+/**
+ * clase reporteLeveFragmente que es un dialogo donde puedes reportar reportes con una descripcion
+ * es un dialogo al cual especidicas tipo subtipo y descripcion y usa tu ubicacion
+ */
 public class ReporteLeveFragment extends DialogFragment {
     Context mContext;
     private static View oDialogView;
@@ -57,9 +61,15 @@ public class ReporteLeveFragment extends DialogFragment {
         mContext = getActivity();
     }
 
+    /**
+     * meetodo que se llama al crear el fragmento
+     *
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "dialogoReporteLeve");
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
@@ -77,10 +87,10 @@ public class ReporteLeveFragment extends DialogFragment {
 
         String[] tipos = new String[]{"Policia", "Bombero", "Medico", "Servicios"};
 
-        final Map<String, String[]> oMapSubTipos = new HashMap<>();
+        final Map<String, String[]> oMapSubTipos = new HashMap<>();//genera un mapa de subtipos
 
         oMapSubTipos.put("Policia", new String[]{"Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
-        oMapSubTipos.put("Bombero", new String[]{"Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
+        oMapSubTipos.put("Bombero", new String[]{"Incendio Casa", "Incendio Forestal", "Incendio Edificio", "Gato sobre un árbol"});
         oMapSubTipos.put("Servicios", new String[]{"Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
         oMapSubTipos.put("Medico", new String[]{"Emergencia Médica", "Choque Auto"});
 
@@ -88,13 +98,13 @@ public class ReporteLeveFragment extends DialogFragment {
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        tipoSpinner.setAdapter(adapter);
+        tipoSpinner.setAdapter(adapter);//agrega el adaptador al tipo
 
         tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
-                Log.v("item", (String) parent.getItemAtPosition(position));
+                Log.v("item", (String) parent.getItemAtPosition(position));//dentro del tipo se decide el subtipo
                 spinTipo = (String) parent.getItemAtPosition(position);
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
                 adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -112,7 +122,7 @@ public class ReporteLeveFragment extends DialogFragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
-                spinSubtipo = (String) parent.getItemAtPosition(position);
+                spinSubtipo = (String) parent.getItemAtPosition(position);//guarda variable de subtipo
             }
 
             @Override
@@ -124,38 +134,40 @@ public class ReporteLeveFragment extends DialogFragment {
         alertDialogBuilder.setView(oDialogView)
                 .setPositiveButton("Enviar Reporte", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int id) {
+                    public void onClick(DialogInterface dialog, int id) {//lo que sucede cuando se presiona Enviar Reporte
                         edTxDescripcion = (EditText) oDialogView.findViewById(R.id.descripcion);
                         sDescripcion = edTxDescripcion.getText().toString();
                         if (sDescripcion.isEmpty())
                             sDescripcion = "";
 
-                        usuario = editor.getString("usuario", "a@a.com");
+                        usuario = editor.getString("usuario", "a@a.com");//consigue el usuario
 
-                        generarDireccion();
+                        generarDireccion();//generar la Direccion de tu ubicacion
                         //Toast.makeText(getActivity().getBaseContext(), latitud + " " + longitud, Toast.LENGTH_LONG).show();//realm
 
                         final ProgressBar spinner = (ProgressBar) activity.findViewById(R.id.progressBar1);
                         if (spinner != null)
-                            spinner.setVisibility(View.VISIBLE);
+                            spinner.setVisibility(View.VISIBLE);//pone un spinner si este no es nulo, yq eu puede ser llamado desde el mapa
 
                         final TextView txtRepVacio = (TextView) activity.findViewById(R.id.txtViewReporteVacio);
-                        if(txtRepVacio != null)
-                            txtRepVacio.setVisibility(View.GONE);
+                        if (txtRepVacio != null)
+                            txtRepVacio.setVisibility(View.GONE);//igual con el texto
 
+                        //envia el reporte al webservice con datos correspondientes
+                        //descripcion, usuario, fecha, latitud, longitud, subtipo, tipo,ciudad
                         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
                             @Override
                             public void onSuccess() {
                                 if (activity != null) {
                                     Toast.makeText(activity, "Reporte Enviado", Toast.LENGTH_LONG).show();
                                     Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
-                                    if(btn != null)
-                                    btn.setEnabled(true);
+                                    if (btn != null)
+                                        btn.setEnabled(true);
                                     Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
-                                    if(btn2 != null)
-                                    btn2.setEnabled(true);
-                                    if(spinner != null)
-                                    spinner.setVisibility(View.GONE);
+                                    if (btn2 != null)
+                                        btn2.setEnabled(true);
+                                    if (spinner != null)
+                                        spinner.setVisibility(View.GONE);
                                 }
                                 //Tiene que traer la actividad dentro del AsyncTask para que Toast funcione
                                 //http://stackoverflow.com/questions/17625857/toast-inside-of-asynctask-inside-of-fragment-causes-crashes
@@ -166,17 +178,18 @@ public class ReporteLeveFragment extends DialogFragment {
                             public void onFail() {
                                 Log.d("test", "FALLO");
                                 if (activity != null) {
-                                    Toast.makeText(activity, "Error en la Red - Reporte Enviado", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(activity, "Error en la Red - Reporte No Enviado", Toast.LENGTH_LONG).show();
                                     Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
-                                    if(btn != null)
-                                    btn.setEnabled(true);
+                                    //si los botones no son nulos se vuelven a activar
+                                    if (btn != null)
+                                        btn.setEnabled(true);
                                     Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
-                                    if(btn2 != null)
-                                    btn2.setEnabled(true);
-                                    if(spinner != null)
-                                    spinner.setVisibility(View.GONE);
-                                    if(txtRepVacio != null)
-                                    txtRepVacio.setVisibility(View.VISIBLE);
+                                    if (btn2 != null)
+                                        btn2.setEnabled(true);
+                                    if (spinner != null)
+                                        spinner.setVisibility(View.GONE);
+                                    if (txtRepVacio != null)
+                                        txtRepVacio.setVisibility(View.VISIBLE);
                                 }
                             }
                         }).execute(sDescripcion, usuario, fecha, String.valueOf(latitud), String.valueOf(longitud), spinSubtipo, spinTipo, cityName);
@@ -185,12 +198,13 @@ public class ReporteLeveFragment extends DialogFragment {
                 })
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        //si se da en Salir se activan todos los botones
                         Button btn = (Button) activity.findViewById(R.id.btnReportesFiltrar);
-                        if(btn != null)
-                        btn.setEnabled(true);
+                        if (btn != null)
+                            btn.setEnabled(true);
                         Button btn2 = (Button) activity.findViewById(R.id.btnReportesLeves);
-                        if(btn2 != null)
-                        btn2.setEnabled(true);
+                        if (btn2 != null)
+                            btn2.setEnabled(true);
                         dialog.dismiss();
                     }
                 });
@@ -201,8 +215,15 @@ public class ReporteLeveFragment extends DialogFragment {
         Toast.makeText(getActivity().getBaseContext(), "Llenar Datos Correctamente", Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * crea nueva instancia usando latitudes y longitudes que recibe
+     *
+     * @param lat
+     * @param lng
+     * @return
+     */
     public static ReporteLeveFragment newInstance(Double lat, Double lng) {
-        latitud = lat;
+        latitud = lat;//ponen valores en las variables privadas
         longitud = lng;
         ReporteLeveFragment frag = new ReporteLeveFragment();
         Bundle args = new Bundle();
@@ -210,15 +231,18 @@ public class ReporteLeveFragment extends DialogFragment {
         return frag;
     }
 
-    public void generarDireccion(){
+    /**
+     * generan direccion de ubicacion actual
+     */
+    public void generarDireccion() {
         Geocoder geocoder = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());//INFORMACION GPS
         List<Address> addresses = null;
 
         GPSTracker gps = new GPSTracker(getActivity().getBaseContext());
-        if(latitud == null)
+        if (latitud == null)
             latitud = gps.getLatitude();
 
-        if(longitud == null)
+        if (longitud == null)
             longitud = gps.getLongitude();
 
         try {
@@ -228,18 +252,22 @@ public class ReporteLeveFragment extends DialogFragment {
             Log.e("error", "MAPA");
         }
 
-        if(addresses.get(0).getAddressLine(0)!=null)
+        if (addresses.get(0).getAddressLine(0) != null)
             streetName = addresses.get(0).getAddressLine(0); //Calle
-        if(addresses.get(0).getLocality()!=null)
+        if (addresses.get(0).getLocality() != null)
             cityName = addresses.get(0).getLocality(); //Ciudad
-        if(addresses.get(0).getAdminArea()!=null)
+        if (addresses.get(0).getAdminArea() != null)
             stateName = addresses.get(0).getAdminArea(); //Area
-        if(addresses.get(0).getCountryName()!=null)
+        if (addresses.get(0).getCountryName() != null)
             countryName = addresses.get(0).getCountryName(); //Pais
     }
 
-
-    public void onAttach (Activity attachedActivity) {
+    /**
+     * guarda la activdad del padre superior para mostrar toasts, ya que este es un dialogo
+     *
+     * @param attachedActivity
+     */
+    public void onAttach(Activity attachedActivity) {
         super.onAttach(attachedActivity);
         activity = attachedActivity;
     }

@@ -26,7 +26,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * clase AlertaMedicoFragement es un DialogFragment que actua sobre el layout fragment_alerta_medico
+ */
 public class AlertaMedicoFragment extends DialogFragment {
+    //Declaracion de todas las variables para poder ser usado en toda la clase
     Context mContext;
     private static ImageButton oBtnEmergencia;
     private static ImageButton oBtnChoque;
@@ -34,7 +38,7 @@ public class AlertaMedicoFragment extends DialogFragment {
     private String usuario;
     private SharedPreferences editor;
     private String fecha;
-    private double latitud ;
+    private double latitud;
     private double longitud;
     private String cityName;
     private String stateName;
@@ -46,30 +50,40 @@ public class AlertaMedicoFragment extends DialogFragment {
     private AlertDialog alert;
     private Activity activity;
 
+    /**
+     * Constructor de la clase
+     */
     public AlertaMedicoFragment() {
         mContext = getActivity();
     }
 
+    /**
+     * OnCreateDialog es llamado cuando se crea la instancia de la clase e infla la vista y agrega
+     * todos sus elementos y se ponen listeners para la accion de cada boton
+     *
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "dialogoMedico"); //Log para Medico
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
 
-        editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);
+        editor = getActivity().getSharedPreferences("alerta_mobile", Context.MODE_PRIVATE);  //inicializar SharedPreferences
 
-        DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
+        DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss establece formato deseado
         Date dateobj = new Date();
-        fecha = df.format(dateobj);
+        fecha = df.format(dateobj);//crea la fecha con dicho formato
 
-        oDialogView = inflater.inflate(R.layout.fragment_alerta_medico, null);
+        oDialogView = inflater.inflate(R.layout.fragment_alerta_medico, null);//infla la vista del fragmento
 
-        oBtnEmergencia = (ImageButton) oDialogView.findViewById(R.id.imageButtonEmergencia);
+        oBtnEmergencia = (ImageButton) oDialogView.findViewById(R.id.imageButtonEmergencia);//obtiene todos los view por id de la vista
         oBtnChoque = (ImageButton) oDialogView.findViewById(R.id.imageButtonChoque);
 
-        alertDialogBuilder.setView(oDialogView)
+        alertDialogBuilder.setView(oDialogView) // crea un dialogo de alerta usando el fragmento con un boton negativo de Salir
                 .setNegativeButton("Salir", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.dismiss();
@@ -77,6 +91,8 @@ public class AlertaMedicoFragment extends DialogFragment {
                     }
                 });
 
+        //Listeners de los Botones donde cada uno genera la direccion al momento de presionar el boton
+        //y mandan a llamar enviaralerta enviando el subtipo correspondiente
         oBtnEmergencia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,11 +109,15 @@ public class AlertaMedicoFragment extends DialogFragment {
             }
         });
 
-        alert = alertDialogBuilder.create();
+        alert = alertDialogBuilder.create();//crea la alerta
         return alert;
     }
 
-    public void generarDireccion(){
+    /**
+     * Genera la direccion de la ubicacion actual inicializando la latitud y longitud y consigue la
+     * direcciones de ciudad calle area y pais
+     */
+    public void generarDireccion() {
         Geocoder geocoder = new Geocoder(getActivity().getBaseContext(), Locale.getDefault());//INFORMACION GPS
         List<Address> addresses = null;
 
@@ -117,20 +137,27 @@ public class AlertaMedicoFragment extends DialogFragment {
         countryName = addresses.get(0).getCountryName(); //Pais
     }
 
-    public void enviarAlerta(String subTipo){
-        sDescripcion = "Alerta creada por Botón de Pánico";
-        usuario = editor.getString("usuario", "a@a.com");
+    /**
+     * Recibe como parametro el subtipo para enviar al task toda la informacion necesaria para
+     * generar una alerta
+     *
+     * @param subTipo
+     */
+    public void enviarAlerta(String subTipo) {
+        sDescripcion = "Alerta creada por Botón de Pánico";//poner descripcion del reporte
+        usuario = editor.getString("usuario", "a@a.com");//consigue el usuario que envia el reporte
         final String sSubtipo = subTipo;
 
         oBtnEmergencia.setEnabled(false);
         oBtnChoque.setEnabled(false);
 
+        //llama a reportelevetask que manda la informacion al webservice
         new ReporteLeveTask(new ReporteLeveTask.ReporteLeveCallback() {
             @Override
             public void onSuccess() {
 
                 if (activity != null) {
-                    Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "ALERTA ENVIADA - " + sSubtipo, Toast.LENGTH_SHORT).show();
                     Toast.makeText(activity, "Reporte Medico Enviado", Toast.LENGTH_LONG).show();
                 }
                 alert.dismiss();
@@ -146,6 +173,11 @@ public class AlertaMedicoFragment extends DialogFragment {
         alert.dismiss();
     }
 
+    /**
+     * Nueva instancia de AlertaMedicoFragment
+     *
+     * @return
+     */
     public static AlertaMedicoFragment newInstance() {
         AlertaMedicoFragment frag = new AlertaMedicoFragment();
         Bundle args = new Bundle();
@@ -153,7 +185,7 @@ public class AlertaMedicoFragment extends DialogFragment {
         return frag;
     }
 
-    public void onAttach (Activity attachedActivity) {
+    public void onAttach(Activity attachedActivity) {
         super.onAttach(attachedActivity);
         activity = attachedActivity;
     }

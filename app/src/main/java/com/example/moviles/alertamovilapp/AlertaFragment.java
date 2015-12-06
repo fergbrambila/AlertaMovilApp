@@ -1,6 +1,5 @@
 package com.example.moviles.alertamovilapp;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -15,16 +14,29 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+/**
+ * clase AlertaFragement es un DialogFragment que actua sobre el layout fragment_alerta
+ */
 public class AlertaFragment extends DialogFragment {
     Context mContext;
 
+    /**
+     * Constructor de la clase
+     */
     public AlertaFragment() {
         mContext = getActivity();
     }
 
+    /**
+     * OnCreateDialog es llamado cuando se crea la instancia de la clase e infla la vista y agrega
+     * todos sus elementos y se ponen listeners para la accion de cada boton
+     *
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        Log.d("test", "dialogo");
+        Log.d("test", "dialogoAlerta"); // pone en el log la creacion de la alerta
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
         // Get the layout inflater
@@ -33,7 +45,7 @@ public class AlertaFragment extends DialogFragment {
         //ImageButton a = (ImageButton) a
         View oDialogView = inflater.inflate(R.layout.fragment_alerta, null);
 
-        ImageButton oBtnBom = (ImageButton) oDialogView.findViewById(R.id.imageButtonBombero);
+        ImageButton oBtnBom = (ImageButton) oDialogView.findViewById(R.id.imageButtonBombero); // guarda en variable todos los ids que se implementaran en el listener
         ImageButton oBtnPol = (ImageButton) oDialogView.findViewById(R.id.imageButtonPolicia);
         ImageButton oBtnMed = (ImageButton) oDialogView.findViewById(R.id.imageButtonMedico);
 
@@ -46,6 +58,7 @@ public class AlertaFragment extends DialogFragment {
                     }
                 });
 
+        //listeners de todos los botones, se crearan toasts y crean dialogos de alerta correspondientes
         oBtnBom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +94,11 @@ public class AlertaFragment extends DialogFragment {
         return alertDialogBuilder.create();
     }
 
+    /**
+     * Nueva instancia de Alerta
+     *
+     * @return
+     */
     public static AlertaFragment newInstance() {
         AlertaFragment frag = new AlertaFragment();
         Bundle args = new Bundle();

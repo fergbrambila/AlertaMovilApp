@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="top|left"
                     android:hint="Descripcion (Opcional)"
-                    android:inputType="textMultiLine"
+                    android:inputType="textCapSentences|textMultiLine"
                     android:lines="5"
                     android:scrollHorizontally="false"
                     android:singleLine="false" />

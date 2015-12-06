@@ -2,6 +2,10 @@ package com.example.moviles.alertamovilapp;
 
 import java.io.Serializable;
 
+/**
+ * clase de objeto de tipo reporte que es serializble parapoder guardar la informacion de los reportes
+ * cuando llegan como array
+ */
 public class Reporte implements Serializable {
     private String fecha;
     private String email;
@@ -76,7 +80,5 @@ public class Reporte implements Serializable {
     public void setImg(int img) { this.img = img; }
 
     public int getImg() {return img; }
-
-
 
 }

@@ -18,7 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * clase que esta relacionada con la informacion del registro donde se llama a otra clase para enviar
+ * la informacion del registro y guardarla en la base de datos
+ */
 public class RegisterActivity extends AppCompatActivity {
+    //declaran las variables para la clase
     private static TextView _link_login;
     private static Button _btn_signup;
     private static EditText _nombre;
@@ -43,12 +48,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        spinner = (ProgressBar)findViewById(R.id.progressBar1);
+        spinner = (ProgressBar) findViewById(R.id.progressBar1);//declara el spinner y lo desaparece
         spinner.setVisibility(View.GONE);
 
         RelativeLayout layout = (RelativeLayout) findViewById(R.id.layout);
 
-        layout.getBackground().setAlpha(60);
+        layout.getBackground().setAlpha(60);//pone el fondo de un alpha de 60
 
         layout.setOnTouchListener(new View.OnTouchListener()//esconder tecleado
         {
@@ -61,6 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Spinner dynamicSpinner = (Spinner) findViewById(R.id.ciudad_spinner);
 
+        //declara el spinner de santiago
         String[] items = new String[]{"Santiago", "Concepción", "Valparaíso", "Viña del Mar", "Coquimbo", "Valdivia", "Rancagua", "Temuco", "Iquique"};
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -72,7 +78,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         dynamicSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
+            public void onItemSelected(AdapterView<?> parent, View view,// cuando se elige alfo del spinner
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 spinnerCiudad = (String) parent.getItemAtPosition(position);
@@ -83,6 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //se llama los metodos correspondientes
         onLinkListener();
         onButtonListener();
     }
@@ -92,6 +99,7 @@ public class RegisterActivity extends AppCompatActivity {
         in.hideSoftInputFromWindow(view.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
     }
 
+    //se le da click al link regresa al login
     public void onLinkListener() {
         _link_login = (TextView) findViewById(R.id.link_login);
         _link_login.setOnClickListener(
@@ -131,14 +139,15 @@ public class RegisterActivity extends AppCompatActivity {
         pasC = _passwordConfirmar.getText().toString();
         num = _numcelular.getText().toString();
 
-        if (!validate()) {
+        if (!validate()) {//valida que los datos sean correctos
             onLoginFailed();
             return;
         }
 
         _btn_signup.setEnabled(false);
-        spinner.setVisibility(View.VISIBLE);
+        spinner.setVisibility(View.VISIBLE);//activa el spinner antes de enviar la informacion
 
+        //se envia la informacion del mail, password, nombre, apellido, numero y ciudad
         new RegistrarTask(new RegistrarTask.RegistrarCallback() {
             @Override
             public void onSuccess() {
@@ -158,10 +167,12 @@ public class RegisterActivity extends AppCompatActivity {
         }).execute(mai, pas, nom, ape, num, spinnerCiudad);
     }
 
+    //si falla, pone un toast diciendo qeu rellene los campos de forma adecuada
     private void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Rellenar los campos adecuadamente", Toast.LENGTH_LONG).show();
     }
 
+    //validan todos los datos y si no se pone un mensaje de error
     private boolean validate() {
         boolean valid = true;
 
@@ -175,7 +186,7 @@ public class RegisterActivity extends AppCompatActivity {
             valid = false;
         }
 
-        if (!pas.equals(pasC)) {
+        if (!pas.equals(pasC)) {//coincidan las contrasenas
             _passwordConfirmar.setError("La contrasena no concuerda");
             valid = false;
         }

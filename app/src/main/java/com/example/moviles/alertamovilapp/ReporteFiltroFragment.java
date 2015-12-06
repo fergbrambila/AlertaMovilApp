@@ -25,7 +25,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Filtros para poder filtrar los reportes dependiendo de la fecha, tipo subtipo y ciudad
+ * esta es un dialogo
+ */
 public class ReporteFiltroFragment extends DialogFragment {
+    //declaran las variables privadas que se usaran en la clase
     Context mContext;
     private static Spinner tipoSpinner;
     private static Spinner subtipoSpinner;
@@ -45,6 +50,12 @@ public class ReporteFiltroFragment extends DialogFragment {
         this.oCallback = oCallback;
     }
 
+    /**
+     * metodo que se llama cuando se crea el fragmento dialogo del filtro
+     *
+     * @param savedInstanceState
+     * @return
+     */
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         Log.d("test", "Filtro");
@@ -60,11 +71,11 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         String[] tipos = new String[]{"Elegir Tipo", "Policia", "Bombero", "Medico", "Servicios"};
 
-        final Map<String, String[]> oMapSubTipos = new HashMap<>();
+        final Map<String, String[]> oMapSubTipos = new HashMap<>();//declara un map para subtipos y luego se llena
 
         oMapSubTipos.put("Elegir Tipo", new String[]{"Elegir Tipo Primero"});
         oMapSubTipos.put("Policia", new String[]{"Elegir Opción", "Choque Auto", "Robo Casa Habitación", "Robo Casa Deshabitada", "Asalto", "Pelea de Personas", "Vehículo/Persona Sospechosa", "Peligro en la Vía / Obras Públicas"});
-        oMapSubTipos.put("Bombero", new String[]{"Elegir Opción", "Incendio Casa", "Incendio Forestal","Incendio Edificio", "Gato sobre un árbol"});
+        oMapSubTipos.put("Bombero", new String[]{"Elegir Opción", "Incendio Casa", "Incendio Forestal", "Incendio Edificio", "Gato sobre un árbol"});
         oMapSubTipos.put("Servicios", new String[]{"Elegir Opción", "Luminaria Apagada/Rota", "Semáforo Apagado", "Eventos en Pavimento", "Sin Luz Sector", "Sin Agua Sector", "Basura en Sector"});
         oMapSubTipos.put("Medico", new String[]{"Elegir Opción", "Emergencia Médica", "Choque Auto"});
 
@@ -74,6 +85,7 @@ public class ReporteFiltroFragment extends DialogFragment {
 
         tipoSpinner.setAdapter(adapter);
 
+        //cuando se elige una opcion del spinner se llena el otro spinner
         tipoSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
@@ -81,7 +93,7 @@ public class ReporteFiltroFragment extends DialogFragment {
                 Log.v("item", (String) parent.getItemAtPosition(position));
                 ArrayAdapter<String> adapterSubtipo = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, oMapSubTipos.get((String) parent.getItemAtPosition(position)));
                 adapterSubtipo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                subtipoSpinner.setAdapter(adapterSubtipo);
+                subtipoSpinner.setAdapter(adapterSubtipo);//se llena el subtipo dependiendo del tipo
                 spinTipo = (String) parent.getItemAtPosition(position);
             }
 
@@ -105,7 +117,7 @@ public class ReporteFiltroFragment extends DialogFragment {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 Log.v("item", (String) parent.getItemAtPosition(position));
-                spinCiudad = (String) parent.getItemAtPosition(position);
+                spinCiudad = (String) parent.getItemAtPosition(position);//opcion que es seleccionada
             }
 
             @Override
@@ -125,6 +137,7 @@ public class ReporteFiltroFragment extends DialogFragment {
             }
         });
 
+        //crea la alerta del dialogo
         alertDialogBuilder.setView(oDialogView)
                 .setPositiveButton("Filtrar", new DialogInterface.OnClickListener() {
                     @Override
@@ -133,11 +146,12 @@ public class ReporteFiltroFragment extends DialogFragment {
                         int day = datePicker.getDayOfMonth();
                         int month = datePicker.getMonth() + 1;
                         int year = datePicker.getYear();
-                        fecha = day + "/" + month + "/" + year;
+                        fecha = day + "/" + month + "/" + year;//consigue la fecha del date picker
 
                         if (fecha.isEmpty())
                             fecha = "";
 
+                        //sie tienen estas opciones, las pongo como vacios
                         if (spinTipo.equalsIgnoreCase("Elegir Tipo"))
                             spinTipo = "";
 
@@ -148,11 +162,12 @@ public class ReporteFiltroFragment extends DialogFragment {
                             spinCiudad = "";
 
                         ProgressBar spinner = (ProgressBar) activity.findViewById(R.id.progressBar1);
-                        spinner.setVisibility(View.VISIBLE);
+                        spinner.setVisibility(View.VISIBLE); //empieza el spinner de loading
 
                         TextView txtRepVacio = (TextView) activity.findViewById(R.id.txtViewReporteVacio);
                         txtRepVacio.setVisibility(View.GONE);
 
+                        //llama a general task mandando fecha spintipo, subtip y ciudad en el metodo padre
                         new ReporteGeneralTask(oCallback/*new ReporteGeneralTask.ReporteGeneralCallback() {
                             @Override
                             public void onSuccess(ArrayList<Reporte> s) {
@@ -185,9 +200,15 @@ public class ReporteFiltroFragment extends DialogFragment {
                     }
                 });
 
-        return alertDialogBuilder.create();
+        return alertDialogBuilder.create();//crea alerta
     }
 
+    /**
+     * Nueva instancia de reporte filtro usando callback para llamar a la funcion
+     *
+     * @param oCallback
+     * @return
+     */
     public static ReporteFiltroFragment newInstance(ReporteGeneralTask.ReporteGeneralCallback oCallback) {
         ReporteFiltroFragment frag = new ReporteFiltroFragment(oCallback);
         Bundle args = new Bundle();
@@ -195,7 +216,8 @@ public class ReporteFiltroFragment extends DialogFragment {
         return frag;
     }
 
-    public void onAttach (Activity attachedActivity) {
+    //ocnsigue la actividad padre para poder poner toast en la actividad padre
+    public void onAttach(Activity attachedActivity) {
         super.onAttach(attachedActivity);
         activity = attachedActivity;
     }

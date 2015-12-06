@@ -1,20 +1,15 @@
 package com.example.moviles.alertamovilapp;
 
-import android.app.DialogFragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -28,7 +23,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class ReportesFragment extends Fragment implements  ReporteGeneralTask.ReporteGeneralCallback {
+/**
+ * clase que trae todos los reportes del dia a la pantalla de inicio, donde se puede llamar a filtrar
+ * o generar un reporte leve
+ */
+public class ReportesFragment extends Fragment implements ReporteGeneralTask.ReporteGeneralCallback {
     private ListView oLst;
     private String fecha;
     private View rootView;
@@ -42,31 +41,32 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                              Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_reportes, container, false);//false is dont want to attatch to root
 
-        ((MainActivity) getActivity()).setActionBarTitle("Reportes");
+        ((MainActivity) getActivity()).setActionBarTitle("Reportes");//pone el titulo en el appbar
 
-        spinner = (ProgressBar)rootView.findViewById(R.id.progressBar1);
-        spinner.setVisibility(View.VISIBLE);
+        spinner = (ProgressBar) rootView.findViewById(R.id.progressBar1);
+        spinner.setVisibility(View.VISIBLE);//bisible el spinner de loading
 
-        txtRepVacio = (TextView)rootView.findViewById(R.id.txtViewReporteVacio);
-        txtRepVacio.setVisibility(View.GONE);
+        txtRepVacio = (TextView) rootView.findViewById(R.id.txtViewReporteVacio);
+        txtRepVacio.setVisibility(View.GONE);//sin texto
 
         DateFormat df = new SimpleDateFormat("dd/MM/yy"); // HH:mm:ss
         Date dateobj = new Date();
         fecha = df.format(dateobj);
 
+        //envia a webservice con los deatos de la fecha para regresar un arreglo con reportes
         new ReporteFiltrarFechaTask(new ReporteFiltrarFechaTask.ReporteFiltrarFechaCallback() {
             @Override
             public void onSuccess(ArrayList<Reporte> s) {
                 oLst = (ListView) rootView.findViewById(R.id.listView);
                 Adaptador oAdapter = new Adaptador(getActivity(), s);
-                oLst.setAdapter(oAdapter);
-                spinner.setVisibility(View.GONE);
+                oLst.setAdapter(oAdapter);//pone a la lista del view, el adaptador con los reportes
+                spinner.setVisibility(View.GONE);//desaparece el spinner
             }
 
             @Override
             public void onFail() {
                 Toast.makeText(getActivity().getBaseContext(), "Fallo traida de Reportes", Toast.LENGTH_LONG).show();
-                txtRepVacio.setVisibility(View.VISIBLE);
+                txtRepVacio.setVisibility(View.VISIBLE);//pone texto de vacio
                 spinner.setVisibility(View.GONE);
             }
         }).execute(fecha);
@@ -76,6 +76,7 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity().getBaseContext(),"Alerta Seleccionada",Toast.LENGTH_SHORT).show();
+                // manda a llamar una alerta del boton de panico
                 Log.d("test", "clic imagen");
                 FragmentActivity activity = (FragmentActivity) getActivity();
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
@@ -88,6 +89,7 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
         final Button btnReporteFiltro = (Button) rootView.findViewById(R.id.btnReportesFiltrar);
         final Button btnReporteLeve = (Button) rootView.findViewById(R.id.btnReportesLeves);
 
+        //abre el dialogo de reporte leve
         btnReporteLeve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,7 +100,7 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
                 android.support.v4.app.FragmentManager fm = activity.getSupportFragmentManager();
                 Double a = null;
                 Double b = null;
-                ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance(a,b);
+                ReporteLeveFragment alertDialog = ReporteLeveFragment.newInstance(a, b);
                 alertDialog.show(fm, "fragment_reporte_leve");
             }
         });
@@ -116,7 +118,8 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
             }
         });
 
-        btnRefresh = (Button)rootView.findViewById(R.id.btnRefresh);
+        //vuelve a cargar los reportes actualizados
+        btnRefresh = (Button) rootView.findViewById(R.id.btnRefresh);
         btnRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,8 +130,13 @@ public class ReportesFragment extends Fragment implements  ReporteGeneralTask.Re
         return rootView;
     }
 
+    /**
+     * metodos que ocurren dependiendo de la infromacion que traega el filtro para volver a cargar la info de los reportes
+     * @param s
+     */
     @Override
     public void onSuccess(ArrayList<Reporte> s) {
+
         oLst = (ListView) rootView.findViewById(R.id.listView);
         Adaptador oAdapter = new Adaptador(getActivity(), s);
         oLst.setAdapter(oAdapter);

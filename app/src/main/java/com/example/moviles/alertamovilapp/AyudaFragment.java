@@ -11,16 +11,21 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
+/**
+ * clase AyudaFragement extiende a Fragment donde se ponen los listeners dentro del createView de dos
+ * botones para la diferentes ayudas que ofrece el fragmento
+ */
 public class AyudaFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_ayuda, container, false);//false is dont want to attatch to root
-        ((MainActivity) getActivity()).setActionBarTitle("Ayuda");
+        ((MainActivity) getActivity()).setActionBarTitle("Ayuda");//establecer titulo en el appbar
 
-        Button btnPanico = (Button) rootView.findViewById(R.id.btn_Panico);
+        Button btnPanico = (Button) rootView.findViewById(R.id.btn_Panico); //guardar los botones del layout
         Button btnCrear = (Button) rootView.findViewById(R.id.btn_Crear);
 
+        //listeners de los dos botones que te llevan a crear un dialogo de tipo Ayuda1 y Ayuda2
         btnCrear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
